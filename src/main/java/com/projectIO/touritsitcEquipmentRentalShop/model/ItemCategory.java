@@ -5,13 +5,13 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "item_categories")
+@Table(name = "categories")
 public class ItemCategory implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -35,11 +35,11 @@ public class ItemCategory implements Serializable {
         this.deposit = deposit;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -1,5 +1,6 @@
 package com.projectIO.touritsitcEquipmentRentalShop.dao;
 
+import com.projectIO.touritsitcEquipmentRentalShop.model.Customer;
 import com.projectIO.touritsitcEquipmentRentalShop.model.Item;
 
 import javax.persistence.EntityManager;
@@ -7,49 +8,52 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public class ItemDaoImpl implements ItemDao{
+public class CustomerDaoImpl implements CustomerDao {
 
     private EntityManagerFactory emFactory;
     private EntityManager entityManager;
 
-    public ItemDaoImpl() {
+    public CustomerDaoImpl() {
         emFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
         entityManager = emFactory.createEntityManager();
     }
 
     @Override
-    public void save(Item item) {
+    public void save(Customer customer) {
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
-        entityManager.persist(item);
+        entityManager.persist(customer);
         transaction.commit();
     }
 
     @Override
-    public Item read(Integer id) {
-        Item item = entityManager.find(Item.class, id);
-        return item;
+    public Customer read(String login) {
+        Customer customer = entityManager.find(Customer.class, login);
+        return customer;
     }
 
     @Override
-    public void update(Item item) {
+    public void update(Customer customer) {
         EntityTransaction transaction = entityManager.getTransaction();
-        Item itemFromDb = entityManager.find(Item.class, item.getId());
-        if(itemFromDb != null) {
+        Customer customerFromDb = entityManager.find(Customer.class, customer.getLogin());
+        if(customerFromDb != null) {
             transaction.begin();
-            itemFromDb.setAvailability(item.getAvailability());
-            itemFromDb.setTechnicalCondition(item.getTechnicalCondition());
-            itemFromDb.setProducer(item.getProducer());
+            customerFromDb.setFirstName(customer.getFirstName());
+            customerFromDb.setLastName(customer.getLastName());
+            customerFromDb.setEmail(customer.getEmail());
+            customerFromDb.setPhoneNumber(customer.getPhoneNumber());
+            customerFromDb.setLogin(customer.getLogin());
+            customerFromDb.setPassword(customer.getPassword());
             transaction.commit();
         }
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(String login) {
         EntityTransaction transaction = entityManager.getTransaction();
-        Item itemToRemove = entityManager.find(Item.class, id);
+        Customer customerToRemove = entityManager.find(Customer.class, login);
         transaction.begin();
-        entityManager.remove(itemToRemove);
+        entityManager.remove(customerToRemove);
         transaction.commit();
     }
 
@@ -58,5 +62,4 @@ public class ItemDaoImpl implements ItemDao{
         entityManager.close();
         emFactory.close();
     }
-
 }

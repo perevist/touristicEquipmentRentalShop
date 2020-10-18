@@ -1,33 +1,29 @@
 package com.projectIO.touritsitcEquipmentRentalShop;
 
-import com.projectIO.touritsitcEquipmentRentalShop.dao.ItemCategoryDao;
-import com.projectIO.touritsitcEquipmentRentalShop.dao.ItemCategoryDaoImpl;
-import com.projectIO.touritsitcEquipmentRentalShop.dao.ItemDao;
-import com.projectIO.touritsitcEquipmentRentalShop.dao.ItemDaoImpl;
-import com.projectIO.touritsitcEquipmentRentalShop.model.Item;
-import com.projectIO.touritsitcEquipmentRentalShop.model.ItemCategory;
+import com.projectIO.touritsitcEquipmentRentalShop.dao.*;
+import com.projectIO.touritsitcEquipmentRentalShop.model.Customer;
 
 public class TestApp {
 
     public static void main(String[] args) {
 
         // ----- ItemCategory CRUD test -----
-        // Create:
+        //Create:
 //        ItemCategoryDao itemCategoryDao = new ItemCategoryDaoImpl();
-//        ItemCategory itemCategory = new ItemCategory("Namiot", 10,5);
-//        itemCategoryDao.save(itemCategory);
+/*        ItemCategory itemCategory = new ItemCategory("Namiot", 10,5);
+        itemCategoryDao.save(itemCategory);*/
 
         // Update:
-//        ItemCategory itemCategory2 = new ItemCategory("Namiot", 18, 4);
-//        itemCategory2.setId(1L);
-//        itemCategoryDao.update(itemCategory2);
+/*        ItemCategory itemCategory2 = new ItemCategory("Namiot", 18, 4);
+        itemCategory2.setId(1);
+        itemCategoryDao.update(itemCategory2);*/
 
         // Read:
-//        ItemCategory foundItemCategory = itemCategoryDao.read(1L);
-//        System.out.println("Znaleziono: " + foundItemCategory);
+/*        ItemCategory foundItemCategory = itemCategoryDao.read(1);
+        System.out.println("Znaleziono: " + foundItemCategory);*/
 
         // Delete:
-//        itemCategoryDao.delete(1L);
+//        itemCategoryDao.delete(1);
 
 
         // ----- Item CRUD test -----
@@ -39,17 +35,17 @@ public class TestApp {
 //        itemDao.save(item);
 
         // Update:
-//        Item item2 = new Item("do naprawy", "dostepny", "Nike");
-//        item2.setItemCategory(itemCategory2);
-//        item2.setId(10L);
-//        itemDao.update(item2);
+/*        Item item2 = new Item("do naprawy", "dostepny", "Nike");
+        item2.setItemCategory(itemCategory2);
+        item2.setId(1);
+        itemDao.update(item2);*/
 
         // Read:
-//        Item foundItem = itemDao.get(10L);
+//        Item foundItem = itemDao.read(1);
 //        System.out.println("Znaleziono: " + foundItem);
 
         // Delete:
-//        itemDao.remove(10L);
+//        itemDao.remove(1L);
 
         // ManyToOne relation test:
         // Czy zapisuje tylko jeden obiekt itemCategory3 w bazie danych:
@@ -66,6 +62,35 @@ public class TestApp {
         // Czy usuwa egzemplarze z tej samej kategorii:
 //        ItemCategoryDao itemCategoryDao3 = new ItemCategoryDaoImpl();
 //        itemCategoryDao3.delete(2L);
+
+
+
+        // --------- Customer CRUD test --------
+        //Create:
+//        CustomerDao customerDao = new CustomerDaoImpl();
+//        Customer customer = new Customer("boczek", "Marian", "Boczkowski", "487256366",
+//                "boczek@gmail.com", "haslo");
+//        customerDao.save(customer);
+
+        // Update:
+/*        Customer customer2 = new Customer("boczek", "Alekasander", "Boczkowski", "1111111111",
+                "nowymail@gmail.com", "haslo");
+        customerDao.update(customer2);*/
+
+        // Read:
+/*        Customer customerFromDb = customerDao.read("boczek");
+        System.out.println(customerFromDb);*/
+
+        // Delete:
+//        customerDao.delete("boczek");
+
+        // Dodanie dwoch takich samych loginow - czy blad:
+/*        Customer customer1 = new Customer("boczek", "Marian", "Boczkowski", "487256366",
+                "boczek@gmail.com", "haslo");
+        Customer customer2 = new Customer("boczek", "Adam", "Boczkowski", "455234794",
+                "boczek3423@gmail.com", "haslo");
+        customerDao.save(customer1);
+        customerDao.save(customer2);*/
 
     }
 }

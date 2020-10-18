@@ -26,7 +26,7 @@ public class ItemCategoryDaoImpl implements ItemCategoryDao{
     }
 
     @Override
-    public ItemCategory read(Long id) {
+    public ItemCategory read(Integer id) {
         ItemCategory itemCategory = entityManager.find(ItemCategory.class, id);
         return itemCategory;
     }
@@ -40,7 +40,7 @@ public class ItemCategoryDaoImpl implements ItemCategoryDao{
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
         EntityTransaction transaction = entityManager.getTransaction();
         ItemCategory itemCategoryToRemove = entityManager.find(ItemCategory.class, id);
         transaction.begin();
