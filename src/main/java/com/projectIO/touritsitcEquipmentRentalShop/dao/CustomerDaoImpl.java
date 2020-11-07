@@ -1,7 +1,6 @@
 package com.projectIO.touritsitcEquipmentRentalShop.dao;
 
 import com.projectIO.touritsitcEquipmentRentalShop.model.Customer;
-import com.projectIO.touritsitcEquipmentRentalShop.model.Item;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

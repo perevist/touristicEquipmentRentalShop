@@ -7,8 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public class ItemCategoryDaoImpl implements ItemCategoryDao{
-
+public class ItemCategoryDaoImpl implements ItemCategoryDao {
     private EntityManagerFactory emFactory;
     private EntityManager entityManager;
 
@@ -26,7 +25,7 @@ public class ItemCategoryDaoImpl implements ItemCategoryDao{
     }
 
     @Override
-    public ItemCategory read(Integer id) {
+    public ItemCategory read(int id) {
         ItemCategory itemCategory = entityManager.find(ItemCategory.class, id);
         return itemCategory;
     }
@@ -40,7 +39,7 @@ public class ItemCategoryDaoImpl implements ItemCategoryDao{
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(int id) {
         EntityTransaction transaction = entityManager.getTransaction();
         ItemCategory itemCategoryToRemove = entityManager.find(ItemCategory.class, id);
         transaction.begin();

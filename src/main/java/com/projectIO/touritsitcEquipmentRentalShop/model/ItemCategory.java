@@ -1,30 +1,23 @@
 package com.projectIO.touritsitcEquipmentRentalShop.model;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "categories")
-public class ItemCategory implements Serializable {
+public class ItemCategory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
-
+    private int id;
     @Column(name = "name")
     private String name;
-
     @Column(name = "rental_charge")
     private double rentalCharge;
-
     @Column(name = "deposit")
     private double deposit;
-
-    @OneToMany(mappedBy = "itemCategory",
-                cascade = CascadeType.ALL)
-    private List<Item> items;
 
     public ItemCategory() {
     }
@@ -35,11 +28,11 @@ public class ItemCategory implements Serializable {
         this.deposit = deposit;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

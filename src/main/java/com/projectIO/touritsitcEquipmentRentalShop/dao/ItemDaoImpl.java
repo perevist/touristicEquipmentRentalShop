@@ -26,7 +26,7 @@ public class ItemDaoImpl implements ItemDao{
     }
 
     @Override
-    public Item read(Integer id) {
+    public Item read(int id) {
         Item item = entityManager.find(Item.class, id);
         return item;
     }
@@ -37,15 +37,14 @@ public class ItemDaoImpl implements ItemDao{
         Item itemFromDb = entityManager.find(Item.class, item.getId());
         if(itemFromDb != null) {
             transaction.begin();
-            itemFromDb.setAvailability(item.getAvailability());
-            itemFromDb.setTechnicalCondition(item.getTechnicalCondition());
-            itemFromDb.setProducer(item.getProducer());
+            itemFromDb.setCategory(item.getCategory());
+            itemFromDb.setTechnicalConditionId(item.getTechnicalConditionId());
             transaction.commit();
         }
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(int id) {
         EntityTransaction transaction = entityManager.getTransaction();
         Item itemToRemove = entityManager.find(Item.class, id);
         transaction.begin();
@@ -58,5 +57,4 @@ public class ItemDaoImpl implements ItemDao{
         entityManager.close();
         emFactory.close();
     }
-
 }

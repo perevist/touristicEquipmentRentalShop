@@ -4,8 +4,8 @@ import com.projectIO.touritsitcEquipmentRentalShop.model.Item;
 
 public interface ItemDao {
     void save(Item item);
-    Item read(Integer id);
+    Item read(int id);
     void update(Item item);
-    void delete(Integer id);
+    void delete(int id);
     void cleanUp();
 }

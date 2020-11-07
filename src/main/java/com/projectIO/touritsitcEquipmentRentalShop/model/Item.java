@@ -1,88 +1,51 @@
 package com.projectIO.touritsitcEquipmentRentalShop.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "items")
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
-
-    @Column(name = "technical_condition")
-    private String technicalCondition;
-
-    @Column(name = "availability")
-    private String availability;
-
-    @Column(name = "producer")
-    private String producer;
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
-            CascadeType.REFRESH})
+    private int id;
+    @Column(name = "technical_condition_id")
+    private int technicalConditionId;
+    @ManyToOne
     @JoinColumn(name = "category_id")
-    private ItemCategory itemCategory;
+    private ItemCategory category;
 
-    public Item() {
-    }
 
-    public Item(String technicalCondition, String availability, String producer) {
-        this.technicalCondition = technicalCondition;
-        this.availability = availability;
-        this.producer = producer;
-    }
-
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getTechnicalCondition() {
-        return technicalCondition;
+    public int getTechnicalConditionId() {
+        return technicalConditionId;
     }
 
-    public void setTechnicalCondition(String technicalCondition) {
-        this.technicalCondition = technicalCondition;
+    public void setTechnicalConditionId(int technicalConditionId) {
+        this.technicalConditionId = technicalConditionId;
     }
 
-    public String getAvailability() {
-        return availability;
+    public ItemCategory getCategory() {
+        return category;
     }
 
-    public void setAvailability(String availability) {
-        this.availability = availability;
-    }
-
-    public String getProducer() {
-        return producer;
-    }
-
-    public void setProducer(String producer) {
-        this.producer = producer;
-    }
-
-    public ItemCategory getItemCategory() {
-        return itemCategory;
-    }
-
-    public void setItemCategory(ItemCategory itemCategory) {
-        this.itemCategory = itemCategory;
+    public void setCategory(ItemCategory category) {
+        this.category = category;
     }
 
     @Override
     public String toString() {
         return "Item{" +
                 "id=" + id +
-                ", technicalCondition='" + technicalCondition + '\'' +
-                ", availability='" + availability + '\'' +
-                ", producer='" + producer + '\'' +
-                ", itemCategory=" + itemCategory +
+                ", technicalConditionId=" + technicalConditionId +
+                ", category=" + category +
                 '}';
     }
 }

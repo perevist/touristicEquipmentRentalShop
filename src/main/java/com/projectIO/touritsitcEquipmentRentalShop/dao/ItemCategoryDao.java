@@ -4,8 +4,8 @@ import com.projectIO.touritsitcEquipmentRentalShop.model.ItemCategory;
 
 public interface ItemCategoryDao {
     void save(ItemCategory itemCategory);
-    ItemCategory read(Integer id);
+    ItemCategory read(int id);
     void update(ItemCategory itemCategory);
-    void delete(Integer id);
+    void delete(int id);
     void cleanUp();
 }
