@@ -4,6 +4,7 @@ import com.projectIO.touritsitcEquipmentRentalShop.dao.*;
 import com.projectIO.touritsitcEquipmentRentalShop.model.Customer;
 import com.projectIO.touritsitcEquipmentRentalShop.model.Item;
 import com.projectIO.touritsitcEquipmentRentalShop.model.ItemCategory;
+import com.projectIO.touritsitcEquipmentRentalShop.model.Reservation;
 
 public class TestApp {
 
@@ -33,7 +34,7 @@ public class TestApp {
 
         // ----- Item CRUD test -----
         // Create:
-        ItemDao itemDao = new ItemDaoImpl();
+//        ItemDao itemDao = new ItemDaoImpl();
 
 //        ItemCategory itemCategory2 = new ItemCategory("Plecak", 15, 2);
 //        Item item = new Item("sprawny", "dostepny", "Nike");
@@ -104,6 +105,17 @@ public class TestApp {
 //                "dwarl_adam@gmail.com", "haslo");
 //        customerDao.save(customer1);
 //        customerDao.save(customer2);
+
+        // --------- Reservation CRUD test --------
+//        ReservationDao reservationDao = new ReservationDaoImpl();
+
+        // Read:
+//        Reservation reservation = reservationDao.read(1);
+//        System.out.println(reservation);
+
+        // Delete:
+//        reservationDao.delete(3);
+
 
     }
 }

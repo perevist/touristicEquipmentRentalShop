@@ -1,0 +1,74 @@
+package com.projectIO.touritsitcEquipmentRentalShop.model;
+
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity
+@Table(name = "reservations")
+public class Reservation {
+
+    @Id
+    @Column(name = "id")
+    private int id;
+    @ManyToOne
+    @JoinColumn(name = "customer_login")
+    private Customer customer;
+    @Column(name = "date_of_receipt")
+    private Date date;
+    @Column(name = "rental_length")
+    private int rentalLength;
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private Status status;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getRentalLength() {
+        return rentalLength;
+    }
+
+    public void setRentalLength(int rentalLength) {
+        this.rentalLength = rentalLength;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", customer=" + customer +
+                ", date=" + date +
+                ", rentalLength=" + rentalLength +
+                ", status=" + status +
+                '}';
+    }
+}
