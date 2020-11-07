@@ -9,12 +9,12 @@ public class Item {
     @Id
     @Column(name = "id")
     private int id;
-    @Column(name = "technical_condition_id")
-    private int technicalConditionId;
+    @ManyToOne
+    @JoinColumn(name = "technical_condition_id")
+    private TechnicalCondition technicalCondition;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private ItemCategory category;
-
 
     public int getId() {
         return id;
@@ -24,12 +24,12 @@ public class Item {
         this.id = id;
     }
 
-    public int getTechnicalConditionId() {
-        return technicalConditionId;
+    public TechnicalCondition getTechnicalCondition() {
+        return technicalCondition;
     }
 
-    public void setTechnicalConditionId(int technicalConditionId) {
-        this.technicalConditionId = technicalConditionId;
+    public void setTechnicalCondition(TechnicalCondition technicalConditionId) {
+        this.technicalCondition = technicalConditionId;
     }
 
     public ItemCategory getCategory() {
@@ -44,7 +44,7 @@ public class Item {
     public String toString() {
         return "Item{" +
                 "id=" + id +
-                ", technicalConditionId=" + technicalConditionId +
+                ", technicalConditionId=" + technicalCondition +
                 ", category=" + category +
                 '}';
     }

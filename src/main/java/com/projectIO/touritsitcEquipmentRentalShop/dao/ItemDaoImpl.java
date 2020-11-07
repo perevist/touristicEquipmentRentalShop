@@ -38,7 +38,7 @@ public class ItemDaoImpl implements ItemDao{
         if(itemFromDb != null) {
             transaction.begin();
             itemFromDb.setCategory(item.getCategory());
-            itemFromDb.setTechnicalConditionId(item.getTechnicalConditionId());
+            itemFromDb.setTechnicalCondition(item.getTechnicalCondition());
             transaction.commit();
         }
     }
