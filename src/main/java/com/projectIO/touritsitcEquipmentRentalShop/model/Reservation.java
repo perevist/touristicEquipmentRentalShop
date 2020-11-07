@@ -2,6 +2,7 @@ package com.projectIO.touritsitcEquipmentRentalShop.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "reservations")
@@ -20,6 +21,14 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "status_id")
     private Status status;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "reserved_items",
+            joinColumns = @JoinColumn(name = "reservation_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id")
+    )
+    List<Item> items;
 
     public int getId() {
         return id;
@@ -61,6 +70,14 @@ public class Reservation {
         this.status = status;
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
     @Override
     public String toString() {
         return "Reservation{" +
@@ -69,6 +86,7 @@ public class Reservation {
                 ", date=" + date +
                 ", rentalLength=" + rentalLength +
                 ", status=" + status +
+                ", items=" + items +
                 '}';
     }
 }
