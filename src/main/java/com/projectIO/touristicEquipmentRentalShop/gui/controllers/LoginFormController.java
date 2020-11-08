@@ -62,8 +62,15 @@ public class LoginFormController implements Initializable {
                 "Zalogowano do systemu");
 
         Stage stage = (Stage) window;
-        Parent pane = FXMLLoader.load(getClass().getResource("/fxml/customerPage.fxml"));
+        Parent pane;
+        if(userType.equals("Klient")){
+            pane = FXMLLoader.load(getClass().getResource("/fxml/customerPage.fxml"));
+        }
+        else {
+            pane = FXMLLoader.load(getClass().getResource("/fxml/employeePage.fxml"));
+        }
         stage.setScene(new Scene(pane, 800, 500));
+
     }
 
     @Override
