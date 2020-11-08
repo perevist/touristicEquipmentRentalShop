@@ -1,54 +1,50 @@
-package com.projectIO.touritsitcEquipmentRentalShop.dao;
-
-import com.projectIO.touritsitcEquipmentRentalShop.model.Reservation;
+package com.projectIO.touritsitcEquipmentRentalShop.repositories;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.lang.reflect.ParameterizedType;
 
-public class ReservationDaoImpl implements ReservationDao{
+public abstract class GenericRepository<T, K> {
 
     private EntityManagerFactory emFactory;
     private EntityManager entityManager;
+    private Class<T> type;
 
-    public ReservationDaoImpl() {
+    public GenericRepository() {
         emFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
         entityManager = emFactory.createEntityManager();
+        type = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
-    @Override
-    public void save(Reservation reservation) {
+    public void save(T entity) {
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
-        entityManager.persist(reservation);
+        entityManager.persist(entity);
         transaction.commit();
     }
 
-    @Override
-    public Reservation read(int id) {
-        Reservation reservation = entityManager.find(Reservation.class, id);
-        return reservation;
+    public T read(K identifier) {
+        T entity = entityManager.find(type, identifier);
+        return entity;
     }
 
-    @Override
-    public void update(Reservation reservation) {
+    public void update(T entity) {
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
-        entityManager.merge(reservation);
+        entityManager.merge(entity);
         transaction.commit();
     }
 
-    @Override
-    public void delete(int id) {
+    public void delete(K identifier) {
         EntityTransaction transaction = entityManager.getTransaction();
-        Reservation reservationToRemove = entityManager.find(Reservation.class, id);
+        T entityToRemove = entityManager.find(type, identifier);
         transaction.begin();
-        entityManager.remove(reservationToRemove);
+        entityManager.remove(entityToRemove);
         transaction.commit();
     }
 
-    @Override
     public void cleanUp() {
         entityManager.close();
         emFactory.close();
