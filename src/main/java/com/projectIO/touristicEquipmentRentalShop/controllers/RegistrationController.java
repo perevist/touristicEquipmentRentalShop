@@ -2,16 +2,25 @@ package com.projectIO.touristicEquipmentRentalShop.controllers;
 
 import com.projectIO.touristicEquipmentRentalShop.application.RentalShopApp;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Window;
 import javafx.event.ActionEvent;
+
+import java.io.IOException;
 
 public class RegistrationController {
 
     private RentalShopApp rentalShopApp = new RentalShopApp();
+
+    @FXML
+    private GridPane rootPane;
 
     @FXML
     private TextField firstNameField;
@@ -35,7 +44,7 @@ public class RegistrationController {
     private TextField loginField;
 
     @FXML
-    public void register(ActionEvent event) {
+    public void register(ActionEvent event) throws IOException {
         Window owner = submitButton.getScene().getWindow();
 
         String firstName = firstNameField.getText();
@@ -49,7 +58,6 @@ public class RegistrationController {
 
         showAlert(Alert.AlertType.CONFIRMATION, owner, "Registration Successful!",
                 "Welcome " + firstNameField.getText());
-
     }
 
 

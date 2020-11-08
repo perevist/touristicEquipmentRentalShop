@@ -21,8 +21,10 @@ public class RentalShopApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/registrationForm.fxml"));
-        stage.setTitle("User Registration");
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/welcomePage.fxml"));
+        stage.setTitle("Wypożyczania sprzętu turystycznego");
+        stage.setMinWidth(800);
+        stage.setMinHeight(500);
         stage.setScene(new Scene(root, 800, 500));
         stage.show();
     }
