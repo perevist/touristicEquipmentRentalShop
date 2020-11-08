@@ -1,8 +1,9 @@
-package com.projectIO.touristicEquipmentRentalShop.controllers;
+package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
 import com.projectIO.touristicEquipmentRentalShop.application.RentalShopApp;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginException;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectPasswordException;
+import com.projectIO.touristicEquipmentRentalShop.gui.AlertWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

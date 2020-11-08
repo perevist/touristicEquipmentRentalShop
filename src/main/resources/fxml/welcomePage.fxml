@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="rootPane" alignment="center" hgap="10" prefHeight="513.0" prefWidth="625.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectIO.touristicEquipmentRentalShop.controllers.WelcomePageController">
+<GridPane fx:id="rootPane" alignment="center" hgap="10" prefHeight="513.0" prefWidth="625.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectIO.touristicEquipmentRentalShop.gui.controllers.WelcomePageController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

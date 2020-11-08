@@ -1,4 +1,4 @@
-package com.projectIO.touristicEquipmentRentalShop.controllers;
+package com.projectIO.touristicEquipmentRentalShop.gui;
 
 import javafx.stage.Window;
 

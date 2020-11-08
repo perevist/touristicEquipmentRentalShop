@@ -1,4 +1,4 @@
-package com.projectIO.touristicEquipmentRentalShop.controllers;
+package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

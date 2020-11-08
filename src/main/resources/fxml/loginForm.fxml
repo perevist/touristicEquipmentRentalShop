@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="rootPane" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectIO.touristicEquipmentRentalShop.controllers.LoginFormController">
+<GridPane fx:id="rootPane" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectIO.touristicEquipmentRentalShop.gui.controllers.LoginFormController">
     <padding>
         <Insets bottom="40" left="40" right="40" top="40" />
     </padding>
