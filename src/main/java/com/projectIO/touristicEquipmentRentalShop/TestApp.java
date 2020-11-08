@@ -1,6 +1,6 @@
-package com.projectIO.touritsitcEquipmentRentalShop;
+package com.projectIO.touristicEquipmentRentalShop;
 
-import com.projectIO.touritsitcEquipmentRentalShop.repositories.*;
+import com.projectIO.touristicEquipmentRentalShop.repositories.*;
 
 public class TestApp {
 

@@ -1,4 +1,4 @@
-package com.projectIO.touritsitcEquipmentRentalShop.model;
+package com.projectIO.touristicEquipmentRentalShop.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,8 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "statuses")
-public class Status {
+@Table(name = "positions")
+public class Position {
 
     @Id
     @Column(name = "id")
@@ -33,7 +33,7 @@ public class Status {
 
     @Override
     public String toString() {
-        return "Status{" +
+        return "Position{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

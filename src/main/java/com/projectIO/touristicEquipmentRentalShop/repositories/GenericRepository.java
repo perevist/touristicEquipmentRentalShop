@@ -1,4 +1,4 @@
-package com.projectIO.touritsitcEquipmentRentalShop.repositories;
+package com.projectIO.touristicEquipmentRentalShop.repositories;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

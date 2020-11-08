@@ -1,4 +1,4 @@
-package com.projectIO.touritsitcEquipmentRentalShop.model;
+package com.projectIO.touristicEquipmentRentalShop.model;
 
 import javax.persistence.*;
 
@@ -12,8 +12,8 @@ public class Customer extends Person{
     public Customer() {
     }
 
-    public Customer(String login, String firstName, String lastName, String phoneNumber, String password,
-                    String email) {
+    public Customer(String login, String firstName, String lastName, String phoneNumber, String email,
+                    String password) {
         super(login, firstName, lastName, phoneNumber, password);
         this.email = email;
     }

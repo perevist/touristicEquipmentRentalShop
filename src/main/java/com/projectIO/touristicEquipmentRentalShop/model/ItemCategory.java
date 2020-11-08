@@ -1,4 +1,4 @@
-package com.projectIO.touritsitcEquipmentRentalShop.model;
+package com.projectIO.touristicEquipmentRentalShop.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
