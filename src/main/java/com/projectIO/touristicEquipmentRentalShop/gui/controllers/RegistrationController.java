@@ -19,7 +19,11 @@ import java.io.IOException;
 
 public class RegistrationController {
 
-    private RentalShopApp rentalShopApp = new RentalShopApp();
+    private RentalShopApp rentalShopApp;
+
+    public RegistrationController() {
+        rentalShopApp = RentalShopApp.getInstance();
+    }
 
     @FXML
     private GridPane rootPane;

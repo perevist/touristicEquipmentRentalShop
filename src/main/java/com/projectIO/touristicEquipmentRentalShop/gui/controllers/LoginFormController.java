@@ -23,7 +23,11 @@ import java.util.ResourceBundle;
 
 public class LoginFormController implements Initializable {
 
-    private RentalShopApp rentalShopApp = new RentalShopApp();
+    private RentalShopApp rentalShopApp;
+
+    public LoginFormController() {
+        rentalShopApp = RentalShopApp.getInstance();
+    }
 
     @FXML
     private GridPane rootPane;
@@ -70,7 +74,6 @@ public class LoginFormController implements Initializable {
             pane = FXMLLoader.load(getClass().getResource("/fxml/employeePage.fxml"));
         }
         stage.setScene(new Scene(pane, 800, 500));
-
     }
 
     @Override

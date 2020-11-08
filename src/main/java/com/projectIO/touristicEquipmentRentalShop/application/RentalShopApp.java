@@ -10,16 +10,25 @@ import javafx.stage.Stage;
 
 public class RentalShopApp extends Application {
 
+    private static RentalShopApp instance;
+
     private RegistrationService registrationService;
     private LoginService loginService;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     public RentalShopApp() {
         registrationService = new RegistrationService();
         loginService = new LoginService();
     }
 
-    public static void main(String[] args){
-        launch(args);
+    public static RentalShopApp getInstance() {
+        if (instance == null) {
+            instance = new RentalShopApp();
+        }
+        return instance;
     }
 
     @Override
