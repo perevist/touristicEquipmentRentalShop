@@ -1,5 +1,6 @@
 package com.projectIO.touristicEquipmentRentalShop;
 
+import com.projectIO.touristicEquipmentRentalShop.model.Customer;
 import com.projectIO.touristicEquipmentRentalShop.repositories.*;
 
 public class TestApp {
@@ -29,7 +30,7 @@ public class TestApp {
 
 
         // ----- Item CRUD test -----
-        ItemRepository itemRepository = new ItemRepository();
+//        ItemRepository itemRepository = new ItemRepository();
 
         // Read:
 //        Item foundItem1 = itemRepository.read(1);
@@ -45,11 +46,11 @@ public class TestApp {
 //        itemRepository.remove(5);
 
 
-        // --------- Customer CRUD test --------
+//        // --------- Customer CRUD test --------
 //        CustomerRepository customerRepository = new CustomerRepository();
-
-        //Create:
-//        Customer customer = new Customer("zenek2", "Adam", "Zenkowski", "487256366",
+//
+//        //Create:
+//        Customer customer = new Customer("dwarl2", "Adam", "Zenkowski", "487256366",
 //                "haslo1","adam_zenkowski@gmail.com");
 //        customerRepository.save(customer);
 
@@ -82,7 +83,5 @@ public class TestApp {
 
         // Delete:
 //        reservationDao.delete(3);
-
-
     }
 }

@@ -1,5 +1,6 @@
 package com.projectIO.touristicEquipmentRentalShop.application;
 
+import com.projectIO.touristicEquipmentRentalShop.services.LoginService;
 import com.projectIO.touristicEquipmentRentalShop.services.RegistrationService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +11,11 @@ import javafx.stage.Stage;
 public class RentalShopApp extends Application {
 
     private RegistrationService registrationService;
+    private LoginService loginService;
 
     public RentalShopApp() {
         registrationService = new RegistrationService();
+        loginService = new LoginService();
     }
 
     public static void main(String[] args){
@@ -33,5 +36,9 @@ public class RentalShopApp extends Application {
                                          String email, String password) {
 
         registrationService.registerCustomer(login, firstName, lastName, phoneNumber, email, password);
+    }
+
+    public void loginUserInSystem(String login, String password, String userType) {
+        loginService.loginUser(login, password, userType);
     }
 }

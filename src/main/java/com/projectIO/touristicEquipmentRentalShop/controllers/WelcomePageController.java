@@ -23,9 +23,10 @@ public class WelcomePageController {
     private Button registrationButton;
 
     @FXML
-    void loadLoginForm(ActionEvent event) {
-
-
+    void loadLoginForm(ActionEvent event) throws IOException {
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        Parent pane = FXMLLoader.load(getClass().getResource("/fxml/loginForm.fxml"));
+        stage.setScene(new Scene(pane, 800, 500));
     }
 
     @FXML
