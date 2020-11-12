@@ -8,8 +8,8 @@ import java.lang.reflect.ParameterizedType;
 
 public abstract class GenericRepository<T, K> {
 
-    private EntityManagerFactory emFactory;
-    private EntityManager entityManager;
+    protected EntityManagerFactory emFactory;
+    protected EntityManager entityManager;
     private Class<T> type;
 
     public GenericRepository() {

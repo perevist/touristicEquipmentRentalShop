@@ -1,7 +1,10 @@
 package com.projectIO.touristicEquipmentRentalShop;
 
 import com.projectIO.touristicEquipmentRentalShop.model.Customer;
+import com.projectIO.touristicEquipmentRentalShop.model.ItemCategory;
 import com.projectIO.touristicEquipmentRentalShop.repositories.*;
+
+import java.util.List;
 
 public class TestApp {
 
@@ -11,7 +14,7 @@ public class TestApp {
 
         // ----- ItemCategory CRUD test -----
         //Create:
-//        ItemCategoryRepository itemCategoryRepository = new ItemCategoryRepository();
+        ItemCategoryRepository itemCategoryRepository = new ItemCategoryRepository();
 
 //        ItemCategory itemCategory = new ItemCategory("Rower", 30,10);
 //        itemCategoryRepository.save(itemCategory);
@@ -28,6 +31,10 @@ public class TestApp {
         // Delete:
 //        itemCategoryRepository.delete(7);
 
+        List<ItemCategory> itemCategories = itemCategoryRepository.getAllItemCategories();
+        for (ItemCategory itemCategory : itemCategories) {
+            System.out.println("Znaleziona kategoira: " + itemCategory);
+        }
 
         // ----- Item CRUD test -----
 //        ItemRepository itemRepository = new ItemRepository();
