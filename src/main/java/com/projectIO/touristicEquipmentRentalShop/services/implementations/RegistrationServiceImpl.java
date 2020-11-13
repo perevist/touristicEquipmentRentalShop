@@ -2,6 +2,7 @@ package com.projectIO.touristicEquipmentRentalShop.services.implementations;
 
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginException;
 import com.projectIO.touristicEquipmentRentalShop.model.Customer;
+import com.projectIO.touristicEquipmentRentalShop.model.UserInSystem;
 import com.projectIO.touristicEquipmentRentalShop.repositories.CustomerRepository;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.RegistrationService;
 
@@ -10,7 +11,8 @@ public class RegistrationServiceImpl  implements RegistrationService {
     private CustomerRepository customerRepository;
 
     public RegistrationServiceImpl() {
-        customerRepository = new CustomerRepository();
+        String persistenceUnitName = UserInSystem.getInstance().getUserType().getPersistenceUnitName();
+        customerRepository = new CustomerRepository(persistenceUnitName);
     }
 
     @Override

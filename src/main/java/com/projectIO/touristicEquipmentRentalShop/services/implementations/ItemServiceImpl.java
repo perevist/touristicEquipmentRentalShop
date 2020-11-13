@@ -1,6 +1,7 @@
 package com.projectIO.touristicEquipmentRentalShop.services.implementations;
 
 import com.projectIO.touristicEquipmentRentalShop.model.Item;
+import com.projectIO.touristicEquipmentRentalShop.model.UserInSystem;
 import com.projectIO.touristicEquipmentRentalShop.repositories.ItemRepository;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.ItemService;
 
@@ -12,7 +13,8 @@ public class ItemServiceImpl implements ItemService {
     private ItemRepository itemRepository;
 
     public ItemServiceImpl() {
-        itemRepository = new ItemRepository();
+        String persistenceUnitName = UserInSystem.getInstance().getUserType().getPersistenceUnitName();
+        itemRepository = new ItemRepository(persistenceUnitName);
     }
 
     @Override

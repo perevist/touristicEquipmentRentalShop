@@ -3,6 +3,7 @@ package com.projectIO.touristicEquipmentRentalShop.services.implementations;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginException;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectPasswordException;
 import com.projectIO.touristicEquipmentRentalShop.model.Person;
+import com.projectIO.touristicEquipmentRentalShop.model.UserInSystem;
 import com.projectIO.touristicEquipmentRentalShop.model.UserType;
 import com.projectIO.touristicEquipmentRentalShop.repositories.CustomerRepository;
 import com.projectIO.touristicEquipmentRentalShop.repositories.EmployeeRepository;
@@ -14,8 +15,9 @@ public class LoginServiceImpl implements LoginService {
     private EmployeeRepository employeeRepository;
 
     public LoginServiceImpl() {
-        customerRepository = new CustomerRepository();
-        employeeRepository = new EmployeeRepository();
+        String persistentUnitName = UserInSystem.getInstance().getUserType().getPersistenceUnitName();
+        customerRepository = new CustomerRepository(persistentUnitName);
+        employeeRepository = new EmployeeRepository(persistentUnitName);
     }
 
     @Override
@@ -35,11 +37,11 @@ public class LoginServiceImpl implements LoginService {
     private Person readPersonFromDb(String login, UserType userType) {
         switch (userType) {
             case CUSTOMER:
+                customerRepository.setPersistenceUnitName(userType.getPersistenceUnitName());
                 return customerRepository.read(login);
-            case EMPLOYEE:
+            case EMPLOYEE: case ADMINISTRATOR:
+                employeeRepository.setPersistenceUnitName(userType.getPersistenceUnitName());
                 return employeeRepository.read(login);
-            case ADMINISTRATOR:
-                return null;
         }
         return null;
     }
