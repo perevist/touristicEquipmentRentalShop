@@ -3,15 +3,44 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
-    <persistence-unit name="myPersistenceUnit"
-                      transaction-type="RESOURCE_LOCAL">
+
+    <persistence-unit name="GuestPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/rental_shop_db?useSSL=false&amp;serverTimezone=UTC" />
+            <property name="javax.persistence.jdbc.user" value="guest" />
+            <property name="javax.persistence.jdbc.password" value="guestPass" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="CustomerPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/rental_shop_db?useSSL=false&amp;serverTimezone=UTC" />
+            <property name="javax.persistence.jdbc.user" value="customer" />
+            <property name="javax.persistence.jdbc.password" value="customerPass" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="EmployeePersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/rental_shop_db?useSSL=false&amp;serverTimezone=UTC" />
+            <property name="javax.persistence.jdbc.user" value="employee" />
+            <property name="javax.persistence.jdbc.password" value="employeePass" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="AdministratorPersistenceUnit" transaction-type="RESOURCE_LOCAL">
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/rental_shop_db?useSSL=false&amp;serverTimezone=UTC" />
             <property name="javax.persistence.jdbc.user" value="root" />
             <property name="javax.persistence.jdbc.password" value="admin" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-            <property name="javax.persistence.schema-generation.database.action"
-                      value="none"/>
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
         </properties>
     </persistence-unit>
 </persistence>
