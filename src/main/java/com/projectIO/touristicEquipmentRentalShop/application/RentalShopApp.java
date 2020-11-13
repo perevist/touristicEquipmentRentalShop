@@ -14,7 +14,7 @@ public class RentalShopApp extends Application {
 
     private RegistrationService registrationService;
     private LoginService loginService;
-
+    
     public static void main(String[] args) {
         launch(args);
     }

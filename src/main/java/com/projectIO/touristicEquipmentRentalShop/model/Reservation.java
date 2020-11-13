@@ -1,6 +1,7 @@
 package com.projectIO.touristicEquipmentRentalShop.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class Reservation {
     @JoinColumn(name = "customer_login")
     private Customer customer;
     @Column(name = "date_of_receipt")
-    private Date date;
+    private LocalDate date;
     @Column(name = "rental_length")
     private int rentalLength;
     @ManyToOne
@@ -46,11 +47,11 @@ public class Reservation {
         this.customer = customer;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

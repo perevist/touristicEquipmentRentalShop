@@ -15,8 +15,8 @@
 
 <GridPane fx:id="rootPane" alignment="center" hgap="10" prefHeight="500.0" prefWidth="900.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectIO.touristicEquipmentRentalShop.gui.controllers.MakeReservationPageController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.199951171875" minWidth="10.0" prefWidth="206.5999755859375" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="722.6000366210938" minWidth="10.0" prefWidth="319.79998779296875" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.199951171875" minWidth="10.0" prefWidth="163.99998779296874" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="722.6000366210938" minWidth="10.0" prefWidth="363.20001220703125" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="722.6000366210938" minWidth="10.0" prefWidth="352.6000122070312" />
   </columnConstraints>
   <rowConstraints>
@@ -27,8 +27,11 @@
    <children>
       <TableView fx:id="searchedItemsTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="itemIdTabColumn" prefWidth="44.000062584877014" text="Id" />
+          <TableColumn fx:id="categoryNameTabColumn" prefWidth="274.39998626708984" text="Kategoria" />
+            <TableColumn fx:id="chargeTabColumn" prefWidth="75.0" text="Koszt" />
+            <TableColumn fx:id="depositTabColumn" prefWidth="75.0" text="Kaucja" />
+            <TableColumn fx:id="techConditionTabColumn" prefWidth="75.0" text="Stan techniczny" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

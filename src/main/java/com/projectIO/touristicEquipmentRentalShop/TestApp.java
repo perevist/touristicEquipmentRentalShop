@@ -1,9 +1,12 @@
 package com.projectIO.touristicEquipmentRentalShop;
 
 import com.projectIO.touristicEquipmentRentalShop.model.Customer;
+import com.projectIO.touristicEquipmentRentalShop.model.Item;
 import com.projectIO.touristicEquipmentRentalShop.model.ItemCategory;
+import com.projectIO.touristicEquipmentRentalShop.model.Reservation;
 import com.projectIO.touristicEquipmentRentalShop.repositories.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class TestApp {
@@ -25,16 +28,22 @@ public class TestApp {
 //        itemCategoryRepository.update(itemCategory2);
 
         // Read:
-//        ItemCategory foundItemCategory = itemCategoryRepository.read(7);
-//        System.out.println("Znaleziono: " + foundItemCategory);
+//        ItemCategory foundItemCategory = itemCategoryRepository.read(1);
+//
+        LocalDate date = LocalDate.of(2020, 5, 14);
+        ItemRepository itemRepository = new ItemRepository();
+        List<Item> items = itemRepository.getItemsFilteredByCategoryAndAvailabilityDate(1, date);
+        System.out.println(items);
+
+
 
         // Delete:
 //        itemCategoryRepository.delete(7);
 
-        List<ItemCategory> itemCategories = itemCategoryRepository.getAllItemCategories();
-        for (ItemCategory itemCategory : itemCategories) {
-            System.out.println("Znaleziona kategoira: " + itemCategory);
-        }
+//        List<ItemCategory> itemCategories = itemCategoryRepository.getAllItemCategories();
+//        for (ItemCategory itemCategory : itemCategories) {
+//            System.out.println("Znaleziona kategoira: " + itemCategory);
+//        }
 
         // ----- Item CRUD test -----
 //        ItemRepository itemRepository = new ItemRepository();

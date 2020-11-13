@@ -1,24 +1,55 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
+import com.projectIO.touristicEquipmentRentalShop.gui.AlertWindow;
+import com.projectIO.touristicEquipmentRentalShop.model.Item;
+import com.projectIO.touristicEquipmentRentalShop.model.ItemCategory;
+import com.projectIO.touristicEquipmentRentalShop.repositories.ItemRepository;
+import com.projectIO.touristicEquipmentRentalShop.services.ItemCategoryService;
+import com.projectIO.touristicEquipmentRentalShop.services.ItemCategoryServiceImpl;
+import com.projectIO.touristicEquipmentRentalShop.services.ItemService;
+import com.projectIO.touristicEquipmentRentalShop.services.ItemServiceImpl;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.util.*;
 
 public class MakeReservationPageController implements Initializable {
+
+    private ItemCategoryService itemCategoryService;
+    private ItemService itemService;
+    private List<ItemCategory> itemCategories;
 
     @FXML
     private GridPane rootPane;
     @FXML
-    private TableView<?> searchedItemsTable;
+    private TableView<Item> searchedItemsTable;
+    @FXML
+    private TableColumn<Item, Integer> itemIdTabColumn;
+    @FXML
+    private TableColumn<Item, String> categoryNameTabColumn;
+    @FXML
+    private TableColumn<Item, Number> chargeTabColumn;
+    @FXML
+    private TableColumn<Item, Number> depositTabColumn;
+    @FXML
+    private TableColumn<Item, String> techConditionTabColumn;
     @FXML
     private TableView<?> cartTable;
     @FXML
@@ -40,7 +71,34 @@ public class MakeReservationPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        itemCategoryService = new ItemCategoryServiceImpl();
+        itemService = new ItemServiceImpl();
 
+        initializeItemCategoryChoiceBox();
+        configureTableColumns();
+    }
+
+    private void initializeItemCategoryChoiceBox() {
+        itemCategories = itemCategoryService.getAllCategories();
+        List<String> options = new ArrayList<>();
+
+        for (ItemCategory itemCategory : itemCategories) {
+            options.add(itemCategory.getName());
+        }
+
+        itemCategoryChoiceBox.getItems().setAll(options);
+    }
+
+    private void configureTableColumns() {
+        itemIdTabColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        categoryNameTabColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getCategory().getName()));
+        chargeTabColumn.setCellValueFactory(cellData ->
+                new SimpleDoubleProperty(cellData.getValue().getCategory().getRentalCharge()));
+        depositTabColumn.setCellValueFactory(cellData ->
+                new SimpleDoubleProperty(cellData.getValue().getCategory().getDeposit()));
+        techConditionTabColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getTechnicalCondition().getName()));
     }
 
     @FXML
@@ -49,8 +107,10 @@ public class MakeReservationPageController implements Initializable {
     }
 
     @FXML
-    void cancelReservation(ActionEvent event) {
-
+    void cancelReservation(ActionEvent event) throws IOException {
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        Parent pane = FXMLLoader.load(getClass().getResource("/fxml/customerPage.fxml"));
+        stage.setScene(new Scene(pane, 800, 500));
     }
 
     @FXML
@@ -65,6 +125,53 @@ public class MakeReservationPageController implements Initializable {
 
     @FXML
     void searchItems(ActionEvent event) {
+        if(!validSearchItemsForm())
+            return;
 
+        LocalDate reservationDate = reservationDatePicker.getValue();
+        String itemCategoryName = itemCategoryChoiceBox.getValue();
+        int itemCategoryId = getItemCategoryId(itemCategoryName);
+
+        List<Item> searchedItems = itemService.getItemsFilteredByCategoryAndAvailabilityDate(itemCategoryId,
+                reservationDate);
+
+        searchedItemsTable.getItems().setAll(searchedItems);
+    }
+
+    private boolean validSearchItemsForm() {
+        Window window = searchButton.getScene().getWindow();
+
+        if(!checkAreAllFieldsFilledIn()) {
+            AlertWindow.showAlert(Alert.AlertType.CONFIRMATION, window, "Błąd",
+                    "Proszę uzupełnić wszystkie pola");
+            return false;
+        }
+
+        int rentalLength;
+        try {
+            rentalLength = Integer.parseInt(rentalLengthField.getText());
+        } catch (Exception e){
+            AlertWindow.showAlert(Alert.AlertType.CONFIRMATION, window, "Błąd",
+                    "Proszę podac prawidlowa dlugosc rezerwacji");
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean checkAreAllFieldsFilledIn() {
+        if(rentalLengthField.getText().isEmpty() || reservationDatePicker.getValue() == null
+                || itemCategoryChoiceBox.getValue() == null)
+            return false;
+        else
+            return true;
+    }
+
+    private int getItemCategoryId(String itemCategoryName) {
+        for (ItemCategory itemCategory : itemCategories) {
+            if(itemCategory.getName().equals(itemCategoryName))
+                return itemCategory.getId();
+        }
+        return -1;
     }
 }
