@@ -23,7 +23,8 @@ public class ItemRepository extends GenericRepository<Item, Integer> {
             }
         }
 
-        String queryItemsWithConcreteCategory = "SELECT i FROM Item i WHERE i.category=" + categoryId;
+        String queryItemsWithConcreteCategory = "SELECT i FROM Item i WHERE i.category=" + categoryId
+                + " AND i.isInCart=false";
         TypedQuery<Item> resultItemsWithConcreteCategory =
                 entityManager.createQuery(queryItemsWithConcreteCategory, Item.class);
 

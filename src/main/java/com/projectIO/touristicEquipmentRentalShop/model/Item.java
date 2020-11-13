@@ -15,6 +15,8 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private ItemCategory category;
+    @Column(name = "is_in_cart")
+    boolean isInCart;
 
     public int getId() {
         return id;
@@ -38,6 +40,14 @@ public class Item {
 
     public void setCategory(ItemCategory category) {
         this.category = category;
+    }
+
+    public boolean isInCart() {
+        return isInCart;
+    }
+
+    public void setInCart(boolean inCart) {
+        isInCart = inCart;
     }
 
     @Override
