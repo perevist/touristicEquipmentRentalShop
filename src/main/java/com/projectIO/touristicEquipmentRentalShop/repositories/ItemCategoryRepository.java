@@ -7,6 +7,10 @@ import java.util.List;
 
 public class ItemCategoryRepository extends GenericRepository<ItemCategory, Integer> {
 
+    public ItemCategoryRepository(String persistenceUnitName) {
+        super(persistenceUnitName);
+    }
+
     public List<ItemCategory> getAllItemCategories(){
         TypedQuery<ItemCategory> query = entityManager.createQuery("SELECT i FROM ItemCategory i", ItemCategory.class);
         List<ItemCategory> itemCategories = query.getResultList();

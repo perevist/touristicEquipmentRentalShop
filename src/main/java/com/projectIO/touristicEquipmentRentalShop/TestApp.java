@@ -1,9 +1,6 @@
 package com.projectIO.touristicEquipmentRentalShop;
 
-import com.projectIO.touristicEquipmentRentalShop.model.Customer;
-import com.projectIO.touristicEquipmentRentalShop.model.Item;
-import com.projectIO.touristicEquipmentRentalShop.model.ItemCategory;
-import com.projectIO.touristicEquipmentRentalShop.model.Reservation;
+import com.projectIO.touristicEquipmentRentalShop.model.*;
 import com.projectIO.touristicEquipmentRentalShop.repositories.*;
 
 import java.time.LocalDate;
@@ -17,7 +14,7 @@ public class TestApp {
 
         // ----- ItemCategory CRUD test -----
         //Create:
-        ItemCategoryRepository itemCategoryRepository = new ItemCategoryRepository();
+//        ItemCategoryRepository itemCategoryRepository = new ItemCategoryRepository();
 
 //        ItemCategory itemCategory = new ItemCategory("Rower", 30,10);
 //        itemCategoryRepository.save(itemCategory);
@@ -30,10 +27,10 @@ public class TestApp {
         // Read:
 //        ItemCategory foundItemCategory = itemCategoryRepository.read(1);
 //
-        LocalDate date = LocalDate.of(2020, 5, 14);
-        ItemRepository itemRepository = new ItemRepository();
-        List<Item> items = itemRepository.getItemsFilteredByCategoryAndAvailabilityDate(1, date);
-        System.out.println(items);
+//        LocalDate date = LocalDate.of(2020, 5, 14);
+//        ItemRepository itemRepository = new ItemRepository();
+//        List<Item> items = itemRepository.getItemsFilteredByCategoryAndAvailabilityDate(1, date);
+//        System.out.println(items);
 
 
 
@@ -99,5 +96,9 @@ public class TestApp {
 
         // Delete:
 //        reservationDao.delete(3);
+
+
+        UserType userType = UserType.GUEST;
+        System.out.println(userType.getPersistenceUnitName());
     }
 }

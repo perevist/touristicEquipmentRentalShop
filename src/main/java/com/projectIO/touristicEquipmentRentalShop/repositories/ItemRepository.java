@@ -9,6 +9,10 @@ import java.util.List;
 
 public class ItemRepository extends GenericRepository<Item, Integer> {
 
+    public ItemRepository(String persistenceUnitName) {
+        super(persistenceUnitName);
+    }
+
     public List<Item> getItemsFilteredByCategoryAndAvailabilityDate(int categoryId, LocalDate dateOfReceipt) {
         String date = dateOfReceipt.toString();
         String queryReservedItems = "SELECT r.items FROM Reservation r WHERE r.date>='" + date + "' " +

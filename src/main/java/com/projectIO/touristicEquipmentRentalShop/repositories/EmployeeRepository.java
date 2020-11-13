@@ -4,4 +4,7 @@ import com.projectIO.touristicEquipmentRentalShop.model.Employee;
 
 public class EmployeeRepository extends GenericRepository<Employee, String> {
 
+    public EmployeeRepository(String persistenceUnitName) {
+        super(persistenceUnitName);
+    }
 }

@@ -4,4 +4,7 @@ import com.projectIO.touristicEquipmentRentalShop.model.Reservation;
 
 public class ReservationRepository extends GenericRepository<Reservation, Integer>{
 
+    public ReservationRepository(String persistenceUnitName) {
+        super(persistenceUnitName);
+    }
 }

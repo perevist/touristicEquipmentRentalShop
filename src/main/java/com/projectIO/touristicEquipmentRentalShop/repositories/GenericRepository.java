@@ -12,8 +12,8 @@ public abstract class GenericRepository<T, K> {
     protected EntityManager entityManager;
     private Class<T> type;
 
-    public GenericRepository() {
-        emFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
+    public GenericRepository(String persistenceUnitName) {
+        emFactory = Persistence.createEntityManagerFactory(persistenceUnitName);
         entityManager = emFactory.createEntityManager();
         type = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
