@@ -1,9 +1,10 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
-import com.projectIO.touristicEquipmentRentalShop.application.RentalShopApp;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginException;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectPasswordException;
 import com.projectIO.touristicEquipmentRentalShop.gui.AlertWindow;
+import com.projectIO.touristicEquipmentRentalShop.services.implementations.LoginServiceImpl;
+import com.projectIO.touristicEquipmentRentalShop.services.interfaces.LoginService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,10 +24,10 @@ import java.util.ResourceBundle;
 
 public class LoginFormController implements Initializable {
 
-    private RentalShopApp rentalShopApp;
+    private LoginService loginService;
 
     public LoginFormController() {
-        rentalShopApp = RentalShopApp.getInstance();
+        loginService = new LoginServiceImpl();
     }
 
     @FXML
@@ -55,7 +56,7 @@ public class LoginFormController implements Initializable {
         String userType = choiceBox.getValue();
 
         try {
-            rentalShopApp.loginUserInSystem(login, password, userType);
+            loginService.loginUser(login, password, userType);
         }catch (IncorrectLoginException | IncorrectPasswordException exception) {
             String message = exception.getMessage();
             AlertWindow.showAlert(javafx.scene.control.Alert.AlertType.CONFIRMATION, window, "Błąd", message);

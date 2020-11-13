@@ -4,10 +4,12 @@ import com.projectIO.touristicEquipmentRentalShop.gui.AlertWindow;
 import com.projectIO.touristicEquipmentRentalShop.model.Item;
 import com.projectIO.touristicEquipmentRentalShop.model.ItemCategory;
 import com.projectIO.touristicEquipmentRentalShop.model.Reservation;
-import com.projectIO.touristicEquipmentRentalShop.services.ItemCategoryService;
-import com.projectIO.touristicEquipmentRentalShop.services.ItemCategoryServiceImpl;
-import com.projectIO.touristicEquipmentRentalShop.services.ItemService;
-import com.projectIO.touristicEquipmentRentalShop.services.ItemServiceImpl;
+import com.projectIO.touristicEquipmentRentalShop.services.implementations.ItemCategoryServiceImpl;
+import com.projectIO.touristicEquipmentRentalShop.services.implementations.ItemServiceImpl;
+import com.projectIO.touristicEquipmentRentalShop.services.implementations.ReservationServiceImpl;
+import com.projectIO.touristicEquipmentRentalShop.services.interfaces.ItemCategoryService;
+import com.projectIO.touristicEquipmentRentalShop.services.interfaces.ItemService;
+import com.projectIO.touristicEquipmentRentalShop.services.interfaces.ReservationService;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -31,6 +33,8 @@ public class MakeReservationPageController implements Initializable {
 
     private ItemCategoryService itemCategoryService;
     private ItemService itemService;
+    private ReservationService reservationService;
+
     private List<ItemCategory> itemCategories;
     private List<Item> itemsAddedToCard;
     private List<Item> searchedItems;
@@ -83,6 +87,7 @@ public class MakeReservationPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         itemCategoryService = new ItemCategoryServiceImpl();
         itemService = new ItemServiceImpl();
+        reservationService = new ReservationServiceImpl();
         itemsAddedToCard = new ArrayList<>();
         reservation = new Reservation();
 
@@ -167,7 +172,15 @@ public class MakeReservationPageController implements Initializable {
 
     @FXML
     void makeReservation(ActionEvent event) {
+        if(itemsAddedToCard.isEmpty())
+            return;
 
+        reservation.setItems(itemsAddedToCard);
+        reservationService.makeReservation(reservation);
+
+        for (int i = 0; i < itemsAddedToCard.size(); i++) {
+            designateItemAsNotInCart(itemsAddedToCard.get(i));
+        }
     }
 
     @FXML

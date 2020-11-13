@@ -1,8 +1,9 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
-import com.projectIO.touristicEquipmentRentalShop.application.RentalShopApp;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginException;
 import com.projectIO.touristicEquipmentRentalShop.gui.AlertWindow;
+import com.projectIO.touristicEquipmentRentalShop.services.implementations.RegistrationServiceImpl;
+import com.projectIO.touristicEquipmentRentalShop.services.interfaces.RegistrationService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,10 +20,10 @@ import java.io.IOException;
 
 public class RegistrationController {
 
-    private RentalShopApp rentalShopApp;
+    private RegistrationService registrationService;
 
     public RegistrationController() {
-        rentalShopApp = RentalShopApp.getInstance();
+        registrationService = new RegistrationServiceImpl();
     }
 
     @FXML
@@ -62,7 +63,7 @@ public class RegistrationController {
         String password = passwordField.getText();
 
         try {
-            rentalShopApp.registerCustomerInSystem(login, firstName, lastName, phoneNumber, email, password);
+            registrationService.registerCustomer(login, firstName, lastName, phoneNumber, email, password);
         } catch (IncorrectLoginException exception) {
             String message = exception.getMessage();
             AlertWindow.showAlert(javafx.scene.control.Alert.AlertType.CONFIRMATION, window, "Błąd", message);
