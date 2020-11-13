@@ -8,4 +8,5 @@ import java.util.List;
 public interface ItemService {
 
     List<Item> getItemsFilteredByCategoryAndAvailabilityDate(int categoryId, LocalDate dateOfReceipt);
+    void updateItem(Item item);
 }

@@ -15,7 +15,13 @@ public class ItemServiceImpl implements ItemService {
         itemRepository = new ItemRepository();
     }
 
+    @Override
     public List<Item> getItemsFilteredByCategoryAndAvailabilityDate(int categoryId, LocalDate dateOfReceipt) {
         return itemRepository.getItemsFilteredByCategoryAndAvailabilityDate(categoryId, dateOfReceipt);
+    }
+
+    @Override
+    public void updateItem(Item item) {
+        itemRepository.update(item);
     }
 }
