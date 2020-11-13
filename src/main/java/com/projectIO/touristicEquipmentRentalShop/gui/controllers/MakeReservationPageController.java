@@ -3,16 +3,13 @@ package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 import com.projectIO.touristicEquipmentRentalShop.gui.AlertWindow;
 import com.projectIO.touristicEquipmentRentalShop.model.Item;
 import com.projectIO.touristicEquipmentRentalShop.model.ItemCategory;
-import com.projectIO.touristicEquipmentRentalShop.repositories.ItemRepository;
+import com.projectIO.touristicEquipmentRentalShop.model.Reservation;
 import com.projectIO.touristicEquipmentRentalShop.services.ItemCategoryService;
 import com.projectIO.touristicEquipmentRentalShop.services.ItemCategoryServiceImpl;
 import com.projectIO.touristicEquipmentRentalShop.services.ItemService;
 import com.projectIO.touristicEquipmentRentalShop.services.ItemServiceImpl;
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +32,9 @@ public class MakeReservationPageController implements Initializable {
     private ItemCategoryService itemCategoryService;
     private ItemService itemService;
     private List<ItemCategory> itemCategories;
+    private List<Item> itemsAddedToCard;
+    private List<Item> searchedItems;
+    private Reservation reservation;
 
     @FXML
     private GridPane rootPane;
@@ -51,7 +51,17 @@ public class MakeReservationPageController implements Initializable {
     @FXML
     private TableColumn<Item, String> techConditionTabColumn;
     @FXML
-    private TableView<?> cartTable;
+    private TableView<Item> cartTable;
+    @FXML
+    private TableColumn<Item, Number> cartItemIdTabColumn;
+    @FXML
+    private TableColumn<Item, String> cartCategoryNameTabColumn;
+    @FXML
+    private TableColumn<Item, Number> cartChargeTabColumn;
+    @FXML
+    private TableColumn<Item, Number> cartDepositTabColumn;
+    @FXML
+    private TableColumn<Item, String> cartTechConditionTabColumn;
     @FXML
     private ChoiceBox<String> itemCategoryChoiceBox;
     @FXML
@@ -73,6 +83,8 @@ public class MakeReservationPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         itemCategoryService = new ItemCategoryServiceImpl();
         itemService = new ItemServiceImpl();
+        itemsAddedToCard = new ArrayList<>();
+        reservation = new Reservation();
 
         initializeItemCategoryChoiceBox();
         configureTableColumns();
@@ -99,15 +111,55 @@ public class MakeReservationPageController implements Initializable {
                 new SimpleDoubleProperty(cellData.getValue().getCategory().getDeposit()));
         techConditionTabColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getTechnicalCondition().getName()));
+
+        cartItemIdTabColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        cartCategoryNameTabColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getCategory().getName()));
+        cartChargeTabColumn.setCellValueFactory(cellData ->
+                new SimpleDoubleProperty(cellData.getValue().getCategory().getRentalCharge()));
+        cartDepositTabColumn.setCellValueFactory(cellData ->
+                new SimpleDoubleProperty(cellData.getValue().getCategory().getDeposit()));
+        cartTechConditionTabColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getTechnicalCondition().getName()));
     }
 
     @FXML
     void addToCart(ActionEvent event) {
+        Item selectedItem = searchedItemsTable.getSelectionModel().selectedItemProperty().get();
+        if(selectedItem == null)
+            return;
 
+        itemsAddedToCard.add(selectedItem);
+        designateItemAsInCart(selectedItem);
+        searchedItems.remove(selectedItem);
+        updateCartTable();
+        updateSearchedItemsTable();
+    }
+
+    private void designateItemAsInCart(Item item) {
+        item.setInCart(true);
+        itemService.updateItem(item);
+    }
+
+    private void designateItemAsNotInCart(Item item) {
+        item.setInCart(false);
+        itemService.updateItem(item);
+    }
+
+    private void updateSearchedItemsTable() {
+        searchedItemsTable.getItems().setAll(searchedItems);
+    }
+
+    private void updateCartTable() {
+        cartTable.getItems().setAll(itemsAddedToCard);
     }
 
     @FXML
     void cancelReservation(ActionEvent event) throws IOException {
+        for (int i = 0; i < itemsAddedToCard.size(); i++) {
+            designateItemAsNotInCart(itemsAddedToCard.get(i));
+        }
+
         Stage stage = (Stage) rootPane.getScene().getWindow();
         Parent pane = FXMLLoader.load(getClass().getResource("/fxml/customerPage.fxml"));
         stage.setScene(new Scene(pane, 800, 500));
@@ -120,7 +172,14 @@ public class MakeReservationPageController implements Initializable {
 
     @FXML
     void removeFromCart(ActionEvent event) {
+        Item selectedItem = cartTable.getSelectionModel().selectedItemProperty().get();
+        if(selectedItem == null)
+            return;
 
+        itemsAddedToCard.remove(selectedItem);
+        designateItemAsNotInCart(selectedItem);
+        updateCartTable();
+        searchItems(new ActionEvent());
     }
 
     @FXML
@@ -132,8 +191,7 @@ public class MakeReservationPageController implements Initializable {
         String itemCategoryName = itemCategoryChoiceBox.getValue();
         int itemCategoryId = getItemCategoryId(itemCategoryName);
 
-        List<Item> searchedItems = itemService.getItemsFilteredByCategoryAndAvailabilityDate(itemCategoryId,
-                reservationDate);
+        searchedItems = itemService.getItemsFilteredByCategoryAndAvailabilityDate(itemCategoryId, reservationDate);
 
         searchedItemsTable.getItems().setAll(searchedItems);
     }

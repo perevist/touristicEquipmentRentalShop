@@ -39,8 +39,11 @@
       </TableView>
       <TableView fx:id="cartTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="cartItemIdTabColumn" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="cartCategoryNameTabColumn" prefWidth="75.0" text="Kategoria" />
+            <TableColumn fx:id="cartChargeTabColumn" prefWidth="75.0" text="Koszt" />
+            <TableColumn fx:id="cartDepositTabColumn" prefWidth="75.0" text="Kaucja" />
+            <TableColumn fx:id="cartTechConditionTabColumn" prefWidth="75.0" text="Stan techniczny" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
