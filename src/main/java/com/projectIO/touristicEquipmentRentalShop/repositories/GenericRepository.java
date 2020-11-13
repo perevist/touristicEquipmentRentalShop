@@ -11,11 +11,17 @@ public abstract class GenericRepository<T, K> {
     protected EntityManagerFactory emFactory;
     protected EntityManager entityManager;
     private Class<T> type;
+    private String persistenceUnitName;
 
     public GenericRepository(String persistenceUnitName) {
-        emFactory = Persistence.createEntityManagerFactory(persistenceUnitName);
-        entityManager = emFactory.createEntityManager();
+        this.persistenceUnitName = persistenceUnitName;
+        initializePersistenceStuff();
         type = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    }
+
+    private void initializePersistenceStuff(){
+        emFactory = Persistence.createEntityManagerFactory(this.persistenceUnitName);
+        entityManager = emFactory.createEntityManager();
     }
 
     public void save(T entity) {
@@ -48,5 +54,11 @@ public abstract class GenericRepository<T, K> {
     public void cleanUp() {
         entityManager.close();
         emFactory.close();
+    }
+
+    public void setPersistenceUnitName(String persistenceUnitName) {
+        this.persistenceUnitName = persistenceUnitName;
+        cleanUp();
+        initializePersistenceStuff();
     }
 }
