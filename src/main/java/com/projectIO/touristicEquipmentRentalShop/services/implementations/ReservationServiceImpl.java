@@ -1,7 +1,8 @@
-package com.projectIO.touristicEquipmentRentalShop.services;
+package com.projectIO.touristicEquipmentRentalShop.services.implementations;
 
 import com.projectIO.touristicEquipmentRentalShop.model.Reservation;
 import com.projectIO.touristicEquipmentRentalShop.repositories.ReservationRepository;
+import com.projectIO.touristicEquipmentRentalShop.services.interfaces.ReservationService;
 
 public class ReservationServiceImpl implements ReservationService {
 

@@ -1,27 +1,20 @@
 package com.projectIO.touristicEquipmentRentalShop.application;
 
-import com.projectIO.touristicEquipmentRentalShop.services.LoginService;
-import com.projectIO.touristicEquipmentRentalShop.services.RegistrationService;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import com.projectIO.touristicEquipmentRentalShop.services.implementations.LoginServiceImpl;
+import com.projectIO.touristicEquipmentRentalShop.services.implementations.RegistrationServiceImpl;
 
-public class RentalShopApp extends Application {
-
+public class RentalShopApp {
     private static RentalShopApp instance;
 
-    private RegistrationService registrationService;
-    private LoginService loginService;
+    private RegistrationServiceImpl registrationServiceImpl;
+    private LoginServiceImpl loginServiceImpl;
     
     public static void main(String[] args) {
-        launch(args);
     }
 
-    public RentalShopApp() {
-        registrationService = new RegistrationService();
-        loginService = new LoginService();
+    private RentalShopApp() {
+        registrationServiceImpl = new RegistrationServiceImpl();
+        loginServiceImpl = new LoginServiceImpl();
     }
 
     public static RentalShopApp getInstance() {
@@ -31,23 +24,13 @@ public class RentalShopApp extends Application {
         return instance;
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/welcomePage.fxml"));
-        stage.setTitle("Wypożyczania sprzętu turystycznego");
-        stage.setMinWidth(800);
-        stage.setMinHeight(500);
-        stage.setScene(new Scene(root, 800, 500));
-        stage.show();
-    }
-
     public void registerCustomerInSystem(String login, String firstName, String lastName, String phoneNumber,
                                          String email, String password) {
 
-        registrationService.registerCustomer(login, firstName, lastName, phoneNumber, email, password);
+        registrationServiceImpl.registerCustomer(login, firstName, lastName, phoneNumber, email, password);
     }
 
     public void loginUserInSystem(String login, String password, String userType) {
-        loginService.loginUser(login, password, userType);
+        loginServiceImpl.loginUser(login, password, userType);
     }
 }

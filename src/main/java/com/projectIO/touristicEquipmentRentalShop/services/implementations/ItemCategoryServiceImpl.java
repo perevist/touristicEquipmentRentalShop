@@ -1,7 +1,8 @@
-package com.projectIO.touristicEquipmentRentalShop.services;
+package com.projectIO.touristicEquipmentRentalShop.services.implementations;
 
 import com.projectIO.touristicEquipmentRentalShop.model.ItemCategory;
 import com.projectIO.touristicEquipmentRentalShop.repositories.ItemCategoryRepository;
+import com.projectIO.touristicEquipmentRentalShop.services.interfaces.ItemCategoryService;
 
 import java.util.List;
 

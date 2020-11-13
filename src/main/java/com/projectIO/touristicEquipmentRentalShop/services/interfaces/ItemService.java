@@ -1,4 +1,4 @@
-package com.projectIO.touristicEquipmentRentalShop.services;
+package com.projectIO.touristicEquipmentRentalShop.services.interfaces;
 
 import com.projectIO.touristicEquipmentRentalShop.model.Item;
 

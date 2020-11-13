@@ -1,8 +1,8 @@
-package com.projectIO.touristicEquipmentRentalShop.services;
+package com.projectIO.touristicEquipmentRentalShop.services.implementations;
 
 import com.projectIO.touristicEquipmentRentalShop.model.Item;
-import com.projectIO.touristicEquipmentRentalShop.model.ItemCategory;
 import com.projectIO.touristicEquipmentRentalShop.repositories.ItemRepository;
+import com.projectIO.touristicEquipmentRentalShop.services.interfaces.ItemService;
 
 import java.time.LocalDate;
 import java.util.List;

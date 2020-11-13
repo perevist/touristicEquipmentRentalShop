@@ -1,10 +1,11 @@
-package com.projectIO.touristicEquipmentRentalShop.services;
+package com.projectIO.touristicEquipmentRentalShop.services.implementations;
 
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginException;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectPasswordException;
 import com.projectIO.touristicEquipmentRentalShop.model.Person;
 import com.projectIO.touristicEquipmentRentalShop.repositories.CustomerRepository;
 import com.projectIO.touristicEquipmentRentalShop.repositories.EmployeeRepository;
+import com.projectIO.touristicEquipmentRentalShop.services.interfaces.LoginService;
 
 public class LoginServiceImpl implements LoginService {
 
