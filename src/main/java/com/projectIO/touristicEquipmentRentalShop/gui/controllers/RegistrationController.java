@@ -2,6 +2,7 @@ package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginException;
 import com.projectIO.touristicEquipmentRentalShop.gui.AlertWindow;
+import com.projectIO.touristicEquipmentRentalShop.gui.SceneChanger;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.RegistrationServiceImpl;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.RegistrationService;
 import javafx.fxml.FXML;
@@ -46,15 +47,23 @@ public class RegistrationController {
     @FXML
 
     public void register(ActionEvent event) throws IOException {
-
-        Window window = submitButton.getScene().getWindow();
-
         if (checkAreAllFieldsFilledIn() == false) {
-            AlertWindow.showAlert(javafx.scene.control.Alert.AlertType.CONFIRMATION, window, "Błąd",
-                    "Proszę uzupełnić wszystkie pola");
+            AlertWindow.showAlert(rootPane,"Błąd", "Proszę uzupełnić wszystkie pola" );
             return;
         }
 
+        try {
+            loadDataFromFormAndRegisterUser();
+        } catch (IncorrectLoginException exception) {
+            AlertWindow.showAlert(rootPane, "Błąd", exception.getMessage());
+            return;
+        }
+
+        AlertWindow.showAlert(rootPane,"Rejestracja wykonana", "Rejestracja przebiegła pomyślnie" );
+        SceneChanger.changeScene(rootPane, getClass(), "/fxml/welcomePage.fxml");
+    }
+
+    private void loadDataFromFormAndRegisterUser() {
         String login = loginField.getText();
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
@@ -62,20 +71,7 @@ public class RegistrationController {
         String email = emailField.getText();
         String password = passwordField.getText();
 
-        try {
-            registrationService.registerCustomer(login, firstName, lastName, phoneNumber, email, password);
-        } catch (IncorrectLoginException exception) {
-            String message = exception.getMessage();
-            AlertWindow.showAlert(javafx.scene.control.Alert.AlertType.CONFIRMATION, window, "Błąd", message);
-            return;
-        }
-
-        AlertWindow.showAlert(javafx.scene.control.Alert.AlertType.CONFIRMATION, window, "Rejestracja wykonana",
-                "Rejestracja przebiegła pomyślnie");
-
-        Stage stage = (Stage) window;
-        Parent pane = FXMLLoader.load(getClass().getResource("/fxml/welcomePage.fxml"));
-        stage.setScene(new Scene(pane, 800, 500));
+        registrationService.registerCustomer(login, firstName, lastName, phoneNumber, email, password);
     }
 
     private boolean checkAreAllFieldsFilledIn() {

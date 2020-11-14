@@ -7,7 +7,6 @@ public class Person {
 
     @Id
     @Column(name = "login")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String login;
     @Column(name = "first_name")
     private String firstName;

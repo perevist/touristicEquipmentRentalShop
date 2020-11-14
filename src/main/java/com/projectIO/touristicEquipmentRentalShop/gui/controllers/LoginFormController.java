@@ -3,6 +3,7 @@ package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginException;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectPasswordException;
 import com.projectIO.touristicEquipmentRentalShop.gui.AlertWindow;
+import com.projectIO.touristicEquipmentRentalShop.gui.SceneChanger;
 import com.projectIO.touristicEquipmentRentalShop.model.UserType;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.LoginServiceImpl;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.LoginService;
@@ -43,54 +44,6 @@ public class LoginFormController implements Initializable {
     private ChoiceBox<String> choiceBox;
     @FXML
 
-    void login(ActionEvent event) throws IOException {
-        Window window = submitButton.getScene().getWindow();
-
-        if(!checkAreAllFieldsFilledIn()) {
-            AlertWindow.showAlert(javafx.scene.control.Alert.AlertType.CONFIRMATION, window, "Błąd",
-                    "Proszę uzupełnić wszystkie pola");
-            return;
-        }
-
-        String login = loginField.getText();
-        String password = passwordField.getText();
-        String userTypeName = choiceBox.getValue();
-
-        UserType[] userTypes = UserType.values();
-        UserType userType = null;
-
-        for (UserType us : userTypes) {
-            if(us.getName().equals(userTypeName))
-                userType = us;
-        }
-
-        try {
-            loginService.loginUser(login, password, userType);
-        }catch (IncorrectLoginException | IncorrectPasswordException exception) {
-            String message = exception.getMessage();
-            AlertWindow.showAlert(javafx.scene.control.Alert.AlertType.CONFIRMATION, window, "Błąd", message);
-            return;
-        }
-
-        AlertWindow.showAlert(Alert.AlertType.CONFIRMATION, window, "Pomyślne logowanie",
-                "Zalogowano do systemu");
-
-        Stage stage = (Stage) window;
-        Parent pane = null;
-
-        switch (userType) {
-            case CUSTOMER:
-                pane = FXMLLoader.load(getClass().getResource("/fxml/customerPage.fxml"));
-                break;
-            case EMPLOYEE:
-                pane = FXMLLoader.load(getClass().getResource("/fxml/employeePage.fxml"));
-                break;
-            case ADMINISTRATOR:
-                break;
-        }
-        stage.setScene(new Scene(pane, 800, 500));
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         UserType[] userTypes = UserType.values();
@@ -103,10 +56,62 @@ public class LoginFormController implements Initializable {
         choiceBox.getItems().setAll(options);
     }
 
+    @FXML
+    void login(ActionEvent event) throws IOException {
+        if(!checkAreAllFieldsFilledIn()) {
+            AlertWindow.showAlert(rootPane, "Błąd", "Proszę uzupełnić wszystkie pola");
+            return;
+        }
+
+        try {
+            loadDataFromFormAndLoginUser();
+        }catch (IncorrectLoginException | IncorrectPasswordException exception) {
+            AlertWindow.showAlert(rootPane, "Błąd", exception.getMessage());
+            return;
+        }
+
+        AlertWindow.showAlert(rootPane, "Pomyślne logowanie", "Zalogowano do systemu");
+
+        loadNewScene();
+    }
+
     private boolean checkAreAllFieldsFilledIn() {
         if(loginField.getText().isEmpty() || passwordField.getText().isEmpty() || choiceBox.getValue() == null)
             return false;
         else
             return true;
+    }
+
+    private void loadDataFromFormAndLoginUser() {
+        String login = loginField.getText();
+        String password = passwordField.getText();
+        UserType selectedUserType = getSelectedUserTypeFromChoiceBox();
+
+        loginService.loginUser(login, password, selectedUserType);
+    }
+
+    private UserType getSelectedUserTypeFromChoiceBox() {
+        String userTypeName = choiceBox.getValue();
+        UserType[] allUserTypes = UserType.values();
+
+        for (UserType userType : allUserTypes) {
+            if(userType.getName().equals(userTypeName))
+                return userType;
+        }
+        return null;
+    }
+
+    private void loadNewScene() throws IOException {
+        UserType selectedUserType = getSelectedUserTypeFromChoiceBox();
+        switch (selectedUserType) {
+            case CUSTOMER:
+                SceneChanger.changeScene(rootPane, getClass(),"/fxml/customerPage.fxml");
+                break;
+            case EMPLOYEE:
+                SceneChanger.changeScene(rootPane, getClass(),"/fxml/employeePage.fxml");
+                break;
+            case ADMINISTRATOR:
+                break;
+        }
     }
 }

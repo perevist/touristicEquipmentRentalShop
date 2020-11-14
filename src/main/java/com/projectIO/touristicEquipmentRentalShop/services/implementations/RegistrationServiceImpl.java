@@ -23,6 +23,7 @@ public class RegistrationServiceImpl  implements RegistrationService {
             Customer customer = new Customer(login, firstName, lastName, phoneNumber, email, password);
             customerRepository.save(customer);
         }catch (Exception exception) {
+            exception.printStackTrace();
             throw new IncorrectLoginException("Podany login jest już zajęty");
         }
     }

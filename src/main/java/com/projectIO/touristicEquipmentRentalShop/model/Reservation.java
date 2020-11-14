@@ -31,6 +31,9 @@ public class Reservation {
     )
     List<Item> items;
 
+    public Reservation() {
+    }
+
     public Reservation(List<Item> items, LocalDate dateOfReceipt, int rentalLength, Status status, Customer ownerOfReservation) {
         this.items = items;
         this.dateOfReceipt = dateOfReceipt;

@@ -1,5 +1,6 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
+import com.projectIO.touristicEquipmentRentalShop.gui.SceneChanger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,15 +27,13 @@ public class CustomerPageController {
     private Button logOutButton;
 
     @FXML
-    void logOut(ActionEvent event) {
-
+    void logOut(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(rootPane, getClass(), "/fxml/welcomePage.fxml");
     }
 
     @FXML
     void makeReservation(ActionEvent event) throws IOException {
-        Stage stage = (Stage) rootPane.getScene().getWindow();
-        Parent pane = FXMLLoader.load(getClass().getResource("/fxml/makeReservationPage.fxml"));
-        stage.setScene(new Scene(pane, 900, 500));
+        SceneChanger.changeScene(rootPane, getClass(), "/fxml/makeReservationPage.fxml");
     }
 
     @FXML
