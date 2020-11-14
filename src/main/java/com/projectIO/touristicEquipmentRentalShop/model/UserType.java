@@ -1,14 +1,16 @@
 package com.projectIO.touristicEquipmentRentalShop.model;
 
 public enum UserType {
-    GUEST("GuestPersistenceUnit"),
-    CUSTOMER("CustomerPersistenceUnit"),
-    EMPLOYEE("EmployeePersistenceUnit"),
-    ADMINISTRATOR("AdministratorPersistenceUnit");
+    GUEST("Gość","GuestPersistenceUnit"),
+    CUSTOMER("Klient","CustomerPersistenceUnit"),
+    EMPLOYEE("Pracownik","EmployeePersistenceUnit"),
+    ADMINISTRATOR("Administrator","AdministratorPersistenceUnit");
 
     private final String persistenceUnitName;
+    private final String name;
 
-    UserType(String persistenceUnitName) {
+    UserType(String name, String persistenceUnitName) {
+        this.name = name;
         this.persistenceUnitName = persistenceUnitName;
     }
 
