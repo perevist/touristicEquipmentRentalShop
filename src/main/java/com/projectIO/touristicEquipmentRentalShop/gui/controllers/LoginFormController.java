@@ -3,6 +3,7 @@ package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginException;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectPasswordException;
 import com.projectIO.touristicEquipmentRentalShop.gui.AlertWindow;
+import com.projectIO.touristicEquipmentRentalShop.model.UserType;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.LoginServiceImpl;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.LoginService;
 import javafx.event.ActionEvent;
@@ -53,7 +54,15 @@ public class LoginFormController implements Initializable {
 
         String login = loginField.getText();
         String password = passwordField.getText();
-        String userType = choiceBox.getValue();
+        String userTypeName = choiceBox.getValue();
+
+        UserType[] userTypes = UserType.values();
+        UserType userType = null;
+
+        for (UserType us : userTypes) {
+            if(us.getName().equals(userTypeName))
+                userType = us;
+        }
 
         try {
             loginService.loginUser(login, password, userType);
@@ -67,26 +76,34 @@ public class LoginFormController implements Initializable {
                 "Zalogowano do systemu");
 
         Stage stage = (Stage) window;
-        Parent pane;
-        if(userType.equals("Klient")){
-            pane = FXMLLoader.load(getClass().getResource("/fxml/customerPage.fxml"));
-        }
-        else {
-            pane = FXMLLoader.load(getClass().getResource("/fxml/employeePage.fxml"));
+        Parent pane = null;
+
+        switch (userType) {
+            case CUSTOMER:
+                pane = FXMLLoader.load(getClass().getResource("/fxml/customerPage.fxml"));
+                break;
+            case EMPLOYEE:
+                pane = FXMLLoader.load(getClass().getResource("/fxml/employeePage.fxml"));
+                break;
+            case ADMINISTRATOR:
+                break;
         }
         stage.setScene(new Scene(pane, 800, 500));
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        UserType[] userTypes = UserType.values();
         List<String> options = new ArrayList<>();
-        options.add("Klient");
-        options.add("Pracownik");
+
+        for (int i = 1; i < userTypes.length; i++) {
+            options.add(userTypes[i].getName());
+        }
+
         choiceBox.getItems().setAll(options);
     }
 
     private boolean checkAreAllFieldsFilledIn() {
-
         if(loginField.getText().isEmpty() || passwordField.getText().isEmpty() || choiceBox.getValue() == null)
             return false;
         else

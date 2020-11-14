@@ -83,14 +83,17 @@ public class MakeReservationPageController implements Initializable {
     @FXML
     private Button makeReservationButton;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public MakeReservationPageController() {
         itemCategoryService = new ItemCategoryServiceImpl();
         itemService = new ItemServiceImpl();
         reservationService = new ReservationServiceImpl();
+
         itemsAddedToCard = new ArrayList<>();
         reservation = new Reservation();
+    }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         initializeItemCategoryChoiceBox();
         configureTableColumns();
     }

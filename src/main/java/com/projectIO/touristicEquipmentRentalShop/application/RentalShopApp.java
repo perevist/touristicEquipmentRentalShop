@@ -1,5 +1,6 @@
 package com.projectIO.touristicEquipmentRentalShop.application;
 
+import com.projectIO.touristicEquipmentRentalShop.model.UserType;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.LoginServiceImpl;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.RegistrationServiceImpl;
 
@@ -30,7 +31,7 @@ public class RentalShopApp {
         registrationServiceImpl.registerCustomer(login, firstName, lastName, phoneNumber, email, password);
     }
 
-    public void loginUserInSystem(String login, String password, String userType) {
+    public void loginUserInSystem(String login, String password, UserType userType) {
         loginServiceImpl.loginUser(login, password, userType);
     }
 }

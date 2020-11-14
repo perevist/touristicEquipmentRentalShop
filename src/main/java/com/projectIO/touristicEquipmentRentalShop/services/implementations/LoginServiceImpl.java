@@ -32,6 +32,10 @@ public class LoginServiceImpl implements LoginService {
         if (!passwordFromDb.equals(password)) {
             throw new IncorrectPasswordException("Podano nieprawidłowe hasło");
         }
+
+        UserInSystem userInSystem = UserInSystem.getInstance();
+        userInSystem.setLogin(login);
+        userInSystem.setUserType(userType);
     }
 
     private Person readPersonFromDb(String login, UserType userType) {
