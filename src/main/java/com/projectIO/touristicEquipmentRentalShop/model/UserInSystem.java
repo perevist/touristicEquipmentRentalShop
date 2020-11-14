@@ -1,7 +1,7 @@
 package com.projectIO.touristicEquipmentRentalShop.model;
 
 public class UserInSystem {
-    private String login;
+    private Person person;
     private UserType userType;
 
     private static UserInSystem instance;
@@ -17,12 +17,12 @@ public class UserInSystem {
         userType = UserType.GUEST;
     }
 
-    public String getLogin() {
-        return login;
+    public Person getPerson() {
+        return person;
     }
 
-    public  void setLogin(String login) {
-        this.login = login;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public UserType getUserType() {

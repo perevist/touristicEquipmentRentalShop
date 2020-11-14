@@ -34,7 +34,7 @@ public class LoginServiceImpl implements LoginService {
         }
 
         UserInSystem userInSystem = UserInSystem.getInstance();
-        userInSystem.setLogin(login);
+        userInSystem.setPerson(personFromDb);
         userInSystem.setUserType(userType);
     }
 
