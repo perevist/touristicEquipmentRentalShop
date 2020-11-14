@@ -2,8 +2,11 @@ package com.projectIO.touristicEquipmentRentalShop;
 
 import com.projectIO.touristicEquipmentRentalShop.model.*;
 import com.projectIO.touristicEquipmentRentalShop.repositories.*;
+import com.projectIO.touristicEquipmentRentalShop.services.implementations.ReservationServiceImpl;
+import com.projectIO.touristicEquipmentRentalShop.services.interfaces.ReservationService;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TestApp {
@@ -97,8 +100,21 @@ public class TestApp {
         // Delete:
 //        reservationDao.delete(3);
 
+        ItemRepository itemRepository = new ItemRepository("AdministratorPersistenceUnit");
+        Item item1 = itemRepository.read(2);
+        Item item2 = itemRepository.read(6);
+        List<Item> itemsInCart = new ArrayList<>();
+        itemsInCart.add(item1);
+        itemsInCart.add(item2);
 
-        UserType userType = UserType.GUEST;
-        System.out.println(userType.getPersistenceUnitName());
+        UserInSystem userInSystem = UserInSystem.getInstance();
+        userInSystem.setLogin("opek1");
+        userInSystem.setUserType(UserType.CUSTOMER);
+
+        LocalDate dateOfReceipt = LocalDate.of(2020, 12, 4);
+        int rentalLength = 4;
+
+        ReservationService reservationService = new ReservationServiceImpl();
+        reservationService.makeReservation(itemsInCart, dateOfReceipt, rentalLength);
     }
 }

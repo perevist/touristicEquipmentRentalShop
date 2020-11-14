@@ -10,25 +10,34 @@ public class Reservation {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
     @JoinColumn(name = "customer_login")
     private Customer customer;
     @Column(name = "date_of_receipt")
-    private LocalDate date;
+    private LocalDate dateOfReceipt;
     @Column(name = "rental_length")
     private int rentalLength;
     @ManyToOne
     @JoinColumn(name = "status_id")
     private Status status;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "reserved_items",
             joinColumns = @JoinColumn(name = "reservation_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id")
     )
     List<Item> items;
+
+    public Reservation(List<Item> items, LocalDate dateOfReceipt, int rentalLength, Status status, Customer ownerOfReservation) {
+        this.items = items;
+        this.dateOfReceipt = dateOfReceipt;
+        this.customer = ownerOfReservation;
+        this.rentalLength = rentalLength;
+        this.status = status;
+    }
 
     public int getId() {
         return id;
@@ -46,12 +55,12 @@ public class Reservation {
         this.customer = customer;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getDateOfReceipt() {
+        return dateOfReceipt;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDateOfReceipt(LocalDate date) {
+        this.dateOfReceipt = date;
     }
 
     public int getRentalLength() {
@@ -83,7 +92,7 @@ public class Reservation {
         return "Reservation{" +
                 "id=" + id +
                 ", customer=" + customer +
-                ", date=" + date +
+                ", dateOfReceipt=" + dateOfReceipt +
                 ", rentalLength=" + rentalLength +
                 ", status=" + status +
                 ", items=" + items +

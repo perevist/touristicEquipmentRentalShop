@@ -1,14 +1,13 @@
 package com.projectIO.touristicEquipmentRentalShop.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 @MappedSuperclass
 public class Person {
 
     @Id
     @Column(name = "login")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String login;
     @Column(name = "first_name")
     private String firstName;

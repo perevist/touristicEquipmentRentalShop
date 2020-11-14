@@ -15,8 +15,8 @@ public class ItemRepository extends GenericRepository<Item, Integer> {
 
     public List<Item> getItemsFilteredByCategoryAndAvailabilityDate(int categoryId, LocalDate dateOfReceipt) {
         String date = dateOfReceipt.toString();
-        String queryReservedItems = "SELECT r.items FROM Reservation r WHERE r.date>='" + date + "' " +
-                "AND (r.date + r.rentalLength) >='" + date + "'";
+        String queryReservedItems = "SELECT r.items FROM Reservation r WHERE r.dateOfReceipt>='" + date + "' " +
+                "AND (r.dateOfReceipt + r.rentalLength) >='" + date + "'";
 
         Query resultReservedItems = entityManager.createQuery(queryReservedItems);
         List<Item> reservedItems = (List<Item>) resultReservedItems.getResultList();

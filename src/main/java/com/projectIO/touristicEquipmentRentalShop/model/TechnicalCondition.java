@@ -1,9 +1,6 @@
 package com.projectIO.touristicEquipmentRentalShop.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "technical_conditions")
@@ -11,6 +8,7 @@ public class TechnicalCondition {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name")
     private String name;

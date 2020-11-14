@@ -38,7 +38,6 @@ public class MakeReservationPageController implements Initializable {
     private List<ItemCategory> itemCategories;
     private List<Item> itemsAddedToCard;
     private List<Item> searchedItems;
-    private Reservation reservation;
 
     @FXML
     private GridPane rootPane;
@@ -89,7 +88,6 @@ public class MakeReservationPageController implements Initializable {
         reservationService = new ReservationServiceImpl();
 
         itemsAddedToCard = new ArrayList<>();
-        reservation = new Reservation();
     }
 
     @Override
@@ -174,16 +172,26 @@ public class MakeReservationPageController implements Initializable {
     }
 
     @FXML
-    void makeReservation(ActionEvent event) {
+    void makeReservation(ActionEvent event) throws IOException {
+        Window window = makeReservationButton.getScene().getWindow();
+
         if(itemsAddedToCard.isEmpty())
             return;
 
-        reservation.setItems(itemsAddedToCard);
-        reservationService.makeReservation(reservation);
+        LocalDate dateOfReceipt = reservationDatePicker.getValue();
+        int rentalLength =  Integer.parseInt(rentalLengthField.getText());
+
+        reservationService.makeReservation(itemsAddedToCard, dateOfReceipt, rentalLength);
 
         for (int i = 0; i < itemsAddedToCard.size(); i++) {
             designateItemAsNotInCart(itemsAddedToCard.get(i));
         }
+
+        AlertWindow.showAlert(Alert.AlertType.CONFIRMATION, window, "Wykonano", "Pomyślnie żłożono rezerwację");
+
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        Parent pane = FXMLLoader.load(getClass().getResource("/fxml/customerPage.fxml"));
+        stage.setScene(new Scene(pane, 800, 500));
     }
 
     @FXML
