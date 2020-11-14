@@ -17,4 +17,8 @@ public enum UserType {
     public String getPersistenceUnitName() {
         return persistenceUnitName;
     }
+
+    public String getName() {
+        return name;
+    }
 }

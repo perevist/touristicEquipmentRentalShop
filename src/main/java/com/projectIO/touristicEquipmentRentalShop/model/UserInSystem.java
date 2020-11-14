@@ -7,10 +7,10 @@ public class UserInSystem {
     private static UserInSystem instance;
 
     public static UserInSystem getInstance() {
-        if (instance == null)
-            return new UserInSystem();
-        else
-            return instance;
+        if (instance == null){
+            instance = new UserInSystem();
+        }
+        return instance;
     }
 
     private UserInSystem() {
