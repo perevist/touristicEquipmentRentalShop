@@ -39,4 +39,28 @@ public class ReservationServiceImpl implements ReservationService {
         if(items.isEmpty() || dateOfReceipt == null || rentalLength <= 0)
             throw new IllegalArgumentException("Przekazano nieprawidlowe dane");
     }
+
+    @Override
+    public List<Reservation> getAllReservationsOfCurrentlyLoggedUser(){
+        String customerLogin = UserInSystem.getInstance().getLogin();
+        return reservationRepository.getAllReservationsFilteredByCustomerLogin(customerLogin);
+    }
+
+    @Override
+    public List<Reservation> getAllReservationsOfCurrentlyLoggedUserFilteredByDate(LocalDate dateOfReceipt){
+        String customerLogin = UserInSystem.getInstance().getLogin();
+        return reservationRepository.getAllReservationsFilteredByCustomerLoginAndDate(customerLogin, dateOfReceipt);
+    }
+
+    @Override
+    public List<Reservation> getAllReservationsOfCurrentlyLoggedUserFilteredByReservationNumber(int number) {
+        String customerLogin = UserInSystem.getInstance().getLogin();
+        return reservationRepository.getAllReservationsFilteredByCustomerLoginAndReservationNumber(customerLogin,
+                number);
+    }
+
+    @Override
+    public void cancelReservation(int id) {
+        reservationRepository.delete(id);
+    }
 }

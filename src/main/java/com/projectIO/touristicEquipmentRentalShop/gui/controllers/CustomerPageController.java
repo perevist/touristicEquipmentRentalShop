@@ -33,8 +33,8 @@ public class CustomerPageController {
     }
 
     @FXML
-    void showReservations(ActionEvent event) {
-
+    void showReservations(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(rootPane, getClass(), "/fxml/reservationDetailsPage.fxml");
     }
 
 }

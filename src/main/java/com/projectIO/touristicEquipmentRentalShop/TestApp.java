@@ -100,21 +100,30 @@ public class TestApp {
         // Delete:
 //        reservationDao.delete(3);
 
-        ItemRepository itemRepository = new ItemRepository("AdministratorPersistenceUnit");
-        Item item1 = itemRepository.read(2);
-        Item item2 = itemRepository.read(6);
-        List<Item> itemsInCart = new ArrayList<>();
-        itemsInCart.add(item1);
-        itemsInCart.add(item2);
+//        ItemRepository itemRepository = new ItemRepository("AdministratorPersistenceUnit");
+//        Item item1 = itemRepository.read(2);
+//        Item item2 = itemRepository.read(6);
+//        List<Item> itemsInCart = new ArrayList<>();
+//        itemsInCart.add(item1);
+//        itemsInCart.add(item2);
+//
+//        UserInSystem userInSystem = UserInSystem.getInstance();
+//        userInSystem.setLogin("opek1");
+//        userInSystem.setUserType(UserType.CUSTOMER);
+//
+//        LocalDate dateOfReceipt = LocalDate.of(2020, 12, 4);
+//        int rentalLength = 4;
+//
+//        ReservationService reservationService = new ReservationServiceImpl();
+//        reservationService.makeReservation(itemsInCart, dateOfReceipt, rentalLength);
 
-        UserInSystem userInSystem = UserInSystem.getInstance();
-        userInSystem.setLogin("opek1");
-        userInSystem.setUserType(UserType.CUSTOMER);
 
-        LocalDate dateOfReceipt = LocalDate.of(2020, 12, 4);
-        int rentalLength = 4;
-
-        ReservationService reservationService = new ReservationServiceImpl();
-        reservationService.makeReservation(itemsInCart, dateOfReceipt, rentalLength);
+        ReservationRepository reservationRepository = new ReservationRepository("AdministratorPersistenceUnit");
+        LocalDate dateOfReceipt = LocalDate.of(2021, 5, 1);
+        List<Reservation> reservations =
+                reservationRepository.getAllReservationsFilteredByCustomerLoginAndDate("edwer34", dateOfReceipt);
+        for (Reservation reservation : reservations) {
+            System.out.println(reservation);
+        }
     }
 }
