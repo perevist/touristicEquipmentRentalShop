@@ -106,6 +106,7 @@ public class LoginFormController implements Initializable {
                 SceneChanger.changeScene(rootPane, getClass(),"/fxml/employeePage.fxml");
                 break;
             case ADMINISTRATOR:
+                SceneChanger.changeScene(rootPane, getClass(), "/fxml/administratorPage.fxml");
                 break;
         }
     }
