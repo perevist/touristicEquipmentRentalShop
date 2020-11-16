@@ -1,21 +1,22 @@
 package com.projectIO.touristicEquipmentRentalShop.application;
 
-import com.projectIO.touristicEquipmentRentalShop.model.UserType;
-import com.projectIO.touristicEquipmentRentalShop.services.implementations.LoginServiceImpl;
-import com.projectIO.touristicEquipmentRentalShop.services.implementations.RegistrationServiceImpl;
+//import com.projectIO.touristicEquipmentRentalShop.model.UserType;
+import com.projectIO.touristicEquipmentRentalShop.services.interfaces.LoginService;
+import com.projectIO.touristicEquipmentRentalShop.services.interfaces.RegistrationService;
 
 public class RentalShopApp {
     private static RentalShopApp instance;
 
-    private RegistrationServiceImpl registrationServiceImpl;
-    private LoginServiceImpl loginServiceImpl;
+    private RegistrationService registrationService;
+    private LoginService loginService;
     
     public static void main(String[] args) {
     }
 
     private RentalShopApp() {
-        registrationServiceImpl = new RegistrationServiceImpl();
-        loginServiceImpl = new LoginServiceImpl();
+        registrationService  = (login, firstName, lastName, phoneNumber, email, password) ->
+                registrationService.registerCustomer(login, firstName, lastName, phoneNumber, email, password);
+        loginService = (login, password, userType) -> loginService.loginUser(login, password, userType);
     }
 
     public static RentalShopApp getInstance() {
@@ -25,13 +26,4 @@ public class RentalShopApp {
         return instance;
     }
 
-    public void registerCustomerInSystem(String login, String firstName, String lastName, String phoneNumber,
-                                         String email, String password) {
-
-        registrationServiceImpl.registerCustomer(login, firstName, lastName, phoneNumber, email, password);
-    }
-
-    public void loginUserInSystem(String login, String password, UserType userType) {
-        loginServiceImpl.loginUser(login, password, userType);
-    }
 }
