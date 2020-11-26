@@ -1,12 +1,9 @@
 package com.projectIO.touristicEquipmentRentalShop.application;
 
 import com.projectIO.touristicEquipmentRentalShop.dao.EntityManagerProvider;
-import com.projectIO.touristicEquipmentRentalShop.gui.ScreenManager;
-import com.projectIO.touristicEquipmentRentalShop.gui.controllers.WelcomePageController;
+import com.projectIO.touristicEquipmentRentalShop.gui.helpers.AppScreen;
+import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,44 +17,33 @@ public class MainGuiApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         initializeConnectionWithDb();
-
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/welcomePage.fxml"));
-//        initializeScreens();
-
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/welcomePage.fxml"));
-//        Parent root = loader.load();
-//        WelcomePageController controller = loader.getController();
-//        controller.printMessage();
+        initializeScreens();
 
         stage.setTitle("Wypożyczania sprzętu turystycznego");
-        stage.setMinWidth(800);
-        stage.setMinHeight(500);
-        stage.setScene(new Scene(root, 800, 500));
-//        stage.setScene(ScreenManager.getInstance().getMainScene());
+        stage.setMinWidth(1200);
+        stage.setMinHeight(800);
+        ScreenManager.getInstance().setStage(stage);
+        ScreenManager.getInstance().activate("welcomePage");
         stage.show();
     }
 
     private void initializeScreens() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/welcomePage.fxml"));
-        Scene mainScene = new Scene(root, 800, 500);
-        ScreenManager.getInstance().setMainScene(mainScene);
-
         ScreenManager.getInstance().addScreen("administratorPage",
-                FXMLLoader.load(getClass().getResource("/fxml/administratorPage.fxml")));
+                new AppScreen("/fxml/administratorPage.fxml"));
         ScreenManager.getInstance().addScreen("customerPage",
-                FXMLLoader.load(getClass().getResource("/fxml/customerPage.fxml")));
+                new AppScreen("/fxml/customerPage.fxml"));
         ScreenManager.getInstance().addScreen("employeePage",
-                FXMLLoader.load(getClass().getResource("/fxml/employeePage.fxml")));
+                new AppScreen("/fxml/employeePage.fxml"));
         ScreenManager.getInstance().addScreen("loginForm",
-                FXMLLoader.load(getClass().getResource("/fxml/loginForm.fxml")));
+                new AppScreen("/fxml/loginForm.fxml"));
         ScreenManager.getInstance().addScreen("makeReservationPage",
-                FXMLLoader.load(getClass().getResource("/fxml/makeReservationPage.fxml")));
+                new AppScreen("/fxml/makeReservationPage.fxml"));
         ScreenManager.getInstance().addScreen("registrationForm",
-                FXMLLoader.load(getClass().getResource("/fxml/registrationForm.fxml")));
+                new AppScreen("/fxml/registrationForm.fxml"));
         ScreenManager.getInstance().addScreen("reservationDetailsPage",
-                FXMLLoader.load(getClass().getResource("/fxml/reservationDetailsPage.fxml")));
+                new AppScreen("/fxml/reservationDetailsPage.fxml"));
         ScreenManager.getInstance().addScreen("welcomePage",
-                FXMLLoader.load(getClass().getResource("/fxml/welcomePage")));
+                new AppScreen("/fxml/welcomePage.fxml"));
     }
 
     private void initializeConnectionWithDb() {

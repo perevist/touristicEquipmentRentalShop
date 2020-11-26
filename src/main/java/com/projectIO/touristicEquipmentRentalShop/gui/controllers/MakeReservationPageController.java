@@ -1,7 +1,7 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
-import com.projectIO.touristicEquipmentRentalShop.gui.AlertWindow;
-import com.projectIO.touristicEquipmentRentalShop.gui.SceneChanger;
+import com.projectIO.touristicEquipmentRentalShop.gui.helpers.AlertWindow;
+import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
 import com.projectIO.touristicEquipmentRentalShop.model.Item;
 import com.projectIO.touristicEquipmentRentalShop.model.ItemCategory;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.ItemCategoryServiceImpl;
@@ -24,7 +24,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
 
-public class MakeReservationPageController implements Initializable {
+public class MakeReservationPageController implements Initializable, MainController {
 
     private ItemCategoryService itemCategoryService;
     private ItemService itemService;
@@ -78,11 +78,15 @@ public class MakeReservationPageController implements Initializable {
     private Button makeReservationButton;
 
     @Override
+    public void updateDataInView() {
+        initializeItemCategoryChoiceBox();
+    }
+
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
         itemsAddedToCard = new ArrayList<>();
 
         initializeServices();
-        initializeItemCategoryChoiceBox();
         configureTableColumns();
     }
 
@@ -128,7 +132,7 @@ public class MakeReservationPageController implements Initializable {
     @FXML
     void addToCart(ActionEvent event) {
         Item selectedItem = searchedItemsTable.getSelectionModel().selectedItemProperty().get();
-        if(selectedItem == null)
+        if (selectedItem == null)
             return;
 
         itemsAddedToCard.add(selectedItem);
@@ -159,22 +163,22 @@ public class MakeReservationPageController implements Initializable {
     @FXML
     void cancelReservation(ActionEvent event) throws IOException {
         clearCart();
-        SceneChanger.changeScene(rootPane, getClass(), "/fxml/customerPage.fxml");
+        ScreenManager.getInstance().activate("customerPage");
     }
 
     @FXML
     void makeReservation(ActionEvent event) throws IOException {
-        if(itemsAddedToCard.isEmpty())
+        if (itemsAddedToCard.isEmpty())
             return;
 
         LocalDate dateOfReceipt = reservationDatePicker.getValue();
-        int rentalLength =  Integer.parseInt(rentalLengthField.getText());
+        int rentalLength = Integer.parseInt(rentalLengthField.getText());
         reservationService.makeReservation(itemsAddedToCard, dateOfReceipt, rentalLength);
 
         clearCart();
 
         AlertWindow.showAlert(rootPane, "Wykonano", "Pomyślnie żłożono rezerwację");
-        SceneChanger.changeScene(rootPane, getClass(), "/fxml/customerPage.fxml");
+        ScreenManager.getInstance().activate("customerPage");
     }
 
     private void clearCart() {
@@ -186,7 +190,7 @@ public class MakeReservationPageController implements Initializable {
     @FXML
     void removeFromCart(ActionEvent event) {
         Item selectedItem = cartTable.getSelectionModel().selectedItemProperty().get();
-        if(selectedItem == null)
+        if (selectedItem == null)
             return;
 
         itemsAddedToCard.remove(selectedItem);
@@ -197,7 +201,7 @@ public class MakeReservationPageController implements Initializable {
 
     @FXML
     void searchItems(ActionEvent event) {
-        if(!validSearchItemsForm())
+        if (!validSearchItemsForm())
             return;
 
         LocalDate reservationDate = reservationDatePicker.getValue();
@@ -215,22 +219,22 @@ public class MakeReservationPageController implements Initializable {
     }
 
     private boolean validSearchItemsForm() {
-        if(!checkAreAllFieldsFilledIn()) {
-            AlertWindow.showAlert(rootPane,"Błąd", "Proszę uzupełnić wszystkie pola" );
+        if (!checkAreAllFieldsFilledIn()) {
+            AlertWindow.showAlert(rootPane, "Błąd", "Proszę uzupełnić wszystkie pola");
             return false;
         }
 
         try {
             int rentalLength = Integer.parseInt(rentalLengthField.getText());
-        } catch (Exception e){
-            AlertWindow.showAlert(rootPane,"Błąd", "Proszę podac prawidlowa dlugosc rezerwacji");
+        } catch (Exception e) {
+            AlertWindow.showAlert(rootPane, "Błąd", "Proszę podac prawidlowa dlugosc rezerwacji");
             return false;
         }
         return true;
     }
 
     private boolean checkAreAllFieldsFilledIn() {
-        if(rentalLengthField.getText().isEmpty() || reservationDatePicker.getValue() == null
+        if (rentalLengthField.getText().isEmpty() || reservationDatePicker.getValue() == null
                 || itemCategoryChoiceBox.getValue() == null)
             return false;
         else
@@ -239,7 +243,7 @@ public class MakeReservationPageController implements Initializable {
 
     private int getItemCategoryId(String itemCategoryName) {
         for (ItemCategory itemCategory : itemCategories) {
-            if(itemCategory.getName().equals(itemCategoryName))
+            if (itemCategory.getName().equals(itemCategoryName))
                 return itemCategory.getId();
         }
         return -1;

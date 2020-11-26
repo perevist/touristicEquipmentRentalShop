@@ -1,7 +1,7 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
-import com.projectIO.touristicEquipmentRentalShop.gui.AlertWindow;
-import com.projectIO.touristicEquipmentRentalShop.gui.SceneChanger;
+import com.projectIO.touristicEquipmentRentalShop.gui.helpers.AlertWindow;
+import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
 import com.projectIO.touristicEquipmentRentalShop.model.Item;
 import com.projectIO.touristicEquipmentRentalShop.model.Reservation;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.ReservationServiceImpl;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ReservationDetailsPageController implements Initializable {
+public class ReservationDetailsPageController implements Initializable, MainController {
 
     private ReservationService reservationService;
 
@@ -66,13 +66,15 @@ public class ReservationDetailsPageController implements Initializable {
     @FXML
     private Button returnButton;
 
+    @Override
+    public void updateDataInView() {
+        initializeTable();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         initializeServices();
         configureTableColumns();
-        initializeTable();
     }
 
     private void initializeServices() {
@@ -178,6 +180,6 @@ public class ReservationDetailsPageController implements Initializable {
 
     @FXML
     void returnToCustomerPage(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(rootPane, getClass(), "/fxml/customerPage.fxml");
+        ScreenManager.getInstance().activate("customerPage");
     }
 }

@@ -1,6 +1,6 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
-import com.projectIO.touristicEquipmentRentalShop.gui.SceneChanger;
+import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,7 +8,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class CustomerPageController {
+public class CustomerPageController implements MainController {
 
     @FXML
     private AnchorPane rootPane;
@@ -24,17 +24,20 @@ public class CustomerPageController {
 
     @FXML
     void logOut(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(rootPane, getClass(), "/fxml/welcomePage.fxml");
+        ScreenManager.getInstance().activate("welcomePage");
     }
 
     @FXML
     void makeReservation(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(rootPane, getClass(), "/fxml/makeReservationPage.fxml");
+        ScreenManager.getInstance().activate("makeReservationPage");
     }
 
     @FXML
     void showReservations(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(rootPane, getClass(), "/fxml/reservationDetailsPage.fxml");
+        ScreenManager.getInstance().activate("reservationDetailsPage");
     }
 
+    @Override
+    public void updateDataInView() {
+    }
 }

@@ -1,8 +1,8 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginException;
-import com.projectIO.touristicEquipmentRentalShop.gui.AlertWindow;
-import com.projectIO.touristicEquipmentRentalShop.gui.SceneChanger;
+import com.projectIO.touristicEquipmentRentalShop.gui.helpers.AlertWindow;
+import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.RegistrationServiceImpl;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.RegistrationService;
 import javafx.fxml.FXML;
@@ -14,7 +14,7 @@ import javafx.event.ActionEvent;
 
 import java.io.IOException;
 
-public class RegistrationController {
+public class RegistrationController implements MainController {
 
     private RegistrationService registrationService;
 
@@ -39,11 +39,14 @@ public class RegistrationController {
     @FXML
     private TextField loginField;
 
-    @FXML
+    @Override
+    public void updateDataInView() {
+    }
 
+    @FXML
     public void register(ActionEvent event) throws IOException {
         if (checkAreAllFieldsFilledIn() == false) {
-            AlertWindow.showAlert(rootPane,"Błąd", "Proszę uzupełnić wszystkie pola" );
+            AlertWindow.showAlert(rootPane, "Błąd", "Proszę uzupełnić wszystkie pola");
             return;
         }
 
@@ -54,8 +57,8 @@ public class RegistrationController {
             return;
         }
 
-        AlertWindow.showAlert(rootPane,"Rejestracja wykonana", "Rejestracja przebiegła pomyślnie" );
-        SceneChanger.changeScene(rootPane, getClass(), "/fxml/welcomePage.fxml");
+        AlertWindow.showAlert(rootPane, "Rejestracja wykonana", "Rejestracja przebiegła pomyślnie");
+        ScreenManager.getInstance().activate("welcomePage");
     }
 
     private void loadDataFromFormAndRegisterUser() {

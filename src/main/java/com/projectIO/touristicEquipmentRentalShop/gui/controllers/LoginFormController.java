@@ -2,8 +2,8 @@ package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginException;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectPasswordException;
-import com.projectIO.touristicEquipmentRentalShop.gui.AlertWindow;
-import com.projectIO.touristicEquipmentRentalShop.gui.SceneChanger;
+import com.projectIO.touristicEquipmentRentalShop.gui.helpers.AlertWindow;
+import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
 import com.projectIO.touristicEquipmentRentalShop.model.UserType;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.LoginServiceImpl;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.LoginService;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class LoginFormController implements Initializable {
+public class LoginFormController implements MainController, Initializable {
 
     private LoginService loginService;
 
@@ -37,6 +37,7 @@ public class LoginFormController implements Initializable {
     private Button submitButton;
     @FXML
     private ChoiceBox<String> choiceBox;
+
     @FXML
 
     @Override
@@ -51,16 +52,20 @@ public class LoginFormController implements Initializable {
         choiceBox.getItems().setAll(options);
     }
 
+    @Override
+    public void updateDataInView() {
+    }
+
     @FXML
     void login(ActionEvent event) throws IOException {
-        if(!checkAreAllFieldsFilledIn()) {
+        if (!checkAreAllFieldsFilledIn()) {
             AlertWindow.showAlert(rootPane, "Błąd", "Proszę uzupełnić wszystkie pola");
             return;
         }
 
         try {
             loadDataFromFormAndLoginUser();
-        }catch (IncorrectLoginException | IncorrectPasswordException exception) {
+        } catch (IncorrectLoginException | IncorrectPasswordException exception) {
             AlertWindow.showAlert(rootPane, "Błąd", exception.getMessage());
             return;
         }
@@ -71,7 +76,7 @@ public class LoginFormController implements Initializable {
     }
 
     private boolean checkAreAllFieldsFilledIn() {
-        if(loginField.getText().isEmpty() || passwordField.getText().isEmpty() || choiceBox.getValue() == null)
+        if (loginField.getText().isEmpty() || passwordField.getText().isEmpty() || choiceBox.getValue() == null)
             return false;
         else
             return true;
@@ -90,7 +95,7 @@ public class LoginFormController implements Initializable {
         UserType[] allUserTypes = UserType.values();
 
         for (UserType userType : allUserTypes) {
-            if(userType.getName().equals(userTypeName))
+            if (userType.getName().equals(userTypeName))
                 return userType;
         }
         return null;
@@ -100,13 +105,13 @@ public class LoginFormController implements Initializable {
         UserType selectedUserType = getSelectedUserTypeFromChoiceBox();
         switch (selectedUserType) {
             case CUSTOMER:
-                SceneChanger.changeScene(rootPane, getClass(),"/fxml/customerPage.fxml");
+                ScreenManager.getInstance().activate("customerPage");
                 break;
             case EMPLOYEE:
-                SceneChanger.changeScene(rootPane, getClass(),"/fxml/employeePage.fxml");
+                ScreenManager.getInstance().activate("employeePage");
                 break;
             case ADMINISTRATOR:
-                SceneChanger.changeScene(rootPane, getClass(), "/fxml/administratorPage.fxml");
+                ScreenManager.getInstance().activate("administratorPage");
                 break;
         }
     }
