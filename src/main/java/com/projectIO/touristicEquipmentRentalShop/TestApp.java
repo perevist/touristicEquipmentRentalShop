@@ -3,7 +3,7 @@ package com.projectIO.touristicEquipmentRentalShop;
 import com.projectIO.touristicEquipmentRentalShop.dao.implementations.ItemCategoryDAOImpl;
 import com.projectIO.touristicEquipmentRentalShop.dao.interfaces.ItemCategoryDAO;
 import com.projectIO.touristicEquipmentRentalShop.model.*;
-import com.projectIO.touristicEquipmentRentalShop.repositories.*;
+//import com.projectIO.touristicEquipmentRentalShop.repositories.*;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.ReservationServiceImpl;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.ReservationService;
 

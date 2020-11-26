@@ -4,7 +4,8 @@ import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 
@@ -16,6 +17,11 @@ public class WelcomePageController implements MainController {
     private Button loginButton;
     @FXML
     private Button registrationButton;
+    @FXML
+    private BackgroundImage myBI= new BackgroundImage(new Image("/img4_resize.jpg",1200,
+            800,false,true), BackgroundRepeat.REPEAT,
+            BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
 
     @Override
     public void updateDataInView() {
@@ -23,14 +29,20 @@ public class WelcomePageController implements MainController {
     }
 
     @FXML
-    void loadLoginForm(ActionEvent event) throws IOException {
+    void loadLoginForm(ActionEvent event){
         ScreenManager.getInstance().activate("loginForm");
     }
 
     @FXML
-    void loadRegistrationForm(ActionEvent event) throws IOException {
+    void loadRegistrationForm(ActionEvent event){
         ScreenManager.getInstance().activate("registrationForm");
     }
+
+    @FXML
+    public void initialize(){
+        rootPane.setBackground(new Background(myBI));
+    }
+
 
     public void printMessage() {
         System.out.println("Siemano");

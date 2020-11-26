@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
 
-<GridPane fx:id="rootPane" alignment="center" hgap="10" prefHeight="513.0" prefWidth="625.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectIO.touristicEquipmentRentalShop.gui.controllers.WelcomePageController">
+<GridPane fx:id="rootPane" alignment="center" hgap="10" prefHeight="513.0" prefWidth="625.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectIO.touristicEquipmentRentalShop.gui.controllers.WelcomePageController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -19,10 +17,5 @@
    <children>
       <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loadLoginForm" prefHeight="106.0" prefWidth="199.0" text="Logowanie" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
       <Button fx:id="registrationButton" mnemonicParsing="false" onAction="#loadRegistrationForm" prefHeight="106.0" prefWidth="199.0" text="Rejestracja" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-      <Label prefHeight="50.0" prefWidth="282.0" text="Wypożyczalnia sprzętu turystycznego" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
    </children>
 </GridPane>
