@@ -26,4 +26,8 @@ public class WelcomePageController {
     void loadRegistrationForm(ActionEvent event) throws IOException {
         SceneChanger.changeScene(rootPane, getClass(), "/fxml/registrationForm.fxml");
     }
+
+    public void printMessage() {
+        System.out.println("Siemano");
+    }
 }

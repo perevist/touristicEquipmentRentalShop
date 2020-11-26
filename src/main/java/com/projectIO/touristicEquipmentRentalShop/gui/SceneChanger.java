@@ -14,5 +14,6 @@ public class SceneChanger {
         Stage stage = (Stage) rootPane.getScene().getWindow();
         Parent pane = FXMLLoader.load(cl.getResource(filePath));
         stage.setScene(new Scene(pane, 900, 500));
+        stage.show();
     }
 }

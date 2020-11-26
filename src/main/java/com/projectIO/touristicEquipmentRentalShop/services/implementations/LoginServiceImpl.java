@@ -1,21 +1,22 @@
 package com.projectIO.touristicEquipmentRentalShop.services.implementations;
 
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.CustomerDAOImpl;
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.EmployeeDAOImpl;
+import com.projectIO.touristicEquipmentRentalShop.dao.interfaces.CustomerDAO;
+import com.projectIO.touristicEquipmentRentalShop.dao.interfaces.EmployeeDAO;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginException;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectPasswordException;
 import com.projectIO.touristicEquipmentRentalShop.model.*;
-import com.projectIO.touristicEquipmentRentalShop.repositories.CustomerRepository;
-import com.projectIO.touristicEquipmentRentalShop.repositories.EmployeeRepository;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.LoginService;
 
 public class LoginServiceImpl implements LoginService {
 
-    private CustomerRepository customerRepository;
-    private EmployeeRepository employeeRepository;
+    private CustomerDAO customerDAO;
+    private EmployeeDAO employeeDAO;
 
     public LoginServiceImpl() {
-        String persistentUnitName = UserInSystem.getInstance().getUserType().getPersistenceUnitName();
-        customerRepository = new CustomerRepository(persistentUnitName);
-        employeeRepository = new EmployeeRepository(persistentUnitName);
+        customerDAO = new CustomerDAOImpl();
+        employeeDAO = new EmployeeDAOImpl();
     }
 
     @Override
@@ -35,8 +36,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     private void loginCustomer(String login, String password, UserType userType) {
-        customerRepository.setPersistenceUnitName(userType.getPersistenceUnitName());
-        Customer customerFromDb = customerRepository.read(login);
+        Customer customerFromDb = customerDAO.read(login);
 
         if(customerFromDb == null) {
             throw new IncorrectLoginException("Nie znaleziono użytkownika o podanym loginie");
@@ -53,8 +53,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     private void loginEmployee(String login, String password, UserType userType) {
-        employeeRepository.setPersistenceUnitName(userType.getPersistenceUnitName());
-        Employee employeeFromDb = employeeRepository.read(login);
+        Employee employeeFromDb = employeeDAO.read(login);
 
         if(employeeFromDb == null) {
             throw new IncorrectLoginException("Nie znaleziono użytkownika o podanym loginie");

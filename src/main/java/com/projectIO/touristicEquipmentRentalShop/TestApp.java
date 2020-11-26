@@ -1,5 +1,7 @@
 package com.projectIO.touristicEquipmentRentalShop;
 
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.ItemCategoryDAOImpl;
+import com.projectIO.touristicEquipmentRentalShop.dao.interfaces.ItemCategoryDAO;
 import com.projectIO.touristicEquipmentRentalShop.model.*;
 import com.projectIO.touristicEquipmentRentalShop.repositories.*;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.ReservationServiceImpl;
@@ -44,6 +46,15 @@ public class TestApp {
 //        for (ItemCategory itemCategory : itemCategories) {
 //            System.out.println("Znaleziona kategoira: " + itemCategory);
 //        }
+
+//        UserInSystem.getInstance().setUserType(UserType.CUSTOMER);
+//        ItemCategoryDAO itemCategoryDAO = new ItemCategoryDAOImpl();
+//
+//        List<ItemCategory> categories = itemCategoryDAO.readAll();
+//        System.out.println(categories);
+
+
+
 
         // ----- Item CRUD test -----
 //        ItemRepository itemRepository = new ItemRepository();
@@ -118,12 +129,12 @@ public class TestApp {
 //        reservationService.makeReservation(itemsInCart, dateOfReceipt, rentalLength);
 
 
-        ReservationRepository reservationRepository = new ReservationRepository("AdministratorPersistenceUnit");
-        LocalDate dateOfReceipt = LocalDate.of(2021, 5, 1);
-        List<Reservation> reservations =
-                reservationRepository.getAllReservationsFilteredByCustomerLoginAndDate("edwer34", dateOfReceipt);
-        for (Reservation reservation : reservations) {
-            System.out.println(reservation);
-        }
+//        ReservationRepository reservationRepository = new ReservationRepository("AdministratorPersistenceUnit");
+//        LocalDate dateOfReceipt = LocalDate.of(2021, 5, 1);
+//        List<Reservation> reservations =
+//                reservationRepository.getAllReservationsFilteredByCustomerLoginAndDate("edwer34", dateOfReceipt);
+//        for (Reservation reservation : reservations) {
+//            System.out.println(reservation);
+//        }
     }
 }

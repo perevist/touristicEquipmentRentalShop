@@ -1,18 +1,17 @@
 package com.projectIO.touristicEquipmentRentalShop.services.implementations;
 
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.CustomerDAOImpl;
+import com.projectIO.touristicEquipmentRentalShop.dao.interfaces.CustomerDAO;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginException;
 import com.projectIO.touristicEquipmentRentalShop.model.Customer;
-import com.projectIO.touristicEquipmentRentalShop.model.UserInSystem;
-import com.projectIO.touristicEquipmentRentalShop.repositories.CustomerRepository;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.RegistrationService;
 
 public class RegistrationServiceImpl  implements RegistrationService {
 
-    private CustomerRepository customerRepository;
+    private CustomerDAO customerDAO;
 
     public RegistrationServiceImpl() {
-        String persistenceUnitName = UserInSystem.getInstance().getUserType().getPersistenceUnitName();
-        customerRepository = new CustomerRepository(persistenceUnitName);
+        customerDAO = new CustomerDAOImpl();
     }
 
     @Override
@@ -21,7 +20,7 @@ public class RegistrationServiceImpl  implements RegistrationService {
 
         try {
             Customer customer = new Customer(login, firstName, lastName, phoneNumber, email, password);
-            customerRepository.save(customer);
+            customerDAO.save(customer);
         }catch (Exception exception) {
             exception.printStackTrace();
             throw new IncorrectLoginException("Podany login jest już zajęty");

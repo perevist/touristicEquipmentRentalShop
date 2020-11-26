@@ -1,22 +1,24 @@
-package com.projectIO.touristicEquipmentRentalShop.repositories;
+package com.projectIO.touristicEquipmentRentalShop.dao.implementations;
 
+import com.projectIO.touristicEquipmentRentalShop.dao.EntityManagerProvider;
+import com.projectIO.touristicEquipmentRentalShop.dao.interfaces.ReservationDAO;
 import com.projectIO.touristicEquipmentRentalShop.model.Reservation;
 
+import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.util.List;
 
-public class ReservationRepository extends GenericRepository<Reservation, Integer>{
-
-    public ReservationRepository(String persistenceUnitName) {
-        super(persistenceUnitName);
-    }
+public class ReservationDAOImpl extends GenericDAOImpl<Reservation, Integer> implements ReservationDAO {
 
     public List<Reservation> getAllReservationsFilteredByCustomerLogin(String customerLogin) {
         String query = "SELECT r FROM Reservation r WHERE r.customer='" + customerLogin +"'";
 
-        TypedQuery<Reservation> createdQuery = entityManager.createQuery(query, Reservation.class);
+        EntityManager em = EntityManagerProvider.getInstance().getEntityManager();
+
+        TypedQuery<Reservation> createdQuery = em.createQuery(query, Reservation.class);
         List<Reservation> result = createdQuery.getResultList();
+        em.close();
         return result;
     }
 
@@ -25,17 +27,25 @@ public class ReservationRepository extends GenericRepository<Reservation, Intege
 
         String query = "SELECT r FROM Reservation r WHERE r.customer='" + customerLogin +"' AND " +
                 "r.dateOfReceipt='" + dateOfReceipt.toString() + "'";
-        TypedQuery<Reservation> createdQuery = entityManager.createQuery(query, Reservation.class);
+
+        EntityManager em = EntityManagerProvider.getInstance().getEntityManager();
+
+        TypedQuery<Reservation> createdQuery = em.createQuery(query, Reservation.class);
+        em.close();
+
         return createdQuery.getResultList();
     }
 
     public List<Reservation> getAllReservationsFilteredByCustomerLoginAndReservationNumber(String customerLogin,
-                                                                              int reservationNum) {
+                                                                                           int reservationNum) {
 
         String query = "SELECT r FROM Reservation r WHERE r.customer='" + customerLogin +"' AND " +
                 "r.id=" +reservationNum;
 
-        TypedQuery<Reservation> createdQuery = entityManager.createQuery(query, Reservation.class);
+        EntityManager em = EntityManagerProvider.getInstance().getEntityManager();
+
+        TypedQuery<Reservation> createdQuery = em.createQuery(query, Reservation.class);
+        em.close();
         return createdQuery.getResultList();
     }
 }
