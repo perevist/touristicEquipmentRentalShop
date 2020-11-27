@@ -22,7 +22,7 @@ public class EmployeePageController implements MainController {
 
     @FXML
     void addItem(ActionEvent event) {
-
+        ScreenManager.getInstance().activate("addItemPage");
     }
 
     @FXML

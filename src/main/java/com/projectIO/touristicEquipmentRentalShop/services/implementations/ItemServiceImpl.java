@@ -3,6 +3,8 @@ package com.projectIO.touristicEquipmentRentalShop.services.implementations;
 import com.projectIO.touristicEquipmentRentalShop.dao.implementations.ItemDAOImpl;
 import com.projectIO.touristicEquipmentRentalShop.dao.interfaces.ItemDAO;
 import com.projectIO.touristicEquipmentRentalShop.model.Item;
+import com.projectIO.touristicEquipmentRentalShop.model.ItemCategory;
+import com.projectIO.touristicEquipmentRentalShop.model.TechnicalCondition;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.ItemService;
 
 import java.time.LocalDate;
@@ -24,5 +26,17 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void updateItem(Item item) {
         itemDAO.update(item);
+    }
+
+    @Override
+    public void addItem(ItemCategory itemCategory, TechnicalCondition technicalCondition) {
+        if(itemCategory == null || technicalCondition == null){
+            throw new NullPointerException("Podano nieprwidlowe dane");
+        }
+
+        Item item = new Item();
+        item.setCategory(itemCategory);
+        item.setTechnicalCondition(technicalCondition);
+        itemDAO.save(item);
     }
 }
