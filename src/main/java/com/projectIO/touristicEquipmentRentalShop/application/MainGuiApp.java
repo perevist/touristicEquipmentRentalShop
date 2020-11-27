@@ -44,6 +44,8 @@ public class MainGuiApp extends Application {
                 new AppScreen("/fxml/reservationDetailsPage.fxml"));
         ScreenManager.getInstance().addScreen("welcomePage",
                 new AppScreen("/fxml/welcomePage.fxml"));
+        ScreenManager.getInstance().addScreen("addItemCategoryPage",
+                new AppScreen("/fxml/addItemCategoryPage.fxml"));
     }
 
     private void initializeConnectionWithDb() {

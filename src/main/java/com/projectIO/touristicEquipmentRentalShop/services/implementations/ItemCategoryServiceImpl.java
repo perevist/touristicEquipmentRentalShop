@@ -8,7 +8,6 @@ import com.projectIO.touristicEquipmentRentalShop.services.interfaces.ItemCatego
 import java.util.List;
 
 public class ItemCategoryServiceImpl implements ItemCategoryService {
-
     private ItemCategoryDAO itemCategoryDAO;
 
     public ItemCategoryServiceImpl() {
@@ -17,5 +16,14 @@ public class ItemCategoryServiceImpl implements ItemCategoryService {
 
     public List<ItemCategory> getAllCategories() {
         return itemCategoryDAO.readAll();
+    }
+
+    public void addItemCategory(String name, double rentalCharge, double deposit) {
+        if(name.isEmpty() || rentalCharge <= 0 || deposit <= 0){
+            throw new IllegalArgumentException("Podano nieprawidłowe dane");
+        }
+
+        ItemCategory itemCategory = new ItemCategory(name, rentalCharge, deposit);
+        itemCategoryDAO.save(itemCategory);
     }
 }

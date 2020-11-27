@@ -5,5 +5,6 @@ import com.projectIO.touristicEquipmentRentalShop.model.ItemCategory;
 import java.util.List;
 
 public interface ItemCategoryService {
-    public List<ItemCategory> getAllCategories();
+    List<ItemCategory> getAllCategories();
+    void addItemCategory(String name, double rentalCharge, double deposit);
 }
