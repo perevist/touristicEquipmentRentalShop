@@ -34,21 +34,30 @@
          <Font name="Verdana" size="18.0" />
       </font></Label>
     <!-- Add Name Text Field -->
-    <TextField fx:id="firstNameField" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <TextField fx:id="firstNameField" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <font>
+         <Font size="15.0" />
+      </font></TextField>
     <!-- Add Email Label -->
     <Label text="E-mail :" textFill="#e4dfdf" GridPane.rowIndex="4">
       <font>
          <Font name="Verdana" size="18.0" />
       </font></Label>
     <!-- Add Email Text Field -->
-    <TextField fx:id="emailField" prefHeight="40" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <TextField fx:id="emailField" prefHeight="40" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <font>
+         <Font size="15.0" />
+      </font></TextField>
     <!-- Add Password Label -->
     <Label text="Hasło :" textFill="#e4dfdf" GridPane.rowIndex="6">
       <font>
          <Font name="Verdana" size="18.0" />
       </font></Label>
     <!-- Add Password Field -->
-    <PasswordField fx:id="passwordField" prefHeight="40.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <PasswordField fx:id="passwordField" prefHeight="40.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+      <font>
+         <Font size="15.0" />
+      </font></PasswordField>
     <!-- Add Submit Button -->
     <Button fx:id="submitButton" defaultButton="true" onAction="#register" prefHeight="56.0" prefWidth="196.0" style="-fx-background-color: #dddfdf;" text="Zarejestruj się" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.rowSpan="1">
         <GridPane.margin>
@@ -70,10 +79,19 @@
       <font>
          <Font name="Verdana" size="18.0" />
       </font></Label>
-   <TextField fx:id="lastNameField" prefHeight="40.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-   <TextField fx:id="phoneNumberField" prefHeight="40.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-   <TextField fx:id="loginField" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-   <Button mnemonicParsing="false" onAction="#backToWelcomePage" text="Powrót" textFill="#403b3b" GridPane.columnIndex="2" GridPane.rowIndex="7">
+   <TextField fx:id="lastNameField" prefHeight="40.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <font>
+         <Font size="15.0" />
+      </font></TextField>
+   <TextField fx:id="phoneNumberField" prefHeight="40.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <font>
+         <Font size="15.0" />
+      </font></TextField>
+   <TextField fx:id="loginField" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <font>
+         <Font size="15.0" />
+      </font></TextField>
+   <Button mnemonicParsing="false" onAction="#backToWelcomePage" style="-fx-background-color: #dddfdf;" text="Powrót" textFill="#403b3b" GridPane.rowIndex="7">
       <font>
          <Font name="Verdana" size="18.0" />
       </font>

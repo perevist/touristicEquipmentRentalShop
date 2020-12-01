@@ -184,7 +184,7 @@ public class MakeReservationPageController implements Initializable, MainControl
 
         clearCart();
 
-        AlertWindow.showAlert(rootPane, "Wykonano", "Pomyślnie żłożono rezerwację");
+        AlertWindow.showAlert(rootPane, "Wykonano", "Pomyślnie złożono rezerwację");
         ScreenManager.getInstance().activate("customerPage");
     }
 

@@ -52,12 +52,12 @@
       </TableView>
       <Label alignment="CENTER" contentDisplay="CENTER" text="ZNALEZIONE PRODUKTY" textFill="#1e1d1d" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
          <font>
-            <Font name="Verdana Pro Semibold" size="17.0" />
+            <Font name="Verdana Pro Semibold" size="18.0" />
          </font>
       </Label>
-      <Label text="KOSZYK" textFill="#c61f1f" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+      <Label text="KOSZYK" textFill="#9a0b0b" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
          <font>
-            <Font name="Verdana Pro Semibold" size="17.0" />
+            <Font name="Verdana Pro Semibold" size="18.0" />
          </font>
       </Label>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -88,7 +88,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="addToCartButton" mnemonicParsing="false" onAction="#addToCart" style="-fx-background-color: #202a3d; -fx-border-color: white;" text="Dodaj do koszyka" textFill="#f2eeee" translateX="20.0" translateY="-50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <Button fx:id="addToCartButton" mnemonicParsing="false" onAction="#addToCart" style="-fx-background-color: #202a3d; -fx-border-color: white;" text="Dodaj do koszyka" textFill="#f2eeee" translateX="20.0" translateY="-60.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <font>
             <Font name="Verdana" size="17.0" />
          </font></Button>

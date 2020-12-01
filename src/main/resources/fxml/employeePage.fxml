@@ -10,7 +10,7 @@
          <font>
             <Font name="Verdana" size="20.0" />
          </font></Button>
-      <Button fx:id="logoutButton" layoutX="942.0" layoutY="28.0" mnemonicParsing="false" onAction="#logout" prefHeight="50.0" prefWidth="158.0" style="-fx-background-color: #2a3c4a; -fx-border-color: white;" text="Wyloguj" textFill="WHITE">
+      <Button fx:id="logoutButton" layoutX="942.0" layoutY="28.0" mnemonicParsing="false" onAction="#logout" prefHeight="22.0" prefWidth="158.0" style="-fx-background-color: #2a3c4a; -fx-border-color: white;" text="Wyloguj" textFill="WHITE">
          <font>
             <Font name="Verdana" size="20.0" />
          </font></Button>
