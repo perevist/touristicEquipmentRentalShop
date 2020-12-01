@@ -4,7 +4,8 @@ import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 public class EmployeePageController implements MainController {
 
@@ -19,6 +20,10 @@ public class EmployeePageController implements MainController {
 
     @FXML
     private Button addItemButton;
+    @FXML
+    private BackgroundImage myBI= new BackgroundImage(new Image("/img/employeePage.jpg",1200,
+            800,false,true), BackgroundRepeat.REPEAT,
+            BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
     @FXML
     void addItem(ActionEvent event) {
@@ -35,6 +40,10 @@ public class EmployeePageController implements MainController {
         ScreenManager.getInstance().activate("welcomePage");
     }
 
+    @FXML
+    public void initialize(){
+        rootPane.setBackground(new Background(myBI));
+    }
     @Override
     public void updateDataInView() {
     }

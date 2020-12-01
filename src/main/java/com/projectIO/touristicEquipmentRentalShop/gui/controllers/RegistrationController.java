@@ -9,7 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
@@ -39,10 +40,23 @@ public class RegistrationController implements MainController {
     @FXML
     private TextField loginField;
 
+    @FXML
+    private BackgroundImage myBI= new BackgroundImage(new Image("/img/registerPageImg.jpg",1200,
+            800,false,true), BackgroundRepeat.REPEAT,
+            BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
     @Override
     public void updateDataInView() {
     }
 
+    @FXML
+    public void initialize(){
+        rootPane.setBackground(new Background(myBI));
+    }
+    @FXML
+    void backToWelcomePage(ActionEvent event) {
+        ScreenManager.getInstance().activate("welcomePage");
+    }
     @FXML
     public void register(ActionEvent event) throws IOException {
         if (checkAreAllFieldsFilledIn() == false) {

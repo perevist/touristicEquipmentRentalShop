@@ -10,16 +10,17 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="rootPane" alignment="center" hgap="10" prefHeight="513.0" prefWidth="625.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectIO.touristicEquipmentRentalShop.gui.controllers.RegistrationController">
+<GridPane fx:id="rootPane" alignment="center" hgap="10" prefHeight="513.0" prefWidth="800.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectIO.touristicEquipmentRentalShop.gui.controllers.RegistrationController">
     <padding>
         <Insets bottom="40" left="40" right="40" top="40" />
     </padding>
     <columnConstraints>
-        <ColumnConstraints halignment="RIGHT" maxWidth="Infinity" minWidth="83.20001220703125" prefWidth="92.79998779296875" />
-        <ColumnConstraints hgrow="ALWAYS" maxWidth="Infinity" minWidth="173.59997558593747" prefWidth="207.20001220703122" />
+        <ColumnConstraints halignment="RIGHT" maxWidth="Infinity" minWidth="83.20001220703125" prefWidth="171.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="456.0" minWidth="420.0" prefWidth="456.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
     </columnConstraints>
     <!-- Add Header Label -->
-    <Label text="Rejestracja" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.rowSpan="1">
+    <Label text=" " GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowSpan="1">
         <font>
             <Font name="Arial" size="24" />
         </font>
@@ -28,29 +29,55 @@
         </GridPane.margin>
     </Label>
     <!-- Add Name Label -->
-    <Label text="Imię :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <Label text="Imię :" textFill="#e4dfdf" GridPane.rowIndex="1">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font></Label>
     <!-- Add Name Text Field -->
-    <TextField fx:id="firstNameField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <TextField fx:id="firstNameField" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     <!-- Add Email Label -->
-    <Label text="E-mail :" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <Label text="E-mail :" textFill="#e4dfdf" GridPane.rowIndex="4">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font></Label>
     <!-- Add Email Text Field -->
-    <TextField fx:id="emailField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <TextField fx:id="emailField" prefHeight="40" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
     <!-- Add Password Label -->
-    <Label text="Hasło :" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+    <Label text="Hasło :" textFill="#e4dfdf" GridPane.rowIndex="6">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font></Label>
     <!-- Add Password Field -->
-    <PasswordField fx:id="passwordField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <PasswordField fx:id="passwordField" prefHeight="40.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
     <!-- Add Submit Button -->
-    <Button fx:id="submitButton" defaultButton="true" onAction="#register" prefHeight="40" prefWidth="100" text="Zarejestruj się" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.rowSpan="1">
+    <Button fx:id="submitButton" defaultButton="true" onAction="#register" prefHeight="56.0" prefWidth="196.0" style="-fx-background-color: #dddfdf;" text="Zarejestruj się" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.rowSpan="1">
         <GridPane.margin>
             <Insets bottom="20" left="0" right="0" top="20" />
         </GridPane.margin>
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font>
     </Button>
-   <Label text="Nazwisko :" GridPane.rowIndex="2" />
-   <Label text="Numer telefonu :" GridPane.rowIndex="3" />
-   <Label text="Login:" GridPane.rowIndex="5" />
-   <TextField fx:id="lastNameField" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-   <TextField fx:id="phoneNumberField" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-   <TextField fx:id="loginField" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+   <Label text="Nazwisko :" textFill="#e4dfdf" GridPane.rowIndex="2">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font></Label>
+   <Label text="Numer telefonu :" textFill="#e4dfdf" GridPane.rowIndex="3">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font></Label>
+   <Label text="Login:" textFill="#e4dfdf" GridPane.rowIndex="5">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font></Label>
+   <TextField fx:id="lastNameField" prefHeight="40.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+   <TextField fx:id="phoneNumberField" prefHeight="40.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+   <TextField fx:id="loginField" prefHeight="40.0" prefWidth="50.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+   <Button mnemonicParsing="false" onAction="#backToWelcomePage" text="Powrót" textFill="#403b3b" GridPane.columnIndex="2" GridPane.rowIndex="7">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font>
+   </Button>
    <rowConstraints>
       <RowConstraints />
       <RowConstraints maxHeight="36.80001831054686" minHeight="31.200012207031236" prefHeight="36.80001831054686" />

@@ -11,7 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,9 +40,19 @@ public class LoginFormController implements MainController, Initializable {
     private ChoiceBox<String> choiceBox;
 
     @FXML
+    private BackgroundImage myBI= new BackgroundImage(new Image("/img/loginPageImg.jpg",1200,
+            800,false,true), BackgroundRepeat.REPEAT,
+            BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
+    @FXML
+    void backToWelcomePage(ActionEvent event) {
+        ScreenManager.getInstance().activate("welcomePage");
+    }
+
+    @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        rootPane.setBackground(new Background(myBI));
         UserType[] userTypes = UserType.values();
         List<String> options = new ArrayList<>();
 

@@ -13,11 +13,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="rootPane" alignment="center" hgap="10" prefHeight="500.0" prefWidth="900.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectIO.touristicEquipmentRentalShop.gui.controllers.MakeReservationPageController">
+<GridPane fx:id="rootPane" alignment="center" hgap="10" prefHeight="700.0" prefWidth="1100.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projectIO.touristicEquipmentRentalShop.gui.controllers.MakeReservationPageController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="440.199951171875" minWidth="10.0" prefWidth="163.99998779296874" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="722.6000366210938" minWidth="10.0" prefWidth="363.20001220703125" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="722.6000366210938" minWidth="10.0" prefWidth="352.6000122070312" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="151.59998168945313" minHeight="7.599975967407232" prefHeight="9.99998512268067" vgrow="SOMETIMES" />
@@ -27,11 +28,11 @@
    <children>
       <TableView fx:id="searchedItemsTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columns>
-          <TableColumn fx:id="itemIdTabColumn" prefWidth="44.000062584877014" text="Id" />
-          <TableColumn fx:id="categoryNameTabColumn" prefWidth="274.39998626708984" text="Kategoria" />
-            <TableColumn fx:id="chargeTabColumn" prefWidth="75.0" text="Koszt" />
-            <TableColumn fx:id="depositTabColumn" prefWidth="75.0" text="Kaucja" />
-            <TableColumn fx:id="techConditionTabColumn" prefWidth="75.0" text="Stan techniczny" />
+          <TableColumn fx:id="itemIdTabColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Id" />
+          <TableColumn fx:id="categoryNameTabColumn" prefWidth="121.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Kategoria" />
+            <TableColumn fx:id="chargeTabColumn" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Koszt" />
+            <TableColumn fx:id="depositTabColumn" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Kaucja" />
+            <TableColumn fx:id="techConditionTabColumn" prefWidth="75.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Stan techniczny" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -39,48 +40,73 @@
       </TableView>
       <TableView fx:id="cartTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
         <columns>
-          <TableColumn fx:id="cartItemIdTabColumn" prefWidth="75.0" text="Id" />
-          <TableColumn fx:id="cartCategoryNameTabColumn" prefWidth="75.0" text="Kategoria" />
-            <TableColumn fx:id="cartChargeTabColumn" prefWidth="75.0" text="Koszt" />
-            <TableColumn fx:id="cartDepositTabColumn" prefWidth="75.0" text="Kaucja" />
-            <TableColumn fx:id="cartTechConditionTabColumn" prefWidth="75.0" text="Stan techniczny" />
+          <TableColumn fx:id="cartItemIdTabColumn" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Id" />
+          <TableColumn fx:id="cartCategoryNameTabColumn" prefWidth="75.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Kategoria" />
+            <TableColumn fx:id="cartChargeTabColumn" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Koszt" />
+            <TableColumn fx:id="cartDepositTabColumn" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Kaucja" />
+            <TableColumn fx:id="cartTechConditionTabColumn" prefWidth="75.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Stan techniczny" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label alignment="CENTER" contentDisplay="CENTER" text="Znalezione produkty:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+      <Label alignment="CENTER" contentDisplay="CENTER" text="ZNALEZIONE PRODUKTY" textFill="#1e1d1d" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
          <font>
-            <Font name="Arial" size="15.0" />
+            <Font name="Verdana Pro Semibold" size="17.0" />
          </font>
       </Label>
-      <Label text="Koszyk rezeracji:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+      <Label text="KOSZYK" textFill="#c61f1f" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
          <font>
-            <Font name="Arial" size="15.0" />
-         </font>
-      </Label>
-      <Label text="Wyszukiwanie:">
-         <font>
-            <Font name="Arial" size="15.0" />
+            <Font name="Verdana Pro Semibold" size="17.0" />
          </font>
       </Label>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Kategoria:" />
-            <ChoiceBox fx:id="itemCategoryChoiceBox" layoutX="14.0" layoutY="32.0" prefHeight="18.0" prefWidth="130.0" />
-            <DatePicker fx:id="reservationDatePicker" layoutX="14.0" layoutY="93.0" prefHeight="26.0" prefWidth="130.0" />
-            <Label layoutX="14.0" layoutY="75.0" text="Data rezerwacji:" />
-            <Label layoutX="17.0" layoutY="137.0" text="Długość rezerwacji:" />
-            <TextField fx:id="rentalLengthField" layoutX="14.0" layoutY="155.0" prefHeight="18.0" prefWidth="130.0" />
-            <Button fx:id="searchButton" layoutX="16.0" layoutY="208.0" mnemonicParsing="false" onAction="#searchItems" prefHeight="38.0" prefWidth="102.0" text="Szukaj" />
+            <Label layoutX="20.0" layoutY="57.0" text="Kategoria:" textFill="#f2eeee">
+               <font>
+                  <Font name="Verdana" size="17.0" />
+               </font></Label>
+            <ChoiceBox fx:id="itemCategoryChoiceBox" layoutX="22.0" layoutY="89.0" prefHeight="30.0" prefWidth="178.0" style="-fx-background-color: #fafafa;" />
+            <DatePicker fx:id="reservationDatePicker" layoutX="22.0" layoutY="192.0" prefHeight="30.0" prefWidth="142.0" style="-fx-background-color: #fafafa;" />
+            <Label layoutX="22.0" layoutY="161.0" text="Data rezerwacji:" textFill="#f2eeee">
+               <font>
+                  <Font name="Verdana" size="17.0" />
+               </font></Label>
+            <Label layoutX="20.0" layoutY="261.0" prefHeight="62.0" prefWidth="183.0" text="Długość rezerwacji (liczba dni):" textFill="#f2eeee" wrapText="true">
+               <font>
+                  <Font name="Verdana" size="17.0" />
+               </font></Label>
+            <TextField fx:id="rentalLengthField" alignment="CENTER" layoutX="20.0" layoutY="323.0" prefHeight="38.0" prefWidth="75.0" style="-fx-background-color: #fafafa;" />
+            <Button fx:id="searchButton" layoutX="17.0" layoutY="379.0" mnemonicParsing="false" onAction="#searchItems" prefHeight="46.0" prefWidth="192.0" style="-fx-background-color: #202a3d; -fx-border-color: white;" text="Szukaj" textFill="#f2eeee">
+               <font>
+                  <Font name="Verdana" size="19.0" />
+               </font></Button>
+            <Label layoutX="24.0" layoutY="14.0" text="WYSZUKIWANIE" textFill="#f2eeee">
+               <font>
+                  <Font name="Verdana" size="22.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="addToCartButton" mnemonicParsing="false" onAction="#addToCart" text="Dodaj do koszyka" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Button fx:id="addToCartButton" mnemonicParsing="false" onAction="#addToCart" style="-fx-background-color: #202a3d; -fx-border-color: white;" text="Dodaj do koszyka" textFill="#f2eeee" translateX="20.0" translateY="-50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <font>
+            <Font name="Verdana" size="17.0" />
+         </font></Button>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <children>
-            <Button fx:id="removeFromCartButton" layoutY="4.0" mnemonicParsing="false" onAction="#removeFromCart" text="Usuń z koszyka" />
-            <Button fx:id="cancelReservationButton" layoutX="121.0" layoutY="4.0" mnemonicParsing="false" onAction="#cancelReservation" text="Anuluj rezerwacje" />
-            <Button fx:id="makeReservationButton" layoutX="250.0" layoutY="4.0" mnemonicParsing="false" onAction="#makeReservation" text="Złóż rezerwacje" />
+            <Button fx:id="removeFromCartButton" layoutY="14.0" mnemonicParsing="false" onAction="#removeFromCart" prefHeight="46.0" prefWidth="183.0" style="-fx-background-color: #202a3d; -fx-border-color: white;" text="Usuń z koszyka" textFill="#f2eeee">
+               <font>
+                  <Font name="Verdana" size="17.0" />
+               </font></Button>
+            <Button fx:id="cancelReservationButton" layoutX="61.0" layoutY="96.0" mnemonicParsing="false" onAction="#cancelReservation" prefHeight="38.0" prefWidth="299.0" style="-fx-background-color: #202a3d; -fx-border-color: white;" text="Anuluj składanie rezerwacji" textFill="#f2eeee">
+               <font>
+                  <Font name="Verdana" size="17.0" />
+               </font>
+            </Button>
+            <Button fx:id="makeReservationButton" layoutX="210.0" layoutY="14.0" mnemonicParsing="false" onAction="#makeReservation" prefHeight="46.0" prefWidth="183.0" style="-fx-background-color: #202a3d; -fx-border-color: white;" text="Złóż rezerwacje" textFill="#fc9999">
+               <font>
+                  <Font name="Verdana" size="17.0" />
+               </font></Button>
          </children>
       </AnchorPane>
    </children>

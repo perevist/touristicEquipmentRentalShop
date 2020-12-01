@@ -4,7 +4,8 @@ import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 
@@ -28,6 +29,16 @@ public class CustomerPageController implements MainController {
     }
 
     @FXML
+    private BackgroundImage myBI= new BackgroundImage(new Image("/img/customerPageImg.jpg",1200,
+            800,false,true), BackgroundRepeat.REPEAT,
+            BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
+    @FXML
+    public void initialize(){
+        rootPane.setBackground(new Background(myBI));
+    }
+
+    @FXML
     void makeReservation(ActionEvent event) throws IOException {
         ScreenManager.getInstance().activate("makeReservationPage");
     }
@@ -40,4 +51,6 @@ public class CustomerPageController implements MainController {
     @Override
     public void updateDataInView() {
     }
+
+
 }

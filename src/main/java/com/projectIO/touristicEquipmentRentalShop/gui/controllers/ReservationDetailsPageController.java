@@ -17,7 +17,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -65,6 +66,11 @@ public class ReservationDetailsPageController implements Initializable, MainCont
     private Button cancelReservationButton;
     @FXML
     private Button returnButton;
+    @FXML
+    private BackgroundImage myBI= new BackgroundImage(new Image("/img/customerPageReserImg.jpg",1200,
+            800,false,true), BackgroundRepeat.REPEAT,
+            BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
 
     @Override
     public void updateDataInView() {
@@ -73,6 +79,7 @@ public class ReservationDetailsPageController implements Initializable, MainCont
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        rootPane.setBackground(new Background(myBI));
         initializeServices();
         configureTableColumns();
     }

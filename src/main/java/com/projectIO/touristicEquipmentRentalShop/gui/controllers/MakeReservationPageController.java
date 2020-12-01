@@ -17,7 +17,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -76,6 +77,11 @@ public class MakeReservationPageController implements Initializable, MainControl
     private Button cancelReservationButton;
     @FXML
     private Button makeReservationButton;
+    @FXML
+    private BackgroundImage myBI= new BackgroundImage(new Image("/img/customerPageReserImg.jpg",1200,
+            800,false,true), BackgroundRepeat.REPEAT,
+            BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
 
     @Override
     public void updateDataInView() {
@@ -84,6 +90,7 @@ public class MakeReservationPageController implements Initializable, MainControl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        rootPane.setBackground(new Background(myBI));
         itemsAddedToCard = new ArrayList<>();
 
         initializeServices();

@@ -9,7 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,9 +31,14 @@ public class AddItemCategoryController implements Initializable, MainController{
     private Button returnButton;
     @FXML
     private Button addItemCategoryButton;
+    @FXML
+    private BackgroundImage myBI= new BackgroundImage(new Image("/img/employeePageBlur.jpg",1200,
+            800,false,true), BackgroundRepeat.REPEAT,
+            BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        rootPane.setBackground(new Background(myBI));
         itemCategoryService = new ItemCategoryServiceImpl();
     }
 
