@@ -1,6 +1,8 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
+import com.projectIO.touristicEquipmentRentalShop.model.UserInSystem;
+import com.projectIO.touristicEquipmentRentalShop.model.UserType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -25,6 +27,7 @@ public class CustomerPageController implements MainController {
 
     @FXML
     void logOut(ActionEvent event) throws IOException {
+        UserInSystem.getInstance().setUserType(UserType.GUEST);
         ScreenManager.getInstance().activate("welcomePage");
     }
 

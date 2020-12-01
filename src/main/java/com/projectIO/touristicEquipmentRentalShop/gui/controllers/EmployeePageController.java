@@ -1,6 +1,8 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
+import com.projectIO.touristicEquipmentRentalShop.model.UserInSystem;
+import com.projectIO.touristicEquipmentRentalShop.model.UserType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -37,6 +39,7 @@ public class EmployeePageController implements MainController {
 
     @FXML
     void logout(ActionEvent event) {
+        UserInSystem.getInstance().setUserType(UserType.GUEST);
         ScreenManager.getInstance().activate("welcomePage");
     }
 
