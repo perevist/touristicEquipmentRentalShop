@@ -18,8 +18,8 @@ public class WelcomePageController implements MainController {
     @FXML
     private Button registrationButton;
     @FXML
-    private BackgroundImage myBI= new BackgroundImage(new Image("/img/welcomePageImg.jpg",1200,
-            800,false,true), BackgroundRepeat.REPEAT,
+    private BackgroundImage myBI= new BackgroundImage(new Image("/img/welcomePageImg2.png",1185,
+            775,false,true), BackgroundRepeat.NO_REPEAT,
             BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
 

@@ -75,7 +75,7 @@
       <font>
          <Font name="Verdana" size="18.0" />
       </font></Label>
-   <Label text="Login:" textFill="#e4dfdf" GridPane.rowIndex="5">
+   <Label text="Login :" textFill="#e4dfdf" GridPane.rowIndex="5">
       <font>
          <Font name="Verdana" size="18.0" />
       </font></Label>

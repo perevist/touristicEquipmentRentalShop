@@ -4,7 +4,9 @@ import com.projectIO.touristicEquipmentRentalShop.dao.EntityManagerProvider;
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.AppScreen;
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -17,9 +19,12 @@ public class MainGuiApp extends Application {
         initializeConnectionWithDb();
         initializeScreens();
 
-        stage.setTitle("Wypożyczania sprzętu turystycznego");
+        stage.setTitle("Wypożyczalnia sprzętu turystycznego  ver. 2.1");
         stage.setMinWidth(1200);
-        stage.setMinHeight(800);
+        stage.setMinHeight(820);
+        stage.setMaxWidth(1200);
+        stage.setMaxHeight(820);
+        stage.getIcons().add(new Image("/img/icon.jpg"));
         ScreenManager.getInstance().setStage(stage);
         ScreenManager.getInstance().activate("welcomePage");
         stage.show();

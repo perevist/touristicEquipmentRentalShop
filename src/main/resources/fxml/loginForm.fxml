@@ -49,7 +49,7 @@
       </font>
     </Button>
    <ChoiceBox fx:id="choiceBox" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-   <Label prefHeight="23.0" prefWidth="129.0" text="Zaloguj jako:" textFill="WHITE" GridPane.rowIndex="4">
+   <Label prefHeight="23.0" prefWidth="129.0" text="Zaloguj jako :" textFill="WHITE" GridPane.rowIndex="4">
       <font>
          <Font name="Verdana" size="18.0" />
       </font>
