@@ -25,11 +25,11 @@
     <RowConstraints maxHeight="341.4" minHeight="10.0" prefHeight="28.400048828125023" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TableView fx:id="searchedIReservationsTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TableView fx:id="searchedIReservationsTable" prefHeight="431.0" prefWidth="426.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columns>
-          <TableColumn fx:id="reservationIdTabColumn" prefWidth="44.000062584877014" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Id" />
-            <TableColumn fx:id="dateOfReceiptTabColumn" prefWidth="75.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Data odbioru" />
-            <TableColumn fx:id="rentalLengthTabColumn" prefWidth="75.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Długość wypożyczenia" />
+          <TableColumn fx:id="reservationIdTabColumn" maxWidth="60.0" minWidth="45.0" prefWidth="45.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Id" />
+            <TableColumn fx:id="dateOfReceiptTabColumn" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Data odbioru" />
+            <TableColumn fx:id="rentalLengthTabColumn" maxWidth="180.0" minWidth="160.0" prefWidth="160.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Długość wypożyczenia" />
             <TableColumn fx:id="statusTabColumn" prefWidth="75.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Status" />
         </columns>
          <columnResizePolicy>
@@ -38,11 +38,11 @@
       </TableView>
       <TableView fx:id="itemsInReservationTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
         <columns>
-          <TableColumn fx:id="itemIdTabColumn" prefWidth="75.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Id" />
+          <TableColumn fx:id="itemIdTabColumn" maxWidth="50.0" minWidth="40.0" prefWidth="40.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Id" />
           <TableColumn fx:id="categoryNameTabColumn" prefWidth="75.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Kategoria" />
-            <TableColumn fx:id="chargeTabColumn" prefWidth="75.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Koszt" />
-            <TableColumn fx:id="depositTabColumn" prefWidth="75.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Kaucja" />
-            <TableColumn fx:id="techConditionTabColumn" prefWidth="75.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Stan techniczny" />
+            <TableColumn fx:id="chargeTabColumn" maxWidth="90.0" minWidth="60.0" prefWidth="60.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Koszt" />
+            <TableColumn fx:id="depositTabColumn" maxWidth="90.0" minWidth="60.0" prefWidth="60.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Kaucja" />
+            <TableColumn fx:id="techConditionTabColumn" maxWidth="100.0" minWidth="110.0" prefWidth="110.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Stan techniczny" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
