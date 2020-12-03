@@ -77,6 +77,13 @@ public class ReservationDetailsPageController implements Initializable, MainCont
         initializeTable();
     }
 
+    private void clearFields() {
+        reservationDatePicker.setValue(null);
+        reservationNumberField.clear();
+        searchedIReservationsTable.getItems().clear();
+        itemsInReservationTable.getItems().clear();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         rootPane.setBackground(new Background(myBI));

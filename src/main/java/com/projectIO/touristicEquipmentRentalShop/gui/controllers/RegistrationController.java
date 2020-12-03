@@ -47,6 +47,12 @@ public class RegistrationController implements MainController {
 
     @Override
     public void updateDataInView() {
+        firstNameField.clear();
+        emailField.clear();
+        passwordField.clear();
+        lastNameField.clear();
+        phoneNumberField.clear();
+        loginField.clear();
     }
 
     @FXML

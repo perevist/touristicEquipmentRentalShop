@@ -65,6 +65,9 @@ public class LoginFormController implements MainController, Initializable {
 
     @Override
     public void updateDataInView() {
+        loginField.clear();
+        passwordField.clear();
+        choiceBox.setValue(null);
     }
 
     @FXML

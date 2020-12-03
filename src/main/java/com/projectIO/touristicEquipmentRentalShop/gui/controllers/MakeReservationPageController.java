@@ -34,6 +34,7 @@ public class MakeReservationPageController implements Initializable, MainControl
     private List<ItemCategory> itemCategories;
     private List<Item> itemsAddedToCard;
     private List<Item> searchedItems;
+    private double totalCost;
 
     @FXML
     private GridPane rootPane;
@@ -68,6 +69,8 @@ public class MakeReservationPageController implements Initializable, MainControl
     @FXML
     private TextField rentalLengthField;
     @FXML
+    private TextField totalCostTextField;
+    @FXML
     private Button searchButton;
     @FXML
     private Button addToCartButton;
@@ -82,10 +85,22 @@ public class MakeReservationPageController implements Initializable, MainControl
             800,false,true), BackgroundRepeat.REPEAT,
             BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
-
     @Override
     public void updateDataInView() {
         initializeItemCategoryChoiceBox();
+        clearFields();
+    }
+
+    private void clearFields() {
+        itemCategoryChoiceBox.setValue(null);
+        reservationDatePicker.setDisable(false);
+        reservationDatePicker.setValue(null);
+        rentalLengthField.clear();
+        rentalLengthField.setDisable(false);
+        searchedItemsTable.getItems().clear();
+        cartTable.getItems().clear();
+        totalCostTextField.clear();
+        totalCost = 0;
     }
 
     @Override
@@ -146,6 +161,8 @@ public class MakeReservationPageController implements Initializable, MainControl
         designateItemAsInCart(selectedItem);
         searchedItems.remove(selectedItem);
         updateCartTable();
+        double cost = selectedItem.getCategory().getRentalCharge() + selectedItem.getCategory().getDeposit();
+        updateTotalCost(cost);
         updateSearchedItemsTable();
     }
 
@@ -165,6 +182,11 @@ public class MakeReservationPageController implements Initializable, MainControl
 
     private void updateCartTable() {
         cartTable.getItems().setAll(itemsAddedToCard);
+    }
+
+    private void updateTotalCost(double cost) {
+        totalCost += cost;
+        totalCostTextField.setText(totalCost + " zł");
     }
 
     @FXML
@@ -192,6 +214,7 @@ public class MakeReservationPageController implements Initializable, MainControl
         for (int i = 0; i < itemsAddedToCard.size(); i++) {
             designateItemAsNotInCart(itemsAddedToCard.get(i));
         }
+        itemsAddedToCard.clear();
     }
 
     @FXML
@@ -203,6 +226,8 @@ public class MakeReservationPageController implements Initializable, MainControl
         itemsAddedToCard.remove(selectedItem);
         designateItemAsNotInCart(selectedItem);
         updateCartTable();
+        double cost = selectedItem.getCategory().getRentalCharge() + selectedItem.getCategory().getDeposit();
+        updateTotalCost(-cost);
         searchItems(new ActionEvent());
     }
 
