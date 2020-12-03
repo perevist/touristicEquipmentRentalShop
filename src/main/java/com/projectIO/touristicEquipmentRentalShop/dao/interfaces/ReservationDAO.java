@@ -12,4 +12,7 @@ public interface ReservationDAO extends GenericDAO<Reservation,Integer> {
                                                                        LocalDate dateOfReceipt);
     List<Reservation> getAllReservationsFilteredByCustomerLoginAndReservationNumber(String customerLogin,
                                                                                     int reservationNum);
+
+    List<Reservation> getAllReservationsFilteredByDate(LocalDate dateOfReceipt);
+    List<Reservation> getAllReservationsFilteredByReservationNumber(int number);
 }

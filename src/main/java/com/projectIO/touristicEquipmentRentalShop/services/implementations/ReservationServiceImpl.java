@@ -43,6 +43,21 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    public List<Reservation> getAllReservations() {
+        return reservationDAO.readAll();
+    }
+
+    @Override
+    public List<Reservation> getAllReservationsFilteredByDate(LocalDate dateOfReceipt) {
+        return reservationDAO.getAllReservationsFilteredByDate(dateOfReceipt);
+    }
+
+    @Override
+    public List<Reservation> getAllReservationsFilteredByReservationNumber(int number) {
+        return reservationDAO.getAllReservationsFilteredByReservationNumber(number);
+    }
+
+    @Override
     public List<Reservation> getAllReservationsOfCurrentlyLoggedUser() {
         String customerLogin = UserInSystem.getInstance().getLogin();
         return reservationDAO.getAllReservationsFilteredByCustomerLogin(customerLogin);
@@ -64,5 +79,12 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void cancelReservation(int id) {
         reservationDAO.delete(id);
+    }
+
+    @Override
+    public void changeStatus(int reservationId, Status status) {
+        Reservation reservation = reservationDAO.read(reservationId);
+        reservation.setStatus(status);
+        reservationDAO.update(reservation);
     }
 }

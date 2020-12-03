@@ -13,15 +13,15 @@ public class EmployeePageController implements MainController {
 
     @FXML
     private AnchorPane rootPane;
-
     @FXML
     private Button addItemCategoryButton;
-
     @FXML
     private Button logoutButton;
-
     @FXML
     private Button addItemButton;
+    @FXML
+    private Button reservationManagementButton;
+
     @FXML
     private BackgroundImage myBI= new BackgroundImage(new Image("/img/employeePage.jpg",1200,
             800,false,true), BackgroundRepeat.REPEAT,
@@ -41,6 +41,11 @@ public class EmployeePageController implements MainController {
     void logout(ActionEvent event) {
         UserInSystem.getInstance().setUserType(UserType.GUEST);
         ScreenManager.getInstance().activate("welcomePage");
+    }
+
+    @FXML
+    void manageReservations(ActionEvent event) {
+        ScreenManager.getInstance().activate("reservationManagementPage");
     }
 
     @FXML

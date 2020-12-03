@@ -2,16 +2,18 @@ package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.AlertWindow;
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
-import com.projectIO.touristicEquipmentRentalShop.model.Item;
-import com.projectIO.touristicEquipmentRentalShop.model.Reservation;
+import com.projectIO.touristicEquipmentRentalShop.model.*;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.ReservationServiceImpl;
+import com.projectIO.touristicEquipmentRentalShop.services.implementations.StatusServiceImpl;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.ReservationService;
+import com.projectIO.touristicEquipmentRentalShop.services.interfaces.StatusService;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -20,16 +22,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ReservationDetailsPageController implements Initializable, MainController {
+public class ReservationManagementPageController implements Initializable, MainController {
 
     private ReservationService reservationService;
+    private StatusService statusService;
+
+    private List<Status> statuses;
 
     @FXML
     private GridPane rootPane;
@@ -37,6 +41,10 @@ public class ReservationDetailsPageController implements Initializable, MainCont
     private TableView<Reservation> searchedIReservationsTable;
     @FXML
     private TableColumn<Reservation, Number> reservationIdTabColumn;
+    @FXML
+    private TableColumn<Reservation, String> firstNameTabColumn;
+    @FXML
+    private TableColumn<Reservation, String> lastNameTabColumn;
     @FXML
     private TableColumn<Reservation, String> dateOfReceiptTabColumn;
     @FXML
@@ -55,7 +63,8 @@ public class ReservationDetailsPageController implements Initializable, MainCont
     private TableColumn<Item, Number> depositTabColumn;
     @FXML
     private TableColumn<Item, String> techConditionTabColumn;
-
+    @FXML
+    private ChoiceBox<String> statusChoiceBox;
     @FXML
     private DatePicker reservationDatePicker;
     @FXML
@@ -67,22 +76,13 @@ public class ReservationDetailsPageController implements Initializable, MainCont
     @FXML
     private Button returnButton;
     @FXML
-    private BackgroundImage myBI= new BackgroundImage(new Image("/img/customerPageReserImg.jpg",1200,
-            800,false,true), BackgroundRepeat.REPEAT,
+    private Button changeStatusButton;
+
+    @FXML
+    private BackgroundImage myBI = new BackgroundImage(new Image("/img/employeePageBlur.jpg", 1200,
+            800, false, true), BackgroundRepeat.REPEAT,
             BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
-
-    @Override
-    public void updateDataInView() {
-        initializeTable();
-        clearFields();
-    }
-
-    private void clearFields() {
-        reservationDatePicker.setValue(null);
-        reservationNumberField.clear();
-        itemsInReservationTable.getItems().clear();
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -91,12 +91,30 @@ public class ReservationDetailsPageController implements Initializable, MainCont
         configureTableColumns();
     }
 
+    @Override
+    public void updateDataInView() {
+        initializeTable();
+        initializeStatusChoiceBox();
+        clearFields();
+    }
+
     private void initializeServices() {
         reservationService = new ReservationServiceImpl();
+        statusService = new StatusServiceImpl();
+    }
+
+    private void clearFields() {
+        reservationDatePicker.setValue(null);
+        reservationNumberField.clear();
+        statusChoiceBox.setValue(null);
     }
 
     private void configureTableColumns() {
         reservationIdTabColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        firstNameTabColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getCustomer().getFirstName()));
+        lastNameTabColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getCustomer().getLastName()));
         dateOfReceiptTabColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getDateOfReceipt().toString()));
         rentalLengthTabColumn.setCellValueFactory(new PropertyValueFactory<>("rentalLength"));
@@ -119,7 +137,7 @@ public class ReservationDetailsPageController implements Initializable, MainCont
 
         searchedIReservationsTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
-                    if(newValue != null) {
+                    if (newValue != null) {
                         List<Item> items = newValue.getItems();
                         itemsInReservationTable.getItems().setAll(items);
                     }
@@ -128,14 +146,24 @@ public class ReservationDetailsPageController implements Initializable, MainCont
     }
 
     private void searchAllReservations() {
-        List<Reservation> reservations = reservationService.getAllReservationsOfCurrentlyLoggedUser();
+        List<Reservation> reservations = reservationService.getAllReservations();
         searchedIReservationsTable.getItems().setAll(reservations);
+    }
+
+    private void initializeStatusChoiceBox() {
+        statuses = statusService.getAllStatuses();
+        List<String> options = new ArrayList<>();
+
+        for (Status status : statuses) {
+            options.add(status.getName());
+        }
+        statusChoiceBox.getItems().setAll(options);
     }
 
     @FXML
     void cancelReservation(ActionEvent event) {
         Reservation reservationToRemove = searchedIReservationsTable.getSelectionModel().getSelectedItem();
-        if(reservationToRemove == null) {
+        if (reservationToRemove == null) {
             AlertWindow.showAlert(rootPane, "Błąd", "Proszę wybrać rezerwację z listy");
             return;
         }
@@ -152,19 +180,49 @@ public class ReservationDetailsPageController implements Initializable, MainCont
     }
 
     @FXML
-    public void searchReservations(ActionEvent event) {
+    void changeStatus(ActionEvent event) {
+        Reservation reservation = searchedIReservationsTable.getSelectionModel().getSelectedItem();
+        if (reservation == null) {
+            AlertWindow.showAlert(rootPane, "Błąd", "Proszę wybrać rezerwację z listy");
+            return;
+        }
+
+        if (statusChoiceBox.getValue() == null)
+            return;
+
+        int reservationId = reservation.getId();
+        String statusName = statusChoiceBox.getValue();
+        Status status = getStatusFromName(statusName);
+        reservationService.changeStatus(reservationId, status);
+        clearItemsInReservationTable();
+        searchAllReservations();
+    }
+
+    private Status getStatusFromName(String statusName) {
+        for (Status status : statuses) {
+            if (status.getName().equals(statusName))
+                return status;
+        }
+        return null;
+    }
+
+    @FXML
+    void returnToEmployeePage(ActionEvent event) {
+        ScreenManager.getInstance().activate("employeePage");
+    }
+
+    @FXML
+    void searchReservations(ActionEvent event) {
         boolean isReservationDatePickerFilledIn = reservationDatePicker.getValue() != null;
         boolean isReservationNumberFieldFilledIn = !reservationNumberField.getText().isEmpty();
 
-        if(isReservationDatePickerFilledIn && isReservationNumberFieldFilledIn) {
+        if (isReservationDatePickerFilledIn && isReservationNumberFieldFilledIn) {
             AlertWindow.showAlert(rootPane, "Błąd", "Istnieje możliwość filtrowania tylko po jednym kryterium");
-        }
-        else if(isReservationDatePickerFilledIn){
+        } else if (isReservationDatePickerFilledIn) {
             searchReservationsByDate();
-        }else if(isReservationNumberFieldFilledIn) {
+        } else if (isReservationNumberFieldFilledIn) {
             searchReservationsByNumber();
-        }
-        else {
+        } else {
             searchAllReservations();
         }
     }
@@ -172,7 +230,7 @@ public class ReservationDetailsPageController implements Initializable, MainCont
     private void searchReservationsByDate() {
         LocalDate dateOfReceipt = reservationDatePicker.getValue();
         List<Reservation> reservations =
-                reservationService.getAllReservationsOfCurrentlyLoggedUserFilteredByDate(dateOfReceipt);
+                reservationService.getAllReservationsFilteredByDate(dateOfReceipt);
 
         searchedIReservationsTable.getItems().setAll(reservations);
     }
@@ -180,20 +238,14 @@ public class ReservationDetailsPageController implements Initializable, MainCont
     private void searchReservationsByNumber() {
         int reservationNumber = 0;
 
-        try{
+        try {
             reservationNumber = Integer.parseInt(reservationNumberField.getText());
-        }catch (Exception exception) {
-            AlertWindow.showAlert(rootPane,"Błąd", "Prosze podac wartosc liczbowa w polu: numer rezerwacji");
+        } catch (Exception exception) {
+            AlertWindow.showAlert(rootPane, "Błąd", "Prosze podac wartosc liczbowa w polu: numer rezerwacji");
             return;
         }
-
         List<Reservation> reservations =
-                reservationService.getAllReservationsOfCurrentlyLoggedUserFilteredByReservationNumber(reservationNumber);
+                reservationService.getAllReservationsFilteredByReservationNumber(reservationNumber);
         searchedIReservationsTable.getItems().setAll(reservations);
-    }
-
-    @FXML
-    void returnToCustomerPage(ActionEvent event) throws IOException {
-        ScreenManager.getInstance().activate("customerPage");
     }
 }
