@@ -61,13 +61,14 @@ public class LoginFormController implements MainController, Initializable {
         }
 
         choiceBox.getItems().setAll(options);
+        choiceBox.setValue(options.get(0));
     }
 
     @Override
     public void updateDataInView() {
         loginField.clear();
         passwordField.clear();
-        choiceBox.setValue(null);
+        //choiceBox.setValue(null);
     }
 
     @FXML
