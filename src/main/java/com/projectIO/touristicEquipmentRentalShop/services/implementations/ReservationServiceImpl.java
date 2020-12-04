@@ -10,6 +10,7 @@ import com.projectIO.touristicEquipmentRentalShop.model.*;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.ReservationService;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationServiceImpl implements ReservationService {
@@ -33,8 +34,14 @@ public class ReservationServiceImpl implements ReservationService {
         Customer ownerOfReservation = customerDAO.read(loginOfCurrentUserInSystem);
 
         Reservation reservation = new Reservation(items, dateOfReceipt, rentalLength, status, ownerOfReservation);
-
         reservationDAO.save(reservation);
+
+        // wysyłanie na e-mail'a informacji o nowej rezerwacji
+        // (funkcjonalność dodatkowa, realizowana w ramach kursu BD2)
+        Thread thread = new Thread(() -> {
+            SendMailServiceImpl.sendEmail(setEmailDetails(reservation));
+        });
+        thread.start();
     }
 
     private void validateParameters(List<Item> items, LocalDate dateOfReceipt, int rentalLength) {
@@ -86,5 +93,27 @@ public class ReservationServiceImpl implements ReservationService {
         Reservation reservation = reservationDAO.read(reservationId);
         reservation.setStatus(status);
         reservationDAO.update(reservation);
+    }
+
+
+    private ArrayList<String> setEmailDetails(Reservation reservation) {
+        String subject = "Właśnie zarezerwowałeś/aś przedmioty w naszej wypożyczalni!";
+        String email = reservation.getCustomer().getEmail();
+        String newline = "\r\n";
+        String message = "Witaj " + reservation.getCustomer().getFirstName()+ "!" + newline + newline +
+                "   ----    Poniżej możesz zobaczyć szczegóły Twojego zamówienia    ----" + newline +
+                "Numer zamówienia (do podania przy odbiorze): " + reservation.getId() + newline +
+                "Data odebrania zamówienia: " + reservation.getDateOfReceipt() + newline +
+                "Długość wypożyczenia: " + reservation.getRentalLength()  + " dni" + newline +
+                "Obecny status rezerwacji: " + reservation.getStatus().getName()  + newline +
+                "Osoba składająca rezerwację: " + reservation.getCustomer().getFirstName() + " " +
+                reservation.getCustomer().getLastName() + " (login: "+ reservation.getCustomer().getLogin() + ")" +
+                newline + newline + "Pozdrawiamy," + newline + "Twoja wypożyczalnia ;-) ";
+        List<String> details = new ArrayList<String>();
+        details.add(subject);
+        details.add(email);
+        details.add(message);
+
+        return (ArrayList<String>) details;
     }
 }
