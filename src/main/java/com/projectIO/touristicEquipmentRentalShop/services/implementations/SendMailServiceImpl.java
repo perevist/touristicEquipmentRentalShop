@@ -1,6 +1,7 @@
 package com.projectIO.touristicEquipmentRentalShop.services.implementations;
 
-import java.util.ArrayList;
+
+import java.util.List;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -12,7 +13,7 @@ import javax.mail.internet.MimeMessage;
 
 public class SendMailServiceImpl {
 
-    public static void sendEmail (ArrayList<String> details){
+    public static void sendEmail (List<String> details){
         String to = details.get(1);
         String from = "wypozyczalnia.sprzetu.IO.BD2@gmail.com";
         String host = "smtp.gmail.com";

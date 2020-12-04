@@ -96,7 +96,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
 
-    private ArrayList<String> setEmailDetails(Reservation reservation) {
+    private List<String> setEmailDetails(Reservation reservation) {
         String subject = "Właśnie zarezerwowałeś/aś przedmioty w naszej wypożyczalni!";
         String email = reservation.getCustomer().getEmail();
         String newline = "\r\n";
@@ -114,6 +114,6 @@ public class ReservationServiceImpl implements ReservationService {
         details.add(email);
         details.add(message);
 
-        return (ArrayList<String>) details;
+        return details;
     }
 }
