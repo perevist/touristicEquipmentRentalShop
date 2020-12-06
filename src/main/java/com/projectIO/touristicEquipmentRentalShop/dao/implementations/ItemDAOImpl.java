@@ -29,7 +29,7 @@ public class ItemDAOImpl extends GenericDAOImpl<Item, Integer> implements ItemDA
         }
 
         String queryItemsWithConcreteCategory = "SELECT i FROM Item i WHERE i.category=" + categoryId
-                + " AND i.isInCart=false";
+                + " AND i.isInCart=false AND i.technicalCondition=1";
         TypedQuery<Item> resultItemsWithConcreteCategory =
                 em.createQuery(queryItemsWithConcreteCategory, Item.class);
 
