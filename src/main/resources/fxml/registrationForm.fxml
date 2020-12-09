@@ -59,7 +59,7 @@
          <Font size="15.0" />
       </font></PasswordField>
     <!-- Add Submit Button -->
-    <Button fx:id="submitButton" defaultButton="true" onAction="#register" prefHeight="56.0" prefWidth="196.0" style="-fx-background-color: #dddfdf;" text="Zarejestruj się" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.rowSpan="1">
+    <Button fx:id="submitButton" defaultButton="true" onAction="#register" prefHeight="44.0" prefWidth="238.0" style="-fx-background-color: #dddfdf;" text="Zarejestruj się" translateX="-50.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.rowSpan="1">
         <GridPane.margin>
             <Insets bottom="20" left="0" right="0" top="20" />
         </GridPane.margin>
@@ -91,19 +91,30 @@
       <font>
          <Font size="15.0" />
       </font></TextField>
-   <Button mnemonicParsing="false" onAction="#backToWelcomePage" style="-fx-background-color: #dddfdf;" text="Powrót" textFill="#403b3b" GridPane.rowIndex="7">
+   <Button mnemonicParsing="false" onAction="#backToWelcomePage" style="-fx-background-color: #dddfdf;" text="Powrót" textFill="#403b3b" GridPane.rowIndex="8">
       <font>
          <Font name="Verdana" size="18.0" />
       </font>
    </Button>
+   <Label text="Powtórz hasło :" textFill="#e4dfdf" GridPane.rowIndex="7">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font>
+   </Label>
+   <PasswordField fx:id="passwordField1" prefHeight="40.0" style="-fx-background-color: #e4dfdf;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </PasswordField>
    <rowConstraints>
       <RowConstraints />
       <RowConstraints maxHeight="36.80001831054686" minHeight="31.200012207031236" prefHeight="36.80001831054686" />
-      <RowConstraints maxHeight="42.400006103515636" minHeight="10.0" prefHeight="34.400006103515636" />
-      <RowConstraints maxHeight="36.79999389648438" minHeight="10.0" prefHeight="35.99999389648437" />
+      <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" />
+      <RowConstraints maxHeight="36.79999389648438" minHeight="36.0" prefHeight="36.0" />
       <RowConstraints maxHeight="36.800018310546875" minHeight="33.600006103515625" prefHeight="36.800018310546875" />
       <RowConstraints maxHeight="36.800018310546875" minHeight="33.600006103515625" prefHeight="36.800018310546875" />
       <RowConstraints maxHeight="36.79998779296875" minHeight="32.79998779296875" prefHeight="36.0" />
+      <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" />
       <RowConstraints maxHeight="87.20001220703125" minHeight="83.20001220703125" prefHeight="84.0" />
    </rowConstraints>
 </GridPane>

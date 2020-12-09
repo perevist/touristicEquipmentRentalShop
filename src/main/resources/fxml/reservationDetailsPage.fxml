@@ -27,7 +27,7 @@
    <children>
       <TableView fx:id="searchedIReservationsTable" prefHeight="431.0" prefWidth="426.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columns>
-          <TableColumn fx:id="reservationIdTabColumn" maxWidth="60.0" minWidth="45.0" prefWidth="45.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Id" />
+          <TableColumn fx:id="reservationIdTabColumn" maxWidth="60.0" minWidth="45.0" prefWidth="45.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Nr" />
             <TableColumn fx:id="dateOfReceiptTabColumn" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Data odbioru" />
             <TableColumn fx:id="rentalLengthTabColumn" maxWidth="180.0" minWidth="160.0" prefWidth="160.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Długość wypożyczenia" />
             <TableColumn fx:id="statusTabColumn" prefWidth="75.0" style="-fx-background-radius: 5px; -fx-padding: 1px;" text="Status" />

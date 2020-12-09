@@ -32,6 +32,8 @@ public class RegistrationController implements MainController {
     @FXML
     private PasswordField passwordField;
     @FXML
+    private PasswordField passwordField1;
+    @FXML
     private Button submitButton;
     @FXML
     private TextField lastNameField;
@@ -50,6 +52,7 @@ public class RegistrationController implements MainController {
         firstNameField.clear();
         emailField.clear();
         passwordField.clear();
+        passwordField1.clear();
         lastNameField.clear();
         phoneNumberField.clear();
         loginField.clear();
@@ -67,6 +70,11 @@ public class RegistrationController implements MainController {
     public void register(ActionEvent event) throws IOException {
         if (checkAreAllFieldsFilledIn() == false) {
             AlertWindow.showAlert(rootPane, "Błąd", "Proszę uzupełnić wszystkie pola");
+            return;
+        }
+
+        if(comparePasswords() == false) {
+            AlertWindow.showAlert(rootPane, "Błąd", "Hasła nie są takie same!");
             return;
         }
 
@@ -101,4 +109,12 @@ public class RegistrationController implements MainController {
         } else
             return true;
     }
+
+    private boolean comparePasswords() {
+        if (passwordField.getText().equals(passwordField1.getText())) {
+            return true;
+        } else
+            return false;
+    }
+
 }
