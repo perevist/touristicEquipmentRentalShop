@@ -1,9 +1,13 @@
-# Inżynieria Oprogramowania - laboratoria
+# Wypożyczalnia sprzętu turystycznego 
 
-## System wspomagający wypożyczalnię sprzętu turystycznego
-Autorzy: <br />
-Patryk Fidrych <br />
-Daniel Leśniewicz <br />
+## Prowadzący
+dr inż. Tomasz Babczyński 
 
-### O projekcie:
-Projekt realizowany jako zadanie z kursu Inżynieria Oprogramowania
+## Autorzy
+Grupa F1: 
+- Daniel Leśniewicz - 250996 (IO + BD2)
+- Patryk Fidrych - 248828 (IO + BD2)
+- Mirosław Kuźniar - 248870 (BD2)
+
+## Opis projektu
+Projekt realizowany jako zadanie z kursu Inżynieria Oprogramowania oraz Bazy Danych 2. 
