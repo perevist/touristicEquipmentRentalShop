@@ -12,4 +12,6 @@ public interface ItemService {
     List<Item> getItemsFilteredByCategoryAndAvailabilityDate(int categoryId, LocalDate dateOfReceipt);
     void updateItem(Item item);
     void addItem(ItemCategory itemCategory, TechnicalCondition technicalCondition);
+    void removeItem(int itemId);
+    List<Item> getAllItems();
 }

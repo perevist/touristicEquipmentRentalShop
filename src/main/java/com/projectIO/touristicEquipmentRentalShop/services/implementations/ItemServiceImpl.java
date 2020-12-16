@@ -39,4 +39,14 @@ public class ItemServiceImpl implements ItemService {
         item.setTechnicalCondition(technicalCondition);
         itemDAO.save(item);
     }
+
+    @Override
+    public void removeItem(int itemId) {
+        itemDAO.delete(itemId);
+    }
+
+    @Override
+    public List<Item> getAllItems() {
+        return itemDAO.readAll();
+    }
 }

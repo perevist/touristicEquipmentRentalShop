@@ -7,4 +7,6 @@ import java.util.List;
 public interface ItemCategoryService {
     List<ItemCategory> getAllCategories();
     void addItemCategory(String name, double rentalCharge, double deposit);
+    void updateItemCategory(ItemCategory itemCategory);
+    void removeItemCategory(int itemCategoryId);
 }
