@@ -79,19 +79,19 @@ public class RentalShopApp {
         return itemService.getAllItems();
     }
 
-    public List<ItemCategory> getAllCategories() {
+    public List<ItemCategory> getAllItemCategories() {
         return itemCategoryService.getAllCategories();
     }
 
-    public void addNewCategory(String name, double rentalCharge, double deposit) {
+    public void addItemCategory(String name, double rentalCharge, double deposit) {
         itemCategoryService.addItemCategory(name, rentalCharge, deposit);
     }
 
-    public void updateCategory(ItemCategory itemCategory) {
+    public void updateItemCategory(ItemCategory itemCategory) {
         itemCategoryService.updateItemCategory(itemCategory);
     }
 
-    public void removeCategory(int categoryId) {
+    public void removeItemCategory(int categoryId) {
         itemCategoryService.removeItemCategory(categoryId);
     }
 }

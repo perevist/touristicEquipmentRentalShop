@@ -14,17 +14,24 @@ public class ItemCategoryServiceImpl implements ItemCategoryService {
         itemCategoryDAO = new ItemCategoryDAOImpl();
     }
 
+    @Override
     public List<ItemCategory> getAllCategories() {
         return itemCategoryDAO.readAll();
     }
 
+    @Override
     public void addItemCategory(String name, double rentalCharge, double deposit) {
         if(name.isEmpty() || rentalCharge <= 0 || deposit <= 0){
             throw new IllegalArgumentException("Podano nieprawidłowe dane");
         }
 
         ItemCategory itemCategory = new ItemCategory(name, rentalCharge, deposit);
-        itemCategoryDAO.save(itemCategory);
+
+        try {
+            itemCategoryDAO.save(itemCategory);
+        } catch (Exception exception) {
+            throw new IllegalArgumentException("Nazwa kategorii nie jest unikalna");
+        }
     }
 
     @Override

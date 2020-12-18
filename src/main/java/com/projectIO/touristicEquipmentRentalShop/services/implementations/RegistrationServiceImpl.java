@@ -18,11 +18,18 @@ public class RegistrationServiceImpl  implements RegistrationService {
     public void registerCustomer(String login, String firstName, String lastName, String phoneNumber, String email,
                                  String password) {
 
+        if(login.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            throw new IllegalArgumentException("Nalezy podac wszystkie dane potrzebne do rejestracji");
+        }
+
         try {
             Customer customer = new Customer(login, firstName, lastName, phoneNumber, email, password);
             customerDAO.save(customer);
         }catch (Exception exception) {
             exception.printStackTrace();
+            // SQLIntegrityConstraintViolationException:
+            // Duplicate entry 'krol1' for key 'PRIMARY
+
             throw new IncorrectLoginException("Podany login jest już zajęty");
         }
     }
