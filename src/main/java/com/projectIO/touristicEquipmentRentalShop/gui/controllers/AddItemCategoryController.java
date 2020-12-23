@@ -1,5 +1,6 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.ItemCategoryDAOImpl;
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.AlertWindow;
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.ItemCategoryServiceImpl;
@@ -39,7 +40,7 @@ public class AddItemCategoryController implements Initializable, MainController{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         rootPane.setBackground(new Background(myBI));
-        itemCategoryService = new ItemCategoryServiceImpl();
+        itemCategoryService = new ItemCategoryServiceImpl(new ItemCategoryDAOImpl());
     }
 
     @Override

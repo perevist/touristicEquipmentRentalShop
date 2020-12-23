@@ -14,8 +14,8 @@ public class ItemServiceImpl implements ItemService {
 
     private ItemDAO itemDAO;
 
-    public ItemServiceImpl() {
-        itemDAO = new ItemDAOImpl();
+    public ItemServiceImpl(ItemDAO itemDAO) {
+        this.itemDAO = itemDAO;
     }
 
     @Override

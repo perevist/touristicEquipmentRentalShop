@@ -19,10 +19,10 @@ public class ReservationServiceImpl implements ReservationService {
     private StatusDAO statusDAO;
     private CustomerDAO customerDAO;
 
-    public ReservationServiceImpl() {
-        reservationDAO = new ReservationDAOImpl();
-        statusDAO = new StatusDAOImpl();
-        customerDAO = new CustomerDAOImpl();
+    public ReservationServiceImpl(ReservationDAO reservationDAO, StatusDAO statusDAO, CustomerDAO customerDAO) {
+        this.reservationDAO = reservationDAO;
+        this.statusDAO = statusDAO;
+        this.customerDAO = customerDAO;
     }
 
     @Override

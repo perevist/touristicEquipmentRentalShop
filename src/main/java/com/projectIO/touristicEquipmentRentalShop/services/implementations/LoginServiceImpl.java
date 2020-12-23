@@ -16,9 +16,9 @@ public class LoginServiceImpl implements LoginService {
     private EmployeeDAO employeeDAO;
     private BasicPasswordEncryptor passwordEncryptor;
 
-    public LoginServiceImpl() {
-        customerDAO = new CustomerDAOImpl();
-        employeeDAO = new EmployeeDAOImpl();
+    public LoginServiceImpl(CustomerDAO customerDAO, EmployeeDAO employeeDAO) {
+        this.customerDAO = customerDAO;
+        this.employeeDAO = employeeDAO;
         passwordEncryptor = new BasicPasswordEncryptor();
     }
 

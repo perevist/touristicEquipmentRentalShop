@@ -1,5 +1,6 @@
 package com.projectIO.touristicEquipmentRentalShop.application;
 
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.*;
 import com.projectIO.touristicEquipmentRentalShop.model.*;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.*;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.*;
@@ -21,10 +22,10 @@ public class RentalShopApp {
 
     private RentalShopApp() {
         registrationService = new RegistrationServiceImpl();
-        loginService = new LoginServiceImpl();
-        reservationService = new ReservationServiceImpl();
-        itemService = new ItemServiceImpl();
-        itemCategoryService = new ItemCategoryServiceImpl();
+        loginService = new LoginServiceImpl(new CustomerDAOImpl(), new EmployeeDAOImpl());
+        reservationService = new ReservationServiceImpl(new ReservationDAOImpl(), new StatusDAOImpl(), new CustomerDAOImpl());
+        itemService = new ItemServiceImpl(new ItemDAOImpl());
+        itemCategoryService = new ItemCategoryServiceImpl(new ItemCategoryDAOImpl());
     }
 
     public static RentalShopApp getInstance() {

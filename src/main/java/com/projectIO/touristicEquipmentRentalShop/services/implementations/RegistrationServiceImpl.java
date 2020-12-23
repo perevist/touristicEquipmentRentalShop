@@ -30,11 +30,8 @@ public class RegistrationServiceImpl  implements RegistrationService {
         try {
             Customer customer = new Customer(login, firstName, lastName, phoneNumber, email, encryptedPassword);
             customerDAO.save(customer);
-        }catch (Exception exception) {
-            exception.printStackTrace();
-            // SQLIntegrityConstraintViolationException:
-            // Duplicate entry 'krol1' for key 'PRIMARY
-
+        }catch (Exception e) {
+            System.out.println(e.getClass());
             throw new IncorrectLoginException("Podany login jest już zajęty");
         }
     }

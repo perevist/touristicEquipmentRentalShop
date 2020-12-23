@@ -1,5 +1,8 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.CustomerDAOImpl;
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.ReservationDAOImpl;
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.StatusDAOImpl;
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.AlertWindow;
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
 import com.projectIO.touristicEquipmentRentalShop.model.*;
@@ -99,8 +102,8 @@ public class ReservationManagementPageController implements Initializable, MainC
     }
 
     private void initializeServices() {
-        reservationService = new ReservationServiceImpl();
-        statusService = new StatusServiceImpl();
+        reservationService = new ReservationServiceImpl(new ReservationDAOImpl(), new StatusDAOImpl(), new CustomerDAOImpl());
+        statusService = new StatusServiceImpl(new StatusDAOImpl());
     }
 
     private void clearFields() {

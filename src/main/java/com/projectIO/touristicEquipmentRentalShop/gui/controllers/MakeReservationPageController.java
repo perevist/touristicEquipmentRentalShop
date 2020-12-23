@@ -1,5 +1,6 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.*;
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.AlertWindow;
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
 import com.projectIO.touristicEquipmentRentalShop.model.Item;
@@ -113,9 +114,9 @@ public class MakeReservationPageController implements Initializable, MainControl
     }
 
     private void initializeServices() {
-        itemCategoryService = new ItemCategoryServiceImpl();
-        itemService = new ItemServiceImpl();
-        reservationService = new ReservationServiceImpl();
+        itemCategoryService = new ItemCategoryServiceImpl(new ItemCategoryDAOImpl());
+        itemService = new ItemServiceImpl(new ItemDAOImpl());
+        reservationService = new ReservationServiceImpl(new ReservationDAOImpl(), new StatusDAOImpl(), new CustomerDAOImpl());
     }
 
     private void initializeItemCategoryChoiceBox() {

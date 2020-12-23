@@ -1,5 +1,7 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.CustomerDAOImpl;
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.EmployeeDAOImpl;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginException;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectPasswordException;
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.AlertWindow;
@@ -25,7 +27,7 @@ public class LoginFormController implements MainController, Initializable {
     private LoginService loginService;
 
     public LoginFormController() {
-        loginService = new LoginServiceImpl();
+        loginService = new LoginServiceImpl(new CustomerDAOImpl(), new EmployeeDAOImpl());
     }
 
     @FXML

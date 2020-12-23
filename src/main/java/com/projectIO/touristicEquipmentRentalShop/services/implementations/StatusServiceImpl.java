@@ -11,8 +11,8 @@ public class StatusServiceImpl implements StatusService {
 
     private StatusDAO statusDAO;
 
-    public StatusServiceImpl() {
-        statusDAO = new StatusDAOImpl();
+    public StatusServiceImpl(StatusDAO statusDAO) {
+        this.statusDAO = statusDAO;
     }
 
     @Override

@@ -1,8 +1,12 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.ItemCategoryDAOImpl;
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.ItemDAOImpl;
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.TechnicalConditionDAOImpl;
 import com.projectIO.touristicEquipmentRentalShop.dao.interfaces.TechnicalConditionDAO;
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.AlertWindow;
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
+import com.projectIO.touristicEquipmentRentalShop.model.Item;
 import com.projectIO.touristicEquipmentRentalShop.model.ItemCategory;
 import com.projectIO.touristicEquipmentRentalShop.model.TechnicalCondition;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.ItemCategoryServiceImpl;
@@ -53,9 +57,9 @@ public class AddItemPageController implements MainController, Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         rootPane.setBackground(new Background(myBI));
-        itemCategoryService = new ItemCategoryServiceImpl();
-        technicalConditionService = new TechnicalConditionServiceImpl();
-        itemService = new ItemServiceImpl();
+        itemCategoryService = new ItemCategoryServiceImpl(new ItemCategoryDAOImpl());
+        technicalConditionService = new TechnicalConditionServiceImpl(new TechnicalConditionDAOImpl());
+        itemService = new ItemServiceImpl(new ItemDAOImpl());
     }
 
     @Override

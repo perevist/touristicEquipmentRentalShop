@@ -11,8 +11,8 @@ public class TechnicalConditionServiceImpl implements TechnicalConditionService 
 
     private TechnicalConditionDAO technicalConditionDAO;
 
-    public TechnicalConditionServiceImpl() {
-        technicalConditionDAO = new TechnicalConditionDAOImpl();
+    public TechnicalConditionServiceImpl(TechnicalConditionDAO technicalConditionDAO) {
+        this.technicalConditionDAO = technicalConditionDAO;
     }
 
     @Override
