@@ -1,13 +1,11 @@
 package com.projectIO.touristicEquipmentRentalShop.application;
 
-//import com.projectIO.touristicEquipmentRentalShop.model.UserType;
 import com.projectIO.touristicEquipmentRentalShop.model.*;
 import com.projectIO.touristicEquipmentRentalShop.services.implementations.*;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
 
 public class RentalShopApp {
     private static RentalShopApp instance;
@@ -19,7 +17,6 @@ public class RentalShopApp {
     private ItemCategoryService itemCategoryService;
     
     public static void main(String[] args) {
-
     }
 
     private RentalShopApp() {

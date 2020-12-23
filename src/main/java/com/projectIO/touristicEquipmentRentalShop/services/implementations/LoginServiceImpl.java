@@ -8,22 +8,25 @@ import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginExcep
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectPasswordException;
 import com.projectIO.touristicEquipmentRentalShop.model.*;
 import com.projectIO.touristicEquipmentRentalShop.services.interfaces.LoginService;
+import org.jasypt.util.password.BasicPasswordEncryptor;
 
 public class LoginServiceImpl implements LoginService {
 
     private CustomerDAO customerDAO;
     private EmployeeDAO employeeDAO;
+    private BasicPasswordEncryptor passwordEncryptor;
 
     public LoginServiceImpl() {
         customerDAO = new CustomerDAOImpl();
         employeeDAO = new EmployeeDAOImpl();
+        passwordEncryptor = new BasicPasswordEncryptor();
     }
 
     @Override
     public void loginUser(String login, String password, UserType userType) {
         switch (userType) {
             case CUSTOMER:
-                loginCustomer(login, password, userType);
+                loginCustomer(login, password);
                 break;
             case EMPLOYEE: case ADMINISTRATOR:
                 loginEmployee(login, password, userType);
@@ -35,7 +38,7 @@ public class LoginServiceImpl implements LoginService {
         userInSystem.setUserType(userType);
     }
 
-    private void loginCustomer(String login, String password, UserType userType) {
+    private void loginCustomer(String login, String password) {
         Customer customerFromDb = customerDAO.read(login);
 
         if(customerFromDb == null) {
@@ -47,7 +50,7 @@ public class LoginServiceImpl implements LoginService {
 
     private void verifyPassword(Person personFromDb, String password) {
         String passwordFromDb = personFromDb.getPassword();
-        if (!passwordFromDb.equals(password)) {
+        if (!passwordEncryptor.checkPassword(password, passwordFromDb)) {
             throw new IncorrectPasswordException("Podano nieprawidłowe hasło");
         }
     }

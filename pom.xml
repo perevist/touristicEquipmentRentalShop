@@ -36,10 +36,19 @@
             <artifactId>javax.transaction-api</artifactId>
             <version>1.3</version>
         </dependency>
+
+        <!-- E-mail -->
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
+        </dependency>
+
+        <!-- Password encryption -->
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
+            <version>1.9.3</version>
         </dependency>
     </dependencies>
 
