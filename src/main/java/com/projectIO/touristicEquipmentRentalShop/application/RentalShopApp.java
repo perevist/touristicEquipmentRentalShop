@@ -21,7 +21,7 @@ public class RentalShopApp {
     }
 
     private RentalShopApp() {
-        registrationService = new RegistrationServiceImpl();
+        registrationService = new RegistrationServiceImpl(new CustomerDAOImpl());
         loginService = new LoginServiceImpl(new CustomerDAOImpl(), new EmployeeDAOImpl());
         reservationService = new ReservationServiceImpl(new ReservationDAOImpl(), new StatusDAOImpl(), new CustomerDAOImpl());
         itemService = new ItemServiceImpl(new ItemDAOImpl());

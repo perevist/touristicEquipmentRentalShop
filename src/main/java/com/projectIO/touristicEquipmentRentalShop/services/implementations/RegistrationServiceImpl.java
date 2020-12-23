@@ -12,14 +12,18 @@ public class RegistrationServiceImpl  implements RegistrationService {
     private CustomerDAO customerDAO;
     private BasicPasswordEncryptor passwordEncryptor;
 
-    public RegistrationServiceImpl() {
-        customerDAO = new CustomerDAOImpl();
+    public RegistrationServiceImpl(CustomerDAO customerDAO) {
+        this.customerDAO = customerDAO;
         passwordEncryptor = new BasicPasswordEncryptor();
     }
 
     @Override
     public void registerCustomer(String login, String firstName, String lastName, String phoneNumber, String email,
                                  String password) {
+
+        if(login == null || firstName == null || lastName == null || phoneNumber == null || email == null || password == null){
+            throw new IllegalArgumentException("Nalezy podac wszystkie dane potrzebne do rejestracji");
+        }
 
         if(login.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || phoneNumber.isEmpty() || email.isEmpty() || password.isEmpty()) {
             throw new IllegalArgumentException("Nalezy podac wszystkie dane potrzebne do rejestracji");

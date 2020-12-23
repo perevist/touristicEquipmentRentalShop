@@ -1,5 +1,6 @@
 package com.projectIO.touristicEquipmentRentalShop.gui.controllers;
 
+import com.projectIO.touristicEquipmentRentalShop.dao.implementations.CustomerDAOImpl;
 import com.projectIO.touristicEquipmentRentalShop.exceptions.IncorrectLoginException;
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.AlertWindow;
 import com.projectIO.touristicEquipmentRentalShop.gui.helpers.ScreenManager;
@@ -18,10 +19,6 @@ import java.io.IOException;
 public class RegistrationController implements MainController {
 
     private RegistrationService registrationService;
-
-    public RegistrationController() {
-        registrationService = new RegistrationServiceImpl();
-    }
 
     @FXML
     private GridPane rootPane;
@@ -46,6 +43,10 @@ public class RegistrationController implements MainController {
     private BackgroundImage myBI= new BackgroundImage(new Image("/img/registerPageImg.jpg",1200,
             800,false,true), BackgroundRepeat.REPEAT,
             BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
+    public RegistrationController() {
+        registrationService = new RegistrationServiceImpl(new CustomerDAOImpl());
+    }
 
     @Override
     public void updateDataInView() {
