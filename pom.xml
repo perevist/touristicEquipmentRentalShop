@@ -58,7 +58,13 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.7.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -78,6 +84,13 @@
             <artifactId>mockito-junit-jupiter</artifactId>
             <version>${mockito.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Unit tests - generate random data -->
+        <dependency>
+            <groupId>com.ocadotechnology.gembus</groupId>
+            <artifactId>test-arranger</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 

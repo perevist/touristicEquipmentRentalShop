@@ -2,10 +2,12 @@ package com.projectIO.touristicEquipmentRentalShop.services.implementations;
 
 import com.projectIO.touristicEquipmentRentalShop.dao.interfaces.ItemCategoryDAO;
 import com.projectIO.touristicEquipmentRentalShop.model.ItemCategory;
-import com.projectIO.touristicEquipmentRentalShop.services.interfaces.ItemCategoryService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.*;
+import org.mockito.ArgumentMatchers;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
@@ -36,6 +38,21 @@ class ItemCategoryServiceImplTest {
 //                .isInstanceOf(IllegalArgumentException.class)
 //                .hasMessage("Nazwa kategorii nie jest unikalna");
 //    }
+
+    @Test
+    void shouldThrowExceptionIfCategoryNameIsNotUnique() {
+        // given
+        String name = "Namiot";
+        double rentalCharge = 40;
+        double deposit = 12;
+        Mockito.doThrow(new IllegalArgumentException()).when(itemCategoryDAO).save(ArgumentMatchers.any());
+        // when
+        // then
+        assertThatThrownBy(() -> itemCategoryService.addItemCategory(name, rentalCharge, deposit))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Nazwa kategorii nie jest unikalna");
+    }
+
 
     @Test
     void shouldGetAllItemCategories() {
