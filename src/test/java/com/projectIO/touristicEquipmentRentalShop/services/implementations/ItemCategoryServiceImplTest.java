@@ -1,5 +1,6 @@
 package com.projectIO.touristicEquipmentRentalShop.services.implementations;
 
+import com.ocadotechnology.gembus.test.Arranger;
 import com.projectIO.touristicEquipmentRentalShop.dao.interfaces.ItemCategoryDAO;
 import com.projectIO.touristicEquipmentRentalShop.model.ItemCategory;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.persistence.EntityExistsException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,32 +27,56 @@ class ItemCategoryServiceImplTest {
     @InjectMocks
     private ItemCategoryServiceImpl itemCategoryService;
 
-//    @Test
-//    void shouldThrowExceptionIfCategoryNameIsNotUnique() {
-//        // given
-//        String name = "Namiot";
-//        double rentalCharge = 40;
-//        double deposit = 12;
-//        Mockito.when(itemCategoryDAO.save(ArgumentMatchers.any())).thenThrow(Exception.class);
-//        // when
-//        // then
-//        assertThatThrownBy(() -> itemCategoryService.addItemCategory(name, rentalCharge, deposit))
-//                .isInstanceOf(IllegalArgumentException.class)
-//                .hasMessage("Nazwa kategorii nie jest unikalna");
-//    }
-
     @Test
-    void shouldThrowExceptionIfCategoryNameIsNotUnique() {
+    void shouldThrowExceptionIfItemCategoryNameIsNull() {
         // given
-        String name = "Namiot";
-        double rentalCharge = 40;
-        double deposit = 12;
-        Mockito.doThrow(new IllegalArgumentException()).when(itemCategoryDAO).save(ArgumentMatchers.any());
+        String name = null;
+        double rentalCharge = Arranger.somePositiveInt(100);
+        double deposit = Arranger.somePositiveInt(100);
         // when
         // then
         assertThatThrownBy(() -> itemCategoryService.addItemCategory(name, rentalCharge, deposit))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Nazwa kategorii nie jest unikalna");
+                .hasMessage("Podano nieprawidłowe dane");
+    }
+
+    @Test
+    void shouldThrowExceptionIfItemCategoryNameIsEmpty() {
+        // given
+        String name = "";
+        double rentalCharge = Arranger.somePositiveInt(100);
+        double deposit = Arranger.somePositiveInt(100);
+        // when
+        // then
+        assertThatThrownBy(() -> itemCategoryService.addItemCategory(name, rentalCharge, deposit))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Podano nieprawidłowe dane");
+    }
+
+    @Test
+    void shouldThrowExceptionIfItemCategoryRentalChargeIsLowerThanZero() {
+        // given
+        String name = Arranger.someText(1, 20);
+        double rentalCharge = -Arranger.somePositiveInt(100);
+        double deposit = Arranger.somePositiveInt(100);
+        // when
+        // then
+        assertThatThrownBy(() -> itemCategoryService.addItemCategory(name, rentalCharge, deposit))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Podano nieprawidłowe dane");
+    }
+
+    @Test
+    void shouldThrowExceptionIfItemCategoryDepositIsLowerThanZero() {
+        // given
+        String name = Arranger.someText(1, 20);
+        double rentalCharge = Arranger.somePositiveInt(100);
+        double deposit = -Arranger.somePositiveInt(100);
+        // when
+        // then
+        assertThatThrownBy(() -> itemCategoryService.addItemCategory(name, rentalCharge, deposit))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Podano nieprawidłowe dane");
     }
 
 
@@ -58,9 +84,9 @@ class ItemCategoryServiceImplTest {
     void shouldGetAllItemCategories() {
         // given
         Mockito.when(itemCategoryDAO.readAll()).thenReturn(Arrays.asList(
-           new ItemCategory("Rower", 34.2, 12.3),
-           new ItemCategory("Kajak", 56, 12),
-           new ItemCategory("Lodka", 47, 14)
+                new ItemCategory("Rower", 34.2, 12.3),
+                new ItemCategory("Kajak", 56, 12),
+                new ItemCategory("Lodka", 47, 14)
         ));
         // when
         List<ItemCategory> allCategories = itemCategoryService.getAllCategories();
@@ -72,7 +98,7 @@ class ItemCategoryServiceImplTest {
     @Test
     void shouldDeleteItemCategory() {
         // given
-        int id = 1;
+        int id = Arranger.somePositiveInt(100);
         // when
         itemCategoryService.removeItemCategory(id);
         // then
@@ -90,54 +116,30 @@ class ItemCategoryServiceImplTest {
     }
 
     @Test
-    void shouldThrowExceptionIfItemCategoryNameIsNull() {
+    void shouldAddItemCategory() {
         // given
-        String name = null;
-        double rentalCharge = 35;
-        double deposit = 7;
+        String name = Arranger.someText(1, 20);
+        double rentalCharge = Arranger.somePositiveInt(100);
+        double deposit = Arranger.somePositiveInt(100);
         // when
+        itemCategoryService.addItemCategory(name, rentalCharge, deposit);
         // then
-        assertThatThrownBy(() -> itemCategoryService.addItemCategory(name, rentalCharge, deposit))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Podano nieprawidłowe dane");
+        Mockito.verify(itemCategoryDAO, Mockito.times(1))
+                .save(ArgumentMatchers.any(ItemCategory.class));
     }
 
     @Test
-    void shouldThrowExceptionIfItemCategoryNameIsEmpty() {
+    void shouldThrowExceptionIfCategoryNameIsNotUnique() {
         // given
-        String name = "";
-        double rentalCharge = 35;
-        double deposit = 7;
+        String name = Arranger.someText(1, 20);
+        double rentalCharge = Arranger.somePositiveInt(100);
+        double deposit = Arranger.somePositiveInt(100);
+        Mockito.doThrow(EntityExistsException.class).when(itemCategoryDAO).
+                save(ArgumentMatchers.any(ItemCategory.class));
         // when
         // then
         assertThatThrownBy(() -> itemCategoryService.addItemCategory(name, rentalCharge, deposit))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Podano nieprawidłowe dane");
-    }
-
-    @Test
-    void shouldThrowExceptionIfItemCategoryRentalChargeIsLowerThanZero() {
-        // given
-        String name = "Latawiec";
-        double rentalCharge = -50;
-        double deposit = 7;
-        // when
-        // then
-        assertThatThrownBy(() -> itemCategoryService.addItemCategory(name, rentalCharge, deposit))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Podano nieprawidłowe dane");
-    }
-
-    @Test
-    void shouldThrowExceptionIfItemCategoryDepositIsLowerThanZero() {
-        // given
-        String name = "Latawiec";
-        double rentalCharge = 56;
-        double deposit = -45;
-        // when
-        // then
-        assertThatThrownBy(() -> itemCategoryService.addItemCategory(name, rentalCharge, deposit))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Podano nieprawidłowe dane");
+                .hasMessage("Nazwa kategorii nie jest unikalna");
     }
 }
