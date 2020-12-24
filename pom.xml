@@ -92,6 +92,54 @@
             <artifactId>test-arranger</artifactId>
             <version>1.0</version>
         </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.fitnesse/fitnesse -->
+        <dependency>
+            <groupId>org.fitnesse</groupId>
+            <artifactId>fitnesse</artifactId>
+            <version>20200501</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
+
+
+
+
+    <!-- https://skills421.com/creating-a-simple-java-test-using-fitnesse/ -->
+    <profiles>
+        <profile>
+            <id>fitnesse</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+
+                        <executions>
+                            <execution>
+                                <id>start-fitnesse</id>
+                                <phase>test</phase>
+                                <configuration>
+                                    <tasks>
+                                        <echo taskname="fitnesse" message="Starting FitNesse…" />
+                                        <java classname="fitnesseMain.FitNesseMain" classpathref="maven.runtime.classpath" fork="true">
+                                            <arg line="-p 8888" />
+                                            <arg line="-d ." />
+                                        </java>
+                                    </tasks>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+
 
 </project>
