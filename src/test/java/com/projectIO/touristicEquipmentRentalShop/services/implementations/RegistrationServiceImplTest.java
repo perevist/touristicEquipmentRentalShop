@@ -210,6 +210,7 @@ class RegistrationServiceImplTest {
         String phoneNumber = Arranger.somePositiveInt(999999999).toString();
         String email = Arranger.someEmail();
         String passsword = Arranger.someText(1, 15);
+
         Mockito.doThrow(new IllegalArgumentException()).when(customerDAO).save(ArgumentMatchers.any());
         // when
         // then
