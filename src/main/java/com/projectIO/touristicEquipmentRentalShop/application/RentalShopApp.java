@@ -16,6 +16,7 @@ public class RentalShopApp {
     private ReservationService reservationService;
     private ItemService itemService;
     private ItemCategoryService itemCategoryService;
+    private CustomerService customerService;
     
     public static void main(String[] args) {
     }
@@ -26,6 +27,7 @@ public class RentalShopApp {
         reservationService = new ReservationServiceImpl(new ReservationDAOImpl(), new StatusDAOImpl(), new CustomerDAOImpl());
         itemService = new ItemServiceImpl(new ItemDAOImpl());
         itemCategoryService = new ItemCategoryServiceImpl(new ItemCategoryDAOImpl());
+        customerService = new CustomerServiceImpl(new CustomerDAOImpl());
     }
 
     public static RentalShopApp getInstance() {
@@ -35,8 +37,15 @@ public class RentalShopApp {
         return instance;
     }
 
-    public void registerCustomerSystem(String login, String firstName, String lastName, String phoneNumber, String email,
-                                       String password) {
+    public List<Customer> getAllCustomers(){
+        return customerService.getAllCustomers();
+    };
+    public void removeCustomer(String login){
+        customerService.removeCustomer(login);
+    };
+
+    public void registerCustomerInSystem(String login, String firstName, String lastName, String phoneNumber, String email,
+                                         String password) {
 
         registrationService.registerCustomer(login, firstName, lastName, phoneNumber, email, password);
     }

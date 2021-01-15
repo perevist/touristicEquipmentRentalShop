@@ -1,0 +1,12 @@
+!path C:/Users/Daniel/IdeaProjects/touristicEquipmentRentalShop5/target/test-classes
+!path C:/Users/Daniel/IdeaProjects/touristicEquipmentRentalShop5/target/classes
+!path C:/Users/Daniel/.m2/**.jar
+
+
+|acceptanceTest.TestRegisterCustomer                                                                    |
+|login   |firstName|lastName  |email         |phoneNumber|password   |registerCustomer?|getAllCustomers?|
+|login111|Ola      |Fidrych   |ol@wp.pl      |32123123332|scfs34%    |true             |32              |
+|login222|Adam     |Lesniewicz|adam@fmail.com|3132123124 |dsf32#41342|true             |33              |
+|login222|Adam     |Lesniewicz|adam@fmail.com|           |dsf32#41342|false            |33              |
+|login222|         |Lesniewicz|adam@fmail.com|3132123124 |dsf32#41342|false            |33              |
+

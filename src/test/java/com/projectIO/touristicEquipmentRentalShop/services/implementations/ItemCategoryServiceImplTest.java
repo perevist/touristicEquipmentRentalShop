@@ -38,6 +38,7 @@ class ItemCategoryServiceImplTest {
         assertThatThrownBy(() -> itemCategoryService.addItemCategory(name, rentalCharge, deposit))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Podano nieprawidłowe dane");
+
     }
 
     @Test

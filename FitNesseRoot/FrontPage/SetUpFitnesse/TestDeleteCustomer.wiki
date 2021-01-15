@@ -1,0 +1,11 @@
+!path C:/Users/Daniel/IdeaProjects/touristicEquipmentRentalShop5/target/test-classes
+!path C:/Users/Daniel/IdeaProjects/touristicEquipmentRentalShop5/target/classes
+!path C:/Users/Daniel/.m2/**.jar
+
+ 
+|acceptanceTest.TestDeleteCustomer         |
+|login    |removeCustomer?|getAllCustomers?|
+|login111 |true           |32              |
+|login222 |true           |31              |
+|zbigniewS|false          |31              |
+

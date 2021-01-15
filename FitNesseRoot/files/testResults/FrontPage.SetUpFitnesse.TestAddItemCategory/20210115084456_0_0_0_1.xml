@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20200501</FitNesseVersion>
+  <rootPath>FrontPage.SetUpFitnesse.TestAddItemCategory</rootPath>
+  <result>
+    <counts>
+      <right>0</right>
+      <wrong>0</wrong>
+      <ignores>0</ignores>
+      <exceptions>1</exceptions>
+    </counts>
+    <date>2021-01-15T08:44:56+01:00</date>
+    <runTimeInMillis>140</runTimeInMillis>
+    <content>&lt;br/&gt;&lt;span class="meta"&gt;variable defined: TEST_SYSTEM=slim&lt;/span&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;span class="meta"&gt;classpath: C:/Users/Daniel/IdeaProjects/touristicEquipmentRentalShop5/target/test-classes&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;import&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor0"&gt;
+		&lt;td&gt;&lt;span class="pass"&gt;aplication&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt; &lt;br/&gt;&lt;table&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td colspan="4"&gt;&lt;span class="pass"&gt;acceptanceTest.TestAddItemCategory&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowTitle"&gt;
+		&lt;td&gt;name&lt;/td&gt;
+		&lt;td&gt;deposit&lt;/td&gt;
+		&lt;td&gt;rentalCharge&lt;/td&gt;
+		&lt;td&gt;addItemCategory?&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr class="slimRowColor1"&gt;
+		&lt;td&gt;alsa&lt;/td&gt;
+		&lt;td&gt;12&lt;/td&gt;
+		&lt;td&gt;121&lt;/td&gt;
+		&lt;td&gt;&lt;table&gt;&lt;tr class="exception closed"&gt;&lt;td&gt; &lt;span class="error"&gt;true&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr class="exception-detail closed-detail"&gt;&lt;td&gt;__EXCEPTION__:java.lang.NoClassDefFoundError: com/projectIO/touristicEquipmentRentalShop/application/RentalShopApp
+	at acceptanceTest.SetUpFitnesse.&amp;lt;clinit&amp;gt;(SetUpFitnesse.java:11) [file:/C:/Users/Daniel/IdeaProjects/touristicEquipmentRentalShop5/target/test-classes/]
+	at acceptanceTest.TestAddItemCategory.addItemCategory(TestAddItemCategory.java:42) [file:/C:/Users/Daniel/IdeaProjects/touristicEquipmentRentalShop5/target/test-classes/]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) [rt.jar:1.8.0_221]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) [rt.jar:1.8.0_221]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) [rt.jar:1.8.0_221]
+	at java.lang.reflect.Method.invoke(Method.java:498) [rt.jar:1.8.0_221]
+	at fitnesse.slim.fixtureInteraction.SimpleInteraction.methodInvoke(SimpleInteraction.java:322) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.fixtureInteraction.SimpleInteraction.callMethod(SimpleInteraction.java:307) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.fixtureInteraction.SimpleInteraction.invokeMethod(SimpleInteraction.java:290) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.fixtureInteraction.SimpleInteraction.findAndInvoke(SimpleInteraction.java:217) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.MethodExecutor.findAndInvoke(MethodExecutor.java:18) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.FixtureMethodExecutor.execute(FixtureMethodExecutor.java:18) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.StatementExecutor.getMethodExecutionResult(StatementExecutor.java:139) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.StatementExecutor.call(StatementExecutor.java:112) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.instructions.CallAndOptionalAssignInstruction.executeInternal(CallAndOptionalAssignInstruction.java:30) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.instructions.Instruction.execute(Instruction.java:29) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.ListExecutor$Executive.executeStatement(ListExecutor.java:49) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.ListExecutor$Executive.executeStatements(ListExecutor.java:43) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.ListExecutor.execute(ListExecutor.java:85) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimServer.executeInstructions(SlimServer.java:82) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimServer.processOneSetOfInstructions(SlimServer.java:75) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimServer.tryProcessInstructions(SlimServer.java:62) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimServer.serve(SlimServer.java:47) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimService.handle(SlimService.java:169) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimService.acceptOne(SlimService.java:177) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimService.accept(SlimService.java:139) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimService.startWithFactory(SlimService.java:92) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimService.main(SlimService.java:57) [fitnesse-20200501.jar:20200501]
+Caused by: java.lang.ClassNotFoundException: com.projectIO.touristicEquipmentRentalShop.application.RentalShopApp
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:382) [rt.jar:1.8.0_221]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424) [rt.jar:1.8.0_221]
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349) [rt.jar:1.8.0_221]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357) [rt.jar:1.8.0_221]
+	at acceptanceTest.SetUpFitnesse.&amp;lt;clinit&amp;gt;(SetUpFitnesse.java:11) [file:/C:/Users/Daniel/IdeaProjects/touristicEquipmentRentalShop5/target/test-classes/]
+	at acceptanceTest.TestAddItemCategory.addItemCategory(TestAddItemCategory.java:42) [file:/C:/Users/Daniel/IdeaProjects/touristicEquipmentRentalShop5/target/test-classes/]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) [rt.jar:1.8.0_221]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) [rt.jar:1.8.0_221]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) [rt.jar:1.8.0_221]
+	at java.lang.reflect.Method.invoke(Method.java:498) [rt.jar:1.8.0_221]
+	at fitnesse.slim.fixtureInteraction.SimpleInteraction.methodInvoke(SimpleInteraction.java:322) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.fixtureInteraction.SimpleInteraction.callMethod(SimpleInteraction.java:307) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.fixtureInteraction.SimpleInteraction.invokeMethod(SimpleInteraction.java:290) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.fixtureInteraction.SimpleInteraction.findAndInvoke(SimpleInteraction.java:217) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.MethodExecutor.findAndInvoke(MethodExecutor.java:18) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.FixtureMethodExecutor.execute(FixtureMethodExecutor.java:18) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.StatementExecutor.getMethodExecutionResult(StatementExecutor.java:139) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.StatementExecutor.call(StatementExecutor.java:112) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.instructions.CallAndOptionalAssignInstruction.executeInternal(CallAndOptionalAssignInstruction.java:30) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.instructions.Instruction.execute(Instruction.java:29) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.ListExecutor$Executive.executeStatement(ListExecutor.java:49) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.ListExecutor$Executive.executeStatements(ListExecutor.java:43) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.ListExecutor.execute(ListExecutor.java:85) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimServer.executeInstructions(SlimServer.java:82) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimServer.processOneSetOfInstructions(SlimServer.java:75) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimServer.tryProcessInstructions(SlimServer.java:62) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimServer.serve(SlimServer.java:47) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimService.handle(SlimService.java:169) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimService.acceptOne(SlimService.java:177) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimService.accept(SlimService.java:139) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimService.startWithFactory(SlimService.java:92) [fitnesse-20200501.jar:20200501]
+	at fitnesse.slim.SlimService.main(SlimService.java:57) [fitnesse-20200501.jar:20200501]&lt;/td&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+</content>
+    <relativePageName>TestAddItemCategory</relativePageName>
+    <instructions>
+      <instructionResult>
+        <instruction>{id='import_0_0', instruction='import', path='aplication'}</instruction>
+        <slimResult>pass(aplication)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>import_0_0</instructionId>
+          <col>0</col>
+          <row>1</row>
+          <type>ImportExpectation</type>
+          <evaluationMessage>aplication</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_0', instruction='make', instanceName='decisionTable_1', className='acceptanceTest.TestAddItemCategory', args=[]}</instruction>
+        <slimResult>pass(acceptanceTest.TestAddItemCategory)</slimResult>
+        <expectation>
+          <status>pass</status>
+          <instructionId>decisionTable_1_0</instructionId>
+          <col>0</col>
+          <row>0</row>
+          <type>ConstructionExpectation</type>
+          <evaluationMessage>acceptanceTest.TestAddItemCategory</evaluationMessage>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_4', instruction='call', instanceName='decisionTable_1', methodName='setName', args=[alsa]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <instructionId>decisionTable_1_4</instructionId>
+          <col>0</col>
+          <row>2</row>
+          <type>VoidReturnExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_5', instruction='call', instanceName='decisionTable_1', methodName='setDeposit', args=[12]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <instructionId>decisionTable_1_5</instructionId>
+          <col>1</col>
+          <row>2</row>
+          <type>VoidReturnExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_6', instruction='call', instanceName='decisionTable_1', methodName='setRentalCharge', args=[121]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <instructionId>decisionTable_1_6</instructionId>
+          <col>2</col>
+          <row>2</row>
+          <type>VoidReturnExpectation</type>
+        </expectation>
+      </instructionResult>
+      <instructionResult>
+        <instruction>{id='decisionTable_1_8', instruction='call', instanceName='decisionTable_1', methodName='addItemCategory', args=[]}</instruction>
+        <slimResult></slimResult>
+        <expectation>
+          <status>error</status>
+          <instructionId>decisionTable_1_8</instructionId>
+          <type>ReturnedValueExpectation</type>
+        </expectation>
+      </instructionResult>
+    </instructions>
+  </result>
+  <executionLog>
+    <testSystem>slim:fitnesse.slim.SlimService</testSystem>
+    <command>"C:\Program Files\Java\jdk1.8.0_221\bin\java" -cp C:\Users\Daniel\.m2\repository\org\fitnesse\fitnesse\20200501\fitnesse-20200501.jar;C:/Users/Daniel/IdeaProjects/touristicEquipmentRentalShop5/target/test-classes fitnesse.slim.SlimService 1</command>
+    <exitCode>0</exitCode>
+    <stdOut></stdOut>
+    <stdErr>Slim  Map converter not loaded: could not find class org/htmlparser/NodeFilter
+</stdErr>
+  </executionLog>
+  <finalCounts>
+    <right>0</right>
+    <wrong>0</wrong>
+    <ignores>0</ignores>
+    <exceptions>1</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>452</totalRunTimeInMillis>
+</testResults>
+

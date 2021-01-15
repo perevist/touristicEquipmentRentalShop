@@ -14,7 +14,8 @@ public class UserInSystem {
     }
 
     private UserInSystem() {
-        userType = UserType.GUEST;
+        userType = UserType.ADMINISTRATOR;
+
     }
 
     public String getLogin() {
