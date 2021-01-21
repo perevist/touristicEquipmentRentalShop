@@ -6,8 +6,8 @@
 
  
 
-|acceptanceTest.TestDeleteItemCategory        |
-|id |removeItemCategory?|getAllItemCategories?|
-|61 |true               |33                   |
-|62 |true               |32                   |
-|356|false              |32                   |
+|acceptanceTest.TestDeleteItemCategory         |
+|id  |removeItemCategory?|getAllItemCategories?|
+|67  |true               |33                   |
+|68  |true               |32                   |
+|3536|false              |32                   |

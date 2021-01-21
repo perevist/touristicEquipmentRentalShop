@@ -3,10 +3,10 @@
 !path C:/Users/Daniel/.m2/**.jar
 
 
-|acceptanceTest.TestRegisterCustomer                                                                    |
-|login   |firstName|lastName  |email         |phoneNumber|password   |registerCustomer?|getAllCustomers?|
-|login111|Ola      |Fidrych   |ol@wp.pl      |32123123332|scfs34%    |true             |32              |
-|login222|Adam     |Lesniewicz|adam@fmail.com|3132123124 |dsf32#41342|true             |33              |
-|login222|Adam     |Lesniewicz|adam@fmail.com|           |dsf32#41342|false            |33              |
-|login222|         |Lesniewicz|adam@fmail.com|3132123124 |dsf32#41342|false            |33              |
+|acceptanceTest.TestRegisterCustomer                                                                        |
+|login   |firstName|lastName  |email          |phoneNumber|password      |registerCustomer?|getAllCustomers?|
+|login111|Ola      |Fidrych   |ol@wp.pl       |5081324955 |s12s34%       |true             |32              |
+|login222|Adam     |Lesniewicz|adam3@fmail.com|6016544783 |1232#41342    |true             |33              |
+|login222|Adam     |Kruk      |adam1@fmail.com|           |sdsf32#413sdds|false            |33              |
+|login222|         |Malysz    |adam2@fmail.com|8716697711 |dssd32#41342  |false            |33              |
 
